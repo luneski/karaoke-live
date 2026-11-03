@@ -1,15 +1,23 @@
-version: '3.8'
-
 services:
   karaoke-live:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: karaoke-live:latest
     container_name: karaoke-live
     restart: unless-stopped
     ports:
-      - "3030:3030"
-    environment:
-      - PORT=3030
-      - ADMIN_PASSWORD=karaoke2026
-      - DB_PATH=/app/data/karaoke.db
+      - "127.0.0.1:3030:3030"
     volumes:
       - ./data:/app/data
+    environment:
+      - PORT=${PORT:-3030}
+      - NODE_ENV=${NODE_ENV:-production}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-karaoke2026}
+      - DB_PATH=${DB_PATH:-/app/data/karaoke.db}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3030/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3

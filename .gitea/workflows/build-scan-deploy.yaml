@@ -1,0 +1,94 @@
+name: Build, Scan & Deploy (Gitea Actions)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Hardened Docker Image
+        run: |
+          echo "Building Docker image karaoke-live:latest..."
+          docker build -t karaoke-live:latest .
+
+  scan:
+    name: Trivy Security Scan
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image for Scanning
+        run: |
+          docker build -t karaoke-live:latest .
+
+      - name: Aqua Security Trivy Scan (OS & Dependencies)
+        run: |
+          echo "Running Trivy Vulnerability Audit..."
+          echo "### 🛡️ Trivy Security Vulnerability Scan Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy:latest image \
+            --severity HIGH,CRITICAL \
+            --format table \
+            karaoke-live:latest | tee trivy-scan.log
+
+          echo '```text' >> $GITHUB_STEP_SUMMARY
+          cat trivy-scan.log >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Fail on CRITICAL Vulnerabilities Policy
+        run: |
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy:latest image \
+            --severity CRITICAL \
+            --exit-code 1 \
+            karaoke-live:latest
+
+  deploy:
+    name: Automated Zero-Downtime Deployment
+    needs: [build, scan]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Production via Docker Compose
+        run: |
+          echo "🚀 Deploying karaoke-live container on Oracle VPS..."
+          if [ -d "/home/ubuntu/karaoke-live" ]; then
+            cd /home/ubuntu/karaoke-live
+            git pull origin main || true
+            docker compose up -d --build --remove-orphans
+          else
+            docker compose up -d --build --remove-orphans
+          fi
+
+      - name: Verify Container Health
+        run: |
+          echo "Verifying health status of karaoke-live..."
+          for i in $(seq 1 12); do
+            HEALTH=$(docker inspect --format='{{json .State.Health.Status}}' karaoke-live 2>/dev/null || echo '"starting"')
+            echo "Probe $i/12: Health status is $HEALTH"
+            if [ "$HEALTH" = '"healthy"' ]; then
+              echo "✅ karaoke-live container is healthy and responding!"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "❌ Container did not become healthy in time."
+          docker logs --tail 50 karaoke-live
+          exit 1

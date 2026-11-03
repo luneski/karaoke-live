@@ -354,6 +354,245 @@
       transform: scale(1.02);
     }
 
+    /* Cover thumbnail in list */
+    .song-cover-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-right: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .song-cover-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .song-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-lyrics {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-lyrics:hover {
+      background: rgba(220, 53, 69, 0.15);
+      border-color: rgba(220, 53, 69, 0.4);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Sleek Lyrics Drawer / Modal */
+    .lyrics-drawer-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 150;
+      padding: 16px;
+    }
+
+    .lyrics-drawer-overlay.active {
+      display: flex;
+    }
+
+    .lyrics-modal {
+      background: #131a2a;
+      border: 1px solid rgba(220, 53, 69, 0.35);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 35px var(--red-glow);
+      animation: modalSlideUp 0.25s ease-out;
+      overflow: hidden;
+    }
+
+    @keyframes modalSlideUp {
+      from { transform: translateY(24px) scale(0.97); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 640px) {
+      .lyrics-drawer-overlay {
+        align-items: flex-end;
+        padding: 0;
+      }
+      .lyrics-modal {
+        max-width: 100%;
+        max-height: 88vh;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        animation: drawerSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      @keyframes drawerSlideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+      }
+    }
+
+    .lyrics-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .lyrics-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .lyrics-header-cover {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .lyrics-header-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .lyrics-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lyrics-artist {
+      font-size: 13px;
+      color: #fca5a5;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lyrics-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .font-resizer {
+      display: flex;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .btn-resizer {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-resizer:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    .btn-close-lyrics {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-close-lyrics:hover {
+      background: rgba(220, 53, 69, 0.2);
+      border-color: rgba(220, 53, 69, 0.4);
+      color: #ffffff;
+    }
+
+    .lyrics-body {
+      padding: 24px 22px;
+      overflow-y: auto;
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #f8fafc;
+      white-space: pre-wrap;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.25);
+      scroll-behavior: smooth;
+    }
+
+    .lyrics-body .stanza {
+      margin-bottom: 20px;
+    }
+
+    .lyrics-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
     /* Modal */
     .modal-overlay {
       position: fixed;
@@ -587,6 +826,37 @@
     </div>
   </div>
 
+  <!-- Sleek Lyrics Drawer / Modal -->
+  <div class="lyrics-drawer-overlay" id="lyricsOverlay" onclick="closeLyricsModal(event)">
+    <div class="lyrics-modal" onclick="event.stopPropagation()">
+      <div class="lyrics-header">
+        <div class="lyrics-header-left">
+          <div class="lyrics-header-cover" id="lyricsHeaderCoverWrap" style="display: none;">
+            <img id="lyricsHeaderCover" src="" alt="Pochette">
+          </div>
+          <div style="min-width: 0;">
+            <h3 class="lyrics-title" id="lyricsSongTitle">Titre de la chanson</h3>
+            <p class="lyrics-artist" id="lyricsSongArtist">Artiste</p>
+          </div>
+        </div>
+        <div class="lyrics-header-actions">
+          <div class="font-resizer">
+            <button type="button" class="btn-resizer" onclick="adjustLyricsFont(-2)" title="Diminuer la taille">A-</button>
+            <button type="button" class="btn-resizer" onclick="adjustLyricsFont(2)" title="Agrandir la taille">A+</button>
+          </div>
+          <button type="button" class="btn-close-lyrics" onclick="closeLyricsModal()">✕</button>
+        </div>
+      </div>
+      <div class="lyrics-body" id="lyricsBodyContent">
+        <!-- Lyrics content injected here -->
+      </div>
+      <div class="lyrics-footer">
+        <button type="button" class="btn-cancel" onclick="closeLyricsModal()">Fermer</button>
+        <button type="button" class="btn-submit" id="lyricsSingBtn" onclick="singFromLyricsModal()">Chanter ce titre 🎤</button>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast">
     <span>🎸</span>
     <span id="toastMsg">Votre inscription est enregistrée !</span>
@@ -671,16 +941,27 @@
 
       list.innerHTML = filtered.map(song => `
         <div class="song-card" onclick="openSignup(${song.id})">
+          ${song.cover_url ? `
+            <div class="song-cover-wrap">
+              <img src="${escapeHtml(song.cover_url)}" alt="Pochette" class="song-cover-thumb" onerror="this.parentElement.style.display='none';">
+            </div>
+          ` : ''}
           <div class="song-info">
             <div class="song-title">${escapeHtml(song.title)}</div>
             <div class="song-artist">${escapeHtml(song.artist)}</div>
             <div class="song-badges">
-              <span class="badge ${song.formation.includes('Duo') ? 'badge-duo' : ''}">${escapeHtml(song.formation)}</span>
+              <span class="badge ${(song.formation || '').includes('Duo') ? 'badge-duo' : ''}">${escapeHtml(song.formation || 'Solo')}</span>
               ${song.year ? `<span class="badge">${song.year}</span>` : ''}
-              <span class="badge">${song.language === 'Français' ? '🇫🇷 FR' : '🇬🇧 EN'}</span>
+              <span class="badge">${song.language === 'Français' ? '🇫🇷 FR' : (song.language === 'Anglais' ? '🇬🇧 EN' : escapeHtml(song.language || 'FR'))}</span>
+              ${song.album ? `<span class="badge">💿 ${escapeHtml(song.album)}</span>` : ''}
             </div>
           </div>
-          <button class="btn-choose" onclick="event.stopPropagation(); openSignup(${song.id})">Chanter</button>
+          <div class="song-actions">
+            <button class="btn-lyrics" onclick="event.stopPropagation(); openLyricsModal(${song.id})" title="Voir les paroles avant de chanter">
+              <span>📄</span> <span class="btn-text">Paroles</span>
+            </button>
+            <button class="btn-choose" onclick="event.stopPropagation(); openSignup(${song.id})">Chanter</button>
+          </div>
         </div>
       `).join('');
     }
@@ -739,6 +1020,117 @@
       return text.replace(/[&<>"']/g, function(m) {
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
       });
+    }
+
+    /* --- Lyrics Drawer / Modal Logic --- */
+    let currentLyricsSong = null;
+    let currentLyricsFontSize = 17;
+
+    function adjustLyricsFont(delta) {
+      currentLyricsFontSize = Math.min(26, Math.max(13, currentLyricsFontSize + delta));
+      const body = document.getElementById('lyricsBodyContent');
+      if (body) body.style.fontSize = `${currentLyricsFontSize}px`;
+    }
+
+    async function openLyricsModal(songId) {
+      const song = allSongs.find(s => s.id === songId);
+      if (!song) return;
+
+      currentLyricsSong = song;
+
+      document.getElementById('lyricsSongTitle').innerText = song.title;
+      document.getElementById('lyricsSongArtist').innerText = song.artist;
+
+      const coverWrap = document.getElementById('lyricsHeaderCoverWrap');
+      const coverImg = document.getElementById('lyricsHeaderCover');
+      if (song.cover_url) {
+        coverImg.src = song.cover_url;
+        coverWrap.style.display = 'block';
+      } else {
+        coverWrap.style.display = 'none';
+      }
+
+      const body = document.getElementById('lyricsBodyContent');
+      body.style.fontSize = `${currentLyricsFontSize}px`;
+
+      document.getElementById('lyricsOverlay').classList.add('active');
+
+      // Check if song already has lyrics
+      if (song.lyrics || song.synced_lyrics) {
+        displayLyricsText(song.lyrics || song.synced_lyrics);
+        return;
+      }
+
+      // Try fetching if endpoint exists
+      body.innerHTML = `
+        <div style="padding: 30px 10px; color: var(--text-muted);">
+          <div style="font-size: 32px; margin-bottom: 10px;">🎶</div>
+          <p style="color: #fff; font-weight: 700; font-size: 16px;">Chargement des paroles...</p>
+        </div>
+      `;
+
+      try {
+        const res = await fetch(`/api/songs/${song.id}/lyrics`);
+        if (res.ok) {
+          const data = await res.json();
+          const lyrics = data.lyrics || data.plainLyrics || (typeof data === 'string' ? data : '');
+          if (lyrics && lyrics.trim()) {
+            song.lyrics = lyrics;
+            displayLyricsText(lyrics);
+            return;
+          }
+        }
+      } catch (e) {
+        // Fallback
+      }
+
+      // If no lyrics found:
+      body.innerHTML = `
+        <div style="padding: 40px 15px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 12px;">🎺</div>
+          <p style="color: #fff; font-weight: 800; font-size: 18px; margin-bottom: 6px;">
+            "N'apprenez pas les paroles !"
+          </p>
+          <p style="font-size: 14px; max-width: 420px; margin: 0 auto; line-height: 1.6;">
+            Les paroles écrites ne sont pas encore renseignées pour ce titre, mais ne vous inquiétez pas : l'essentiel à <strong>La Fraternelle</strong>, c'est l'ambiance et la fête ! Montez au micro et improvisez avec les musiciens ! 🎉
+          </p>
+        </div>
+      `;
+    }
+
+    function displayLyricsText(rawLyrics) {
+      const body = document.getElementById('lyricsBodyContent');
+      if (!rawLyrics || !rawLyrics.trim()) {
+        body.innerHTML = '<p style="color: var(--text-muted); padding: 30px;">Aucune parole disponible.</p>';
+        return;
+      }
+
+      const cleaned = cleanLrcLyrics(rawLyrics);
+      const stanzas = cleaned.split(/\n\s*\n/).filter(s => s.trim().length > 0);
+
+      body.innerHTML = stanzas.map(stanza => `
+        <div class="stanza">${escapeHtml(stanza).replace(/\n/g, '<br>')}</div>
+      `).join('');
+    }
+
+    function cleanLrcLyrics(text) {
+      if (!text) return '';
+      return text.split('\n')
+        .map(line => line.replace(/^\[\d{2}:\d{2}(\.\d{1,3})?\]\s*/g, ''))
+        .join('\n');
+    }
+
+    function closeLyricsModal(e) {
+      if (e && e.target !== document.getElementById('lyricsOverlay')) return;
+      document.getElementById('lyricsOverlay').classList.remove('active');
+      currentLyricsSong = null;
+    }
+
+    function singFromLyricsModal() {
+      if (!currentLyricsSong) return;
+      const songId = currentLyricsSong.id;
+      closeLyricsModal();
+      openSignup(songId);
     }
 
     // Filter Buttons

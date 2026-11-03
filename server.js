@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
@@ -12,6 +13,7 @@ const wss = new WebSocket.Server({ server });
 const PORT = process.env.PORT || 3030;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'karaoke2026';
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data', 'karaoke.db');
+const USER_AGENT = 'KaraokeLive/1.0 (https://karaoke.lafraternelledemareau.fr)';
 
 // Ensure data directory exists
 fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
@@ -27,6 +29,11 @@ db.exec(`
     formation TEXT DEFAULT 'Solo',
     year INTEGER,
     language TEXT DEFAULT 'Français',
+    cover_url TEXT,
+    lyrics TEXT,
+    synced_lyrics TEXT,
+    album TEXT,
+    genre TEXT,
     available INTEGER DEFAULT 1
   );
 
@@ -42,6 +49,26 @@ db.exec(`
   );
 `);
 
+// ----------------- SQLite Schema Migration -----------------
+// Check existing columns in 'songs' table and add missing ones
+const expectedSongColumns = [
+  { name: 'cover_url', type: 'TEXT' },
+  { name: 'lyrics', type: 'TEXT' },
+  { name: 'synced_lyrics', type: 'TEXT' },
+  { name: 'album', type: 'TEXT' },
+  { name: 'genre', type: 'TEXT' }
+];
+
+const songTableInfo = db.prepare('PRAGMA table_info(songs)').all();
+const existingSongColumns = new Set(songTableInfo.map((col) => col.name));
+
+for (const col of expectedSongColumns) {
+  if (!existingSongColumns.has(col.name)) {
+    db.prepare(`ALTER TABLE songs ADD COLUMN ${col.name} ${col.type}`).run();
+    console.log(`[Migration] Added column '${col.name}' to 'songs' table.`);
+  }
+}
+
 // Populate songs if table is empty
 const songCount = db.prepare('SELECT COUNT(*) as count FROM songs').get().count;
 if (songCount === 0) {
@@ -49,12 +76,27 @@ if (songCount === 0) {
   if (fs.existsSync(defaultSongsPath)) {
     const rawSongs = JSON.parse(fs.readFileSync(defaultSongsPath, 'utf8'));
     const insertSong = db.prepare(`
-      INSERT INTO songs (artist, title, formation, year, language, available)
-      VALUES (?, ?, ?, ?, ?, 1)
+      INSERT INTO songs (
+        artist, title, formation, year, language,
+        cover_url, lyrics, synced_lyrics, album, genre,
+        available
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
     `);
     const insertMany = db.transaction((songs) => {
       for (const s of songs) {
-        insertSong.run(s.artist, s.title, s.formation || 'Solo', s.year || null, s.language || 'Français');
+        insertSong.run(
+          s.artist,
+          s.title,
+          s.formation || 'Solo',
+          s.year ? parseInt(s.year, 10) : null,
+          s.language || 'Français',
+          s.cover_url || null,
+          s.lyrics || null,
+          s.synced_lyrics || null,
+          s.album || null,
+          s.genre || null
+        );
       }
     });
     insertMany(rawSongs);
@@ -64,6 +106,11 @@ if (songCount === 0) {
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Healthcheck endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', uptime: process.uptime(), timestamp: Date.now() });
+});
 
 // Broadcast updates via WebSockets
 function broadcast(type, data) {
@@ -88,9 +135,218 @@ function authMiddleware(req, res, next) {
   return res.status(401).json({ error: 'Accès non autorisé' });
 }
 
+// ----------------- External Services (Indexer & Lyrics) -----------------
+
+/**
+ * Helper to upgrade iTunes artwork to HD (600x600)
+ */
+function getHdItunesCover(artworkUrl) {
+  if (!artworkUrl) return null;
+  return artworkUrl.replace(/\/\d+x\d+bb\./, '/600x600bb.');
+}
+
+/**
+ * Resilient music indexer using iTunes Search API with Deezer API fallback.
+ * Returns: artist, title, album, year, genre, cover_url (HD 600x600)
+ */
+async function searchMusic(query) {
+  if (!query || typeof query !== 'string' || !query.trim()) {
+    return [];
+  }
+
+  const cleanQuery = query.trim();
+
+  // 1. Try iTunes Search API
+  try {
+    const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(cleanQuery)}&entity=song&limit=15`;
+    const response = await fetch(itunesUrl, {
+      headers: {
+        'User-Agent': USER_AGENT,
+        Accept: 'application/json'
+      },
+      signal: AbortSignal.timeout(6000)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      if (Array.isArray(data.results) && data.results.length > 0) {
+        return data.results.map((track) => ({
+          artist: track.artistName || 'Artiste inconnu',
+          title: track.trackName || 'Titre inconnu',
+          album: track.collectionName || null,
+          year: track.releaseDate ? new Date(track.releaseDate).getFullYear() : null,
+          genre: track.primaryGenreName || null,
+          cover_url: getHdItunesCover(track.artworkUrl100)
+        }));
+      }
+    }
+  } catch (err) {
+    console.warn(`[Indexer] iTunes search failed for "${cleanQuery}": ${err.message}. Trying Deezer fallback.`);
+  }
+
+  // 2. Deezer API Fallback
+  try {
+    const deezerUrl = `https://api.deezer.com/search?q=${encodeURIComponent(cleanQuery)}&limit=15`;
+    const deezerResponse = await fetch(deezerUrl, {
+      headers: {
+        'User-Agent': USER_AGENT,
+        Accept: 'application/json'
+      },
+      signal: AbortSignal.timeout(6000)
+    });
+
+    if (deezerResponse.ok) {
+      const data = await deezerResponse.json();
+      if (Array.isArray(data.data) && data.data.length > 0) {
+        return data.data.map((item) => ({
+          artist: item.artist?.name || 'Artiste inconnu',
+          title: item.title || 'Titre inconnu',
+          album: item.album?.title || null,
+          year: null,
+          genre: null,
+          cover_url:
+            item.album?.cover_xl ||
+            item.album?.cover_big ||
+            item.album?.cover_medium ||
+            item.album?.cover ||
+            null
+        }));
+      }
+    }
+  } catch (err) {
+    console.warn(`[Indexer] Deezer fallback search failed for "${cleanQuery}": ${err.message}`);
+  }
+
+  return [];
+}
+
+/**
+ * Resilient lyrics fetcher using LRCLIB API.
+ * Tries /api/get first, falls back to /api/search.
+ * Returns: { artist, title, lyrics, synced_lyrics, found }
+ */
+async function fetchLyrics(artist, title) {
+  if (!artist || !title) {
+    return {
+      artist: artist || '',
+      title: title || '',
+      lyrics: null,
+      synced_lyrics: null,
+      found: false
+    };
+  }
+
+  const cleanArtist = artist.trim();
+  const cleanTitle = title.trim();
+
+  // 1. Try LRCLIB exact get
+  try {
+    const getUrl = `https://lrclib.net/api/get?artist_name=${encodeURIComponent(cleanArtist)}&track_name=${encodeURIComponent(cleanTitle)}`;
+    const res = await fetch(getUrl, {
+      headers: {
+        'User-Agent': USER_AGENT,
+        Accept: 'application/json'
+      },
+      signal: AbortSignal.timeout(6000)
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data && (data.plainLyrics || data.syncedLyrics)) {
+        return {
+          artist: data.artistName || cleanArtist,
+          title: data.trackName || cleanTitle,
+          lyrics: data.plainLyrics || null,
+          synced_lyrics: data.syncedLyrics || null,
+          found: true
+        };
+      }
+    }
+  } catch (err) {
+    console.warn(`[Lyrics] LRCLIB get failed for "${cleanArtist} - ${cleanTitle}": ${err.message}`);
+  }
+
+  // 2. Try LRCLIB search by track_name & artist_name
+  try {
+    const searchUrl = `https://lrclib.net/api/search?track_name=${encodeURIComponent(cleanTitle)}&artist_name=${encodeURIComponent(cleanArtist)}`;
+    const searchRes = await fetch(searchUrl, {
+      headers: {
+        'User-Agent': USER_AGENT,
+        Accept: 'application/json'
+      },
+      signal: AbortSignal.timeout(6000)
+    });
+
+    if (searchRes.ok) {
+      const list = await searchRes.json();
+      if (Array.isArray(list) && list.length > 0) {
+        const match = list.find((item) => item.plainLyrics || item.syncedLyrics);
+        if (match) {
+          return {
+            artist: match.artistName || cleanArtist,
+            title: match.trackName || cleanTitle,
+            lyrics: match.plainLyrics || null,
+            synced_lyrics: match.syncedLyrics || null,
+            found: true
+          };
+        }
+      }
+    }
+  } catch (err) {
+    console.warn(`[Lyrics] LRCLIB search failed for "${cleanArtist} - ${cleanTitle}": ${err.message}`);
+  }
+
+  // 3. Try LRCLIB general query search
+  try {
+    const queryUrl = `https://lrclib.net/api/search?q=${encodeURIComponent(`${cleanArtist} ${cleanTitle}`)}`;
+    const queryRes = await fetch(queryUrl, {
+      headers: {
+        'User-Agent': USER_AGENT,
+        Accept: 'application/json'
+      },
+      signal: AbortSignal.timeout(6000)
+    });
+
+    if (queryRes.ok) {
+      const list = await queryRes.json();
+      if (Array.isArray(list) && list.length > 0) {
+        const match = list.find((item) => item.plainLyrics || item.syncedLyrics);
+        if (match) {
+          return {
+            artist: match.artistName || cleanArtist,
+            title: match.trackName || cleanTitle,
+            lyrics: match.plainLyrics || null,
+            synced_lyrics: match.syncedLyrics || null,
+            found: true
+          };
+        }
+      }
+    }
+  } catch (err) {
+    console.warn(`[Lyrics] LRCLIB general query search failed for "${cleanArtist} ${cleanTitle}": ${err.message}`);
+  }
+
+  return {
+    artist: cleanArtist,
+    title: cleanTitle,
+    lyrics: null,
+    synced_lyrics: null,
+    found: false
+  };
+}
+
 // ----------------- Public APIs -----------------
 
-// List available songs
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: Date.now()
+  });
+});
+
+// List available songs (includes cover_url, album, genre)
 app.get('/api/songs', (req, res) => {
   const search = req.query.q ? `%${req.query.q}%` : null;
   let songs;
@@ -110,11 +366,27 @@ app.get('/api/songs', (req, res) => {
   res.json(songs);
 });
 
+// Get lyrics and cover for a specific song
+app.get('/api/songs/:id/lyrics', (req, res) => {
+  const { id } = req.params;
+  const song = db.prepare(`
+    SELECT id, artist, title, lyrics, synced_lyrics, cover_url
+    FROM songs
+    WHERE id = ?
+  `).get(id);
+
+  if (!song) {
+    return res.status(404).json({ error: 'Chanson non trouvée' });
+  }
+
+  res.json(song);
+});
+
 // Get current public queue
 app.get('/api/queue', (req, res) => {
   const queue = db.prepare(`
     SELECT q.id, q.singer_name, q.status, q.position, q.created_at,
-           s.artist, s.title, s.formation, s.language, s.year
+           s.artist, s.title, s.formation, s.language, s.year, s.cover_url
     FROM queue q
     JOIN songs s ON q.song_id = s.id
     WHERE q.status IN ('waiting', 'current')
@@ -146,7 +418,7 @@ app.post('/api/queue', (req, res) => {
 
   const newEntry = db.prepare(`
     SELECT q.id, q.singer_name, q.status, q.position, q.created_at,
-           s.artist, s.title, s.formation, s.language, s.year
+           s.artist, s.title, s.formation, s.language, s.year, s.cover_url
     FROM queue q
     JOIN songs s ON q.song_id = s.id
     WHERE q.id = ?
@@ -169,11 +441,43 @@ app.post('/api/admin/login', (req, res) => {
   }
 });
 
+// Music indexer search (iTunes + Deezer fallback)
+app.get('/api/admin/indexer/search', authMiddleware, async (req, res) => {
+  const query = req.query.q;
+  if (!query || !query.trim()) {
+    return res.status(400).json({ error: 'Paramètre de recherche (q) requis' });
+  }
+
+  try {
+    const results = await searchMusic(query.trim());
+    res.json(results);
+  } catch (err) {
+    console.error('[Admin Indexer] Error:', err);
+    res.status(500).json({ error: 'Erreur lors de la recherche musicale' });
+  }
+});
+
+// Music indexer lyrics fetch (LRCLIB)
+app.get('/api/admin/indexer/lyrics', authMiddleware, async (req, res) => {
+  const { artist, title } = req.query;
+  if (!artist || !title || !artist.trim() || !title.trim()) {
+    return res.status(400).json({ error: 'Paramètres artist et title requis' });
+  }
+
+  try {
+    const result = await fetchLyrics(artist.trim(), title.trim());
+    res.json(result);
+  } catch (err) {
+    console.error('[Admin Lyrics] Error:', err);
+    res.status(500).json({ error: 'Erreur lors de la récupération des paroles' });
+  }
+});
+
 // Get full queue for admin (including done/cancelled)
 app.get('/api/admin/queue', authMiddleware, (req, res) => {
   const queue = db.prepare(`
     SELECT q.id, q.song_id, q.singer_name, q.notes, q.status, q.position, q.created_at,
-           s.artist, s.title, s.formation, s.language, s.year
+           s.artist, s.title, s.formation, s.language, s.year, s.cover_url
     FROM queue q
     JOIN songs s ON q.song_id = s.id
     ORDER BY 
@@ -236,15 +540,42 @@ app.delete('/api/admin/queue/:id', authMiddleware, (req, res) => {
 
 // Add new song to catalogue
 app.post('/api/admin/songs', authMiddleware, (req, res) => {
-  const { artist, title, formation, year, language } = req.body;
+  const {
+    artist,
+    title,
+    formation,
+    year,
+    language,
+    cover_url,
+    lyrics,
+    synced_lyrics,
+    album,
+    genre
+  } = req.body;
+
   if (!artist || !title) {
     return res.status(400).json({ error: 'Artiste et titre requis.' });
   }
 
   const result = db.prepare(`
-    INSERT INTO songs (artist, title, formation, year, language, available)
-    VALUES (?, ?, ?, ?, ?, 1)
-  `).run(artist.trim(), title.trim(), formation || 'Solo', year ? parseInt(year) : null, language || 'Français');
+    INSERT INTO songs (
+      artist, title, formation, year, language,
+      cover_url, lyrics, synced_lyrics, album, genre,
+      available
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
+  `).run(
+    artist.trim(),
+    title.trim(),
+    formation || 'Solo',
+    year ? parseInt(year, 10) : null,
+    language || 'Français',
+    cover_url ? cover_url.trim() : null,
+    lyrics || null,
+    synced_lyrics || null,
+    album ? album.trim() : null,
+    genre ? genre.trim() : null
+  );
 
   const song = db.prepare('SELECT * FROM songs WHERE id = ?').get(result.lastInsertRowid);
   broadcast('SONGS_UPDATED', song);
@@ -254,22 +585,46 @@ app.post('/api/admin/songs', authMiddleware, (req, res) => {
 // Update existing song in catalogue
 app.put('/api/admin/songs/:id', authMiddleware, (req, res) => {
   const { id } = req.params;
-  const { artist, title, formation, year, language, available } = req.body;
+  const {
+    artist,
+    title,
+    formation,
+    year,
+    language,
+    available,
+    cover_url,
+    lyrics,
+    synced_lyrics,
+    album,
+    genre
+  } = req.body;
+
   if (!artist || !title) {
     return res.status(400).json({ error: 'Artiste et titre requis.' });
   }
 
+  const existing = db.prepare('SELECT id FROM songs WHERE id = ?').get(id);
+  if (!existing) {
+    return res.status(404).json({ error: 'Chanson non trouvée' });
+  }
+
   db.prepare(`
     UPDATE songs 
-    SET artist = ?, title = ?, formation = ?, year = ?, language = ?, available = ?
+    SET artist = ?, title = ?, formation = ?, year = ?, language = ?, available = ?,
+        cover_url = ?, lyrics = ?, synced_lyrics = ?, album = ?, genre = ?
     WHERE id = ?
   `).run(
     artist.trim(),
     title.trim(),
     formation || 'Solo',
-    year ? parseInt(year) : null,
+    year ? parseInt(year, 10) : null,
     language || 'Français',
     available !== undefined ? (available ? 1 : 0) : 1,
+    cover_url !== undefined ? (cover_url ? cover_url.trim() : null) : null,
+    lyrics !== undefined ? (lyrics || null) : null,
+    synced_lyrics !== undefined ? (synced_lyrics || null) : null,
+    album !== undefined ? (album ? album.trim() : null) : null,
+    genre !== undefined ? (genre ? genre.trim() : null) : null,
     id
   );
 
@@ -304,7 +659,12 @@ app.patch('/api/admin/songs/:id/toggle', authMiddleware, (req, res) => {
   res.json({ success: true, available: newStatus });
 });
 
-// Start server
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`🎤 Karaoke Live Server running on http://0.0.0.0:${PORT}`);
-});
+// Export app, server, and functions for testing
+module.exports = { app, server, db, searchMusic, fetchLyrics, getHdItunesCover };
+
+// Start server if executed directly
+if (require.main === module) {
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`🎤 Karaoke Live Server running on http://0.0.0.0:${PORT}`);
+  });
+}

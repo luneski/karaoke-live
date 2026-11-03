@@ -307,6 +307,300 @@
       background: #141a29; border: 1px solid rgba(220, 53, 69, 0.3);
       border-radius: 16px; padding: 24px; width: 100%; max-width: 480px;
     }
+
+    /* Indexer & Bento Grid Styles */
+    .indexer-search-panel {
+      background: linear-gradient(135deg, rgba(20, 26, 41, 0.95), rgba(15, 20, 32, 0.95));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .indexer-form {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    @media (max-width: 700px) {
+      .indexer-form { flex-direction: column; align-items: stretch; }
+    }
+    .indexer-input-wrap {
+      position: relative;
+      flex: 1;
+    }
+    .indexer-search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 16px;
+      pointer-events: none;
+    }
+    .indexer-input {
+      width: 100%;
+      padding: 13px 16px 13px 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .indexer-input:focus {
+      border-color: var(--red-primary);
+      box-shadow: 0 0 16px var(--red-glow);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .quick-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+      align-items: center;
+    }
+    .quick-tag {
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .quick-tag:hover {
+      background: rgba(220, 53, 69, 0.15);
+      border-color: rgba(220, 53, 69, 0.3);
+      color: #fca5a5;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      border-top-color: #ffffff;
+      animation: spin 0.75s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Bento Results Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+    }
+    .bento-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .bento-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(220, 53, 69, 0.45);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 20px rgba(220, 53, 69, 0.15);
+    }
+    .bento-main {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .bento-cover-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    }
+    .bento-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .bento-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .bento-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+    .bento-artist {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fca5a5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 3px;
+    }
+    .bento-album {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 6px;
+    }
+    .bento-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .bento-badge {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+    .bento-badge.genre {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      color: var(--gold);
+    }
+    .bento-badge.lyrics-badge {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: #34d399;
+    }
+    .bento-actions {
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 12px;
+    }
+    .bento-actions button {
+      flex: 1;
+      justify-content: center;
+      font-size: 12px;
+      padding: 9px 10px;
+    }
+
+    /* Catalogue 40x40 cover thumb */
+    .cat-thumb-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .cat-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Admin Toast Notification */
+    .admin-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #141a29;
+      border: 1px solid var(--green);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(16, 185, 129, 0.25);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .admin-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .admin-toast.error {
+      border-color: var(--red-light);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px var(--red-glow);
+    }
+
+    /* Lyrics Preview Drawer / Modal */
+    .lyrics-modal-card {
+      background: #141a29;
+      border: 1px solid rgba(220, 53, 69, 0.3);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 620px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px var(--red-glow);
+      overflow: hidden;
+      animation: modalPop 0.22s ease-out;
+    }
+    @keyframes modalPop {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .lyrics-modal-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .lyrics-modal-body {
+      padding: 22px;
+      overflow-y: auto;
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: #f1f5f9;
+      white-space: pre-wrap;
+      background: rgba(0, 0, 0, 0.25);
+    }
+    .lyrics-modal-footer {
+      padding: 16px 22px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.02);
+    }
   </style>
 </head>
 <body>
@@ -339,6 +633,7 @@
   <div class="tabs-nav">
     <button class="tab-btn active" id="btnTabQueue" onclick="switchTab('queueTab', this)">📋 File d'attente & Scène</button>
     <button class="tab-btn" id="btnTabCat" onclick="switchTab('catalogueTab', this)">🎵 Gestion du Catalogue (<span id="catTotal">0</span>)</button>
+    <button class="tab-btn" id="btnTabIndexer" onclick="switchTab('indexerTab', this)"><span>🔍</span> Indexeur & Import</button>
   </div>
 
   <!-- TAB 1: QUEUE & SCENE -->
@@ -420,20 +715,88 @@
         <table>
           <thead>
             <tr>
-              <th style="width: 50px;">ID</th>
+              <th style="width: 45px;">ID</th>
+              <th style="width: 50px;">Pochette</th>
               <th>Artiste</th>
               <th>Titre</th>
-              <th style="width: 90px;">Formation</th>
-              <th style="width: 80px;">Année</th>
-              <th style="width: 90px;">Langue</th>
-              <th style="width: 100px;">Dispo</th>
-              <th style="width: 140px; text-align: right;">Actions</th>
+              <th style="width: 85px;">Formation</th>
+              <th style="width: 75px;">Année</th>
+              <th style="width: 85px;">Langue</th>
+              <th style="width: 90px;">Dispo</th>
+              <th style="width: 190px; text-align: right;">Actions</th>
             </tr>
           </thead>
           <tbody id="catTableBody">
             <!-- Injected via JS -->
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: INDEXER & IMPORT -->
+  <div id="indexerTab" class="tab-content">
+    <div class="indexer-search-panel">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <div>
+          <h2 style="font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: #fff;">
+            🔍 Recherche & Indexeur Intelligent
+          </h2>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 2px;">
+            Recherchez des morceaux dans les catalogues musicaux, prévisualisez les pochettes HD et importez en 1 clic avec paroles complètes.
+          </p>
+        </div>
+        <span class="badge-pill" style="background: rgba(220, 53, 69, 0.15); color: var(--red-light); border: 1px solid rgba(220, 53, 69, 0.3);">
+          ⚡ Multi-Sources
+        </span>
+      </div>
+
+      <form class="indexer-form" id="indexerForm" onsubmit="handleIndexerSearch(event)">
+        <div class="indexer-input-wrap">
+          <span class="indexer-search-icon">🔍</span>
+          <input type="text" id="indexerQuery" class="indexer-input" placeholder="Rechercher par titre ou artiste (ex: Balavoine, Queen, Céline Dion, Renaud...)" required autocomplete="off">
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button type="submit" class="btn-red-action" id="indexerSearchBtn" style="padding: 12px 20px;">
+            <span id="indexerSearchBtnIcon">🔍</span>
+            <span id="indexerSearchBtnText">Rechercher</span>
+          </button>
+          <button type="button" class="btn-outline" onclick="clearIndexerSearch()" style="padding: 12px 14px;" title="Effacer la recherche">
+            ✕ Effacer
+          </button>
+        </div>
+      </form>
+
+      <div class="quick-tags">
+        <span style="font-size: 11px; color: var(--muted); font-weight: 600;">Suggestions :</span>
+        <button type="button" class="quick-tag" onclick="quickSearch('Jean-Jacques Goldman')">Goldman</button>
+        <button type="button" class="quick-tag" onclick="quickSearch('Daniel Balavoine')">Balavoine</button>
+        <button type="button" class="quick-tag" onclick="quickSearch('Céline Dion')">Céline Dion</button>
+        <button type="button" class="quick-tag" onclick="quickSearch('Michel Delpech')">Delpech</button>
+        <button type="button" class="quick-tag" onclick="quickSearch('France Gall')">France Gall</button>
+        <button type="button" class="quick-tag" onclick="quickSearch('Stromae')">Stromae</button>
+        <button type="button" class="quick-tag" onclick="quickSearch('Queen')">Queen</button>
+        <button type="button" class="quick-tag" onclick="quickSearch('Renaud')">Renaud</button>
+      </div>
+    </div>
+
+    <!-- Results Area -->
+    <div class="panel">
+      <div class="panel-title">
+        <span id="indexerStatusTitle">🎯 Résultats de recherche (<span id="indexerResultsCount">0</span>)</span>
+        <span id="indexerSpinner" style="display: none;" class="spinner"></span>
+      </div>
+
+      <div id="indexerPlaceholder" style="text-align: center; padding: 48px 20px; color: var(--muted);">
+        <div style="font-size: 40px; margin-bottom: 12px; opacity: 0.8;">💿</div>
+        <p style="font-weight: 600; font-size: 15px; color: #fff;">Prêt pour l'indexation de titres</p>
+        <p style="font-size: 13px; margin-top: 4px; max-width: 460px; margin-left: auto; margin-right: auto;">
+          Entrez un titre ou un artiste ci-dessus pour récupérer instantanément les pochettes officielles HD, métadonnées et paroles synchronisées.
+        </p>
+      </div>
+
+      <div class="bento-grid" id="indexerGrid" style="display: none;">
+        <!-- Injected via JS -->
       </div>
     </div>
   </div>
@@ -481,10 +844,61 @@
     </div>
   </div>
 
+  <!-- Lyrics Preview Modal -->
+  <div class="modal-overlay" id="adminLyricsModal" onclick="closeAdminLyricsModal(event)">
+    <div class="lyrics-modal-card" onclick="event.stopPropagation()">
+      <div class="lyrics-modal-header">
+        <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+          <div class="cat-thumb-wrap" id="adminLyricsThumbWrap" style="width: 44px; height: 44px; border-radius: 10px;">
+            <img id="adminLyricsThumb" src="" alt="Pochette" class="cat-thumb-img" style="display: none;">
+            <span id="adminLyricsFallbackIcon" style="font-size: 20px;">🎵</span>
+          </div>
+          <div style="min-width: 0;">
+            <h3 id="adminLyricsTitle" style="font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Titre</h3>
+            <p id="adminLyricsArtist" style="font-size: 13px; color: #fca5a5; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Artiste</p>
+          </div>
+        </div>
+        <button type="button" class="btn-outline" onclick="closeAdminLyricsModal()" style="padding: 6px 12px; font-size: 14px;">✕</button>
+      </div>
+
+      <div style="padding: 10px 22px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div id="adminLyricsMetaBadges" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+        <div id="adminLyricsTabs" style="display: flex; gap: 6px;">
+          <button type="button" id="btnAdminLyricsPlain" class="tab-btn active" style="padding: 4px 10px; font-size: 11px; border-radius: 6px;" onclick="showLyricsView('plain')">Texte</button>
+          <button type="button" id="btnAdminLyricsLrc" class="tab-btn" style="padding: 4px 10px; font-size: 11px; border-radius: 6px; display: none;" onclick="showLyricsView('lrc')">LRC Synchronisé</button>
+        </div>
+      </div>
+
+      <div class="lyrics-modal-body" id="adminLyricsBody">
+        <div style="text-align: center; color: var(--muted); padding: 30px;">
+          <span class="spinner" style="margin-bottom: 10px;"></span>
+          <p>Chargement des paroles en cours...</p>
+        </div>
+      </div>
+
+      <div class="lyrics-modal-footer">
+        <span id="adminLyricsStatusText" style="font-size: 12px; color: var(--muted);"></span>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn-outline" onclick="closeAdminLyricsModal()">Fermer</button>
+          <button type="button" class="btn-red-action" id="adminLyricsImportBtn" style="display: none;" onclick="importFromLyricsModal()">➕ Importer ce titre</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Toast Notification -->
+  <div class="admin-toast" id="adminToast">
+    <span id="adminToastIcon">🎸</span>
+    <span id="adminToastMsg">Notification</span>
+  </div>
+
   <script>
     let token = localStorage.getItem('karaoke_admin_token');
     let currentItem = null;
     let allAdminSongs = [];
+    let indexerResults = [];
+    let currentLyricsData = null;
+    let currentLyricsView = 'plain';
 
     if (token) {
       document.getElementById('loginOverlay').style.display = 'none';
@@ -496,10 +910,14 @@
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       
       el.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
 
       if (tabId === 'catalogueTab') {
         loadAdminSongs();
+      } else if (tabId === 'indexerTab') {
+        const qInput = document.getElementById('indexerQuery');
+        if (qInput) qInput.focus();
       }
     }
 
@@ -622,33 +1040,46 @@
       if (!tbody) return;
 
       const filtered = allAdminSongs.filter(s => {
-        return s.artist.toLowerCase().includes(q) ||
-               s.title.toLowerCase().includes(q) ||
+        return (s.artist || '').toLowerCase().includes(q) ||
+               (s.title || '').toLowerCase().includes(q) ||
                (s.year && s.year.toString().includes(q)) ||
-               s.formation.toLowerCase().includes(q);
+               (s.formation || '').toLowerCase().includes(q) ||
+               (s.album || '').toLowerCase().includes(q);
       });
 
       if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--muted); padding: 30px;">Aucune chanson trouvée.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; color: var(--muted); padding: 30px;">Aucune chanson trouvée.</td></tr>';
         return;
       }
 
       tbody.innerHTML = filtered.map(s => `
         <tr style="${s.available ? '' : 'opacity: 0.5; background: rgba(0,0,0,0.2);'}">
           <td style="color: var(--muted); font-size: 11px;">#${s.id}</td>
+          <td>
+            <div class="cat-thumb-wrap">
+              ${s.cover_url ? 
+                `<img src="${escapeHtml(s.cover_url)}" alt="Pochette" class="cat-thumb-img" onerror="this.onerror=null; this.parentElement.innerHTML=getCoverFallbackSvg(40);">` : 
+                getCoverFallbackSvg(40)
+              }
+            </div>
+          </td>
           <td><strong>${escapeHtml(s.artist)}</strong></td>
-          <td>${escapeHtml(s.title)}</td>
-          <td><span class="badge-pill ${s.formation.includes('Duo') ? 'badge-duo' : ''}">${escapeHtml(s.formation)}</span></td>
+          <td>
+            <div>${escapeHtml(s.title)}</div>
+            ${s.album ? `<div style="font-size: 11px; color: var(--muted); margin-top: 1px;">💿 ${escapeHtml(s.album)}</div>` : ''}
+          </td>
+          <td><span class="badge-pill ${(s.formation || '').includes('Duo') ? 'badge-duo' : ''}">${escapeHtml(s.formation || 'Solo')}</span></td>
           <td>${s.year || '—'}</td>
-          <td>${s.language === 'Français' ? '🇫🇷 FR' : '🇬🇧 EN'}</td>
+          <td>${s.language === 'Français' ? '🇫🇷 FR' : (s.language === 'Anglais' ? '🇬🇧 EN' : escapeHtml(s.language || 'FR'))}</td>
           <td>
             <button class="${s.available ? 'btn-green' : 'btn-outline'}" style="padding: 4px 8px; font-size: 11px;" onclick="toggleAvailability(${s.id})">
               ${s.available ? 'Visible' : 'Masquée'}
             </button>
           </td>
-          <td style="text-align: right;">
-            <button class="btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="openEditSong(${s.id})">✏️ Éditer</button>
-            <button class="btn-red" style="padding: 5px 10px; font-size: 12px;" onclick="deleteSong(${s.id})">🗑️</button>
+          <td style="text-align: right; white-space: nowrap;">
+            <button class="btn-outline" style="padding: 5px 8px; font-size: 12px;" onclick="viewCatalogueLyrics(${s.id})" title="Voir les paroles">📄 Voir paroles</button>
+            <button class="btn-outline" style="padding: 5px 8px; font-size: 12px;" onclick="openEditSong(${s.id})" title="Modifier">✏️</button>
+            <button class="btn-red" style="padding: 5px 8px; font-size: 12px;" onclick="deleteSong(${s.id})" title="Supprimer">🗑️</button>
           </td>
         </tr>
       `).join('');
@@ -786,6 +1217,466 @@
       return text.replace(/[&<>"']/g, function(m) {
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
       });
+    }
+
+    /* ========================================================
+       INDEXER & IMPORT ENGINE
+       ======================================================== */
+
+    function getCoverFallbackSvg(size = 40) {
+      const r = Math.round(size * 0.35);
+      const stroke = Math.max(1.5, Math.round(size * 0.05));
+      const innerR = Math.round(size * 0.125);
+      return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" fill="none" style="border-radius: ${size > 50 ? '12px' : '8px'}; background: rgba(220, 53, 69, 0.12); border: 1px solid rgba(220, 53, 69, 0.25); flex-shrink: 0;">
+        <circle cx="${size/2}" cy="${size/2}" r="${r}" stroke="#dc3545" stroke-width="${stroke}" stroke-opacity="0.7"/>
+        <circle cx="${size/2}" cy="${size/2}" r="${innerR}" fill="#f59e0b"/>
+      </svg>`;
+    }
+
+    function showAdminToast(msg, isError = false) {
+      const toast = document.getElementById('adminToast');
+      if (!toast) return;
+      document.getElementById('adminToastMsg').innerText = msg;
+      document.getElementById('adminToastIcon').innerText = isError ? '⚠️' : '🎉';
+      if (isError) toast.classList.add('error');
+      else toast.classList.remove('error');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    async function handleIndexerSearch(e) {
+      if (e) e.preventDefault();
+      const q = document.getElementById('indexerQuery').value.trim();
+      if (!q) return;
+
+      const btn = document.getElementById('indexerSearchBtn');
+      const btnText = document.getElementById('indexerSearchBtnText');
+      const btnIcon = document.getElementById('indexerSearchBtnIcon');
+      const spinner = document.getElementById('indexerSpinner');
+      const grid = document.getElementById('indexerGrid');
+      const placeholder = document.getElementById('indexerPlaceholder');
+      const countEl = document.getElementById('indexerResultsCount');
+
+      btn.disabled = true;
+      btnIcon.style.display = 'none';
+      btnText.innerText = 'Recherche...';
+      spinner.style.display = 'inline-block';
+      placeholder.style.display = 'block';
+      placeholder.innerHTML = `
+        <div style="padding: 30px; text-align: center;">
+          <span class="spinner" style="width: 28px; height: 28px; margin-bottom: 12px;"></span>
+          <p style="color: #fff; font-weight: 600;">Recherche en cours dans les catalogues musicaux...</p>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">Récupération des métadonnées, pochettes HD et paroles</p>
+        </div>
+      `;
+      grid.style.display = 'none';
+
+      try {
+        const res = await fetch(`/api/admin/indexer/search?q=${encodeURIComponent(q)}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (res.status === 401) return logout();
+
+        if (!res.ok) {
+          throw new Error(`Erreur serveur (${res.status})`);
+        }
+
+        const data = await res.json();
+        const results = Array.isArray(data) ? data : (data.results || data.songs || []);
+        indexerResults = results.map(item => normalizeIndexerItem(item));
+
+        countEl.innerText = indexerResults.length;
+        renderIndexerResults();
+      } catch (err) {
+        console.error('Indexer error:', err);
+        placeholder.style.display = 'block';
+        placeholder.innerHTML = `
+          <div style="padding: 30px; text-align: center; color: var(--red-light);">
+            <div style="font-size: 32px; margin-bottom: 8px;">⚠️</div>
+            <p style="font-weight: 700;">Impossible de joindre le service d'indexation</p>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">${escapeHtml(err.message || 'Vérifiez la connexion ou le mot de passe régie.')}</p>
+          </div>
+        `;
+        grid.style.display = 'none';
+        countEl.innerText = '0';
+      } finally {
+        btn.disabled = false;
+        btnIcon.style.display = 'inline';
+        btnText.innerText = 'Rechercher';
+        spinner.style.display = 'none';
+      }
+    }
+
+    function normalizeIndexerItem(item) {
+      let year = item.year;
+      if (!year && item.release_date) {
+        const d = new Date(item.release_date);
+        if (!isNaN(d.getFullYear())) year = d.getFullYear();
+      } else if (!year && item.releaseDate) {
+        const d = new Date(item.releaseDate);
+        if (!isNaN(d.getFullYear())) year = d.getFullYear();
+      }
+
+      return {
+        artist: (item.artist || item.artist_name || item.artistName || '').trim(),
+        title: (item.title || item.track_name || item.trackName || '').trim(),
+        album: (item.album || item.collectionName || item.album_name || '').trim(),
+        year: year ? parseInt(year) : null,
+        genre: (item.genre || item.primaryGenreName || 'Variété').trim(),
+        cover_url: item.cover_url || item.coverUrl || item.artwork_url || item.artworkUrl100 || item.artworkUrl600 || '',
+        language: item.language || 'Français',
+        formation: item.formation || 'Solo',
+        lyrics: item.lyrics || item.plainLyrics || '',
+        synced_lyrics: item.synced_lyrics || item.syncedLyrics || ''
+      };
+    }
+
+    function renderIndexerResults() {
+      const grid = document.getElementById('indexerGrid');
+      const placeholder = document.getElementById('indexerPlaceholder');
+
+      if (indexerResults.length === 0) {
+        placeholder.style.display = 'block';
+        placeholder.innerHTML = `
+          <div style="padding: 30px; text-align: center; color: var(--muted);">
+            <div style="font-size: 36px; margin-bottom: 8px;">🔍</div>
+            <p style="font-weight: 700; color: #fff;">Aucun morceau trouvé</p>
+            <p style="font-size: 13px; margin-top: 4px;">Essayez avec un autre mot-clé ou vérifiez l'orthographe.</p>
+          </div>
+        `;
+        grid.style.display = 'none';
+        return;
+      }
+
+      placeholder.style.display = 'none';
+      grid.style.display = 'grid';
+
+      grid.innerHTML = indexerResults.map((item, index) => {
+        const isAlreadyInCatalogue = allAdminSongs.some(s => 
+          (s.artist || '').toLowerCase().trim() === item.artist.toLowerCase().trim() &&
+          (s.title || '').toLowerCase().trim() === item.title.toLowerCase().trim()
+        );
+
+        return `
+          <div class="bento-card" id="bentoCard_${index}">
+            <div class="bento-main">
+              <div class="bento-cover-wrap">
+                ${item.cover_url ? `
+                  <img src="${escapeHtml(item.cover_url)}" alt="Pochette" class="bento-cover-img" onerror="this.onerror=null; this.parentElement.innerHTML=getCoverFallbackSvg(72);">
+                ` : getCoverFallbackSvg(72)}
+              </div>
+              <div class="bento-info">
+                <div class="bento-title" title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</div>
+                <div class="bento-artist" title="${escapeHtml(item.artist)}">${escapeHtml(item.artist)}</div>
+                ${item.album ? `<div class="bento-album" title="${escapeHtml(item.album)}">💿 ${escapeHtml(item.album)}</div>` : ''}
+                <div class="bento-badges">
+                  ${item.year ? `<span class="bento-badge">${item.year}</span>` : ''}
+                  ${item.genre ? `<span class="bento-badge genre">${escapeHtml(item.genre)}</span>` : ''}
+                  <span class="bento-badge">${item.language === 'Anglais' ? '🇬🇧 EN' : '🇫🇷 FR'}</span>
+                  ${(item.lyrics || item.synced_lyrics) ? `<span class="bento-badge lyrics-badge">✓ Paroles dispo</span>` : ''}
+                </div>
+              </div>
+            </div>
+            <div class="bento-actions">
+              <button type="button" class="btn-outline" onclick="previewIndexerLyrics(${index})">
+                📄 Paroles
+              </button>
+              <button type="button" 
+                      class="${isAlreadyInCatalogue ? 'btn-green' : 'btn-red-action'}" 
+                      id="importBtn_${index}" 
+                      ${isAlreadyInCatalogue ? 'disabled' : ''} 
+                      onclick="importSongFromIndexer(${index}, this)">
+                ${isAlreadyInCatalogue ? '✅ Déjà au catalogue' : '➕ Importer'}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function importSongFromIndexer(index, btnEl) {
+      const item = indexerResults[index];
+      if (!item) return;
+
+      if (btnEl) {
+        btnEl.disabled = true;
+        btnEl.innerHTML = '<span class="spinner"></span> Import...';
+      }
+
+      // If lyrics not yet loaded on item, fetch them before importing
+      let lyrics = item.lyrics;
+      let synced_lyrics = item.synced_lyrics;
+      if (!lyrics && !synced_lyrics) {
+        try {
+          const lyrRes = await fetch(`/api/admin/indexer/lyrics?artist=${encodeURIComponent(item.artist)}&title=${encodeURIComponent(item.title)}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (lyrRes.ok) {
+            const lyrData = await lyrRes.json();
+            lyrics = lyrData.lyrics || lyrData.plainLyrics || (typeof lyrData === 'string' ? lyrData : '');
+            synced_lyrics = lyrData.synced_lyrics || lyrData.syncedLyrics || '';
+            item.lyrics = lyrics;
+            item.synced_lyrics = synced_lyrics;
+          }
+        } catch (e) {
+          console.warn('Lyrics fetch failed prior to import, importing metadata anyway', e);
+        }
+      }
+
+      const payload = {
+        artist: item.artist,
+        title: item.title,
+        formation: item.formation || 'Solo',
+        year: item.year ? parseInt(item.year) : null,
+        language: item.language || 'Français',
+        cover_url: item.cover_url || null,
+        lyrics: lyrics || null,
+        synced_lyrics: synced_lyrics || null,
+        album: item.album || null,
+        genre: item.genre || null
+      };
+
+      try {
+        const res = await fetch('/api/admin/songs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          if (btnEl) {
+            btnEl.className = 'btn-green';
+            btnEl.innerText = '✅ Importé';
+            btnEl.disabled = true;
+          }
+          showAdminToast(`"${item.title}" importé dans le catalogue !`);
+          await loadAdminSongs();
+        } else {
+          const err = await res.json();
+          alert(err.error || 'Erreur lors de l’importation');
+          if (btnEl) {
+            btnEl.disabled = false;
+            btnEl.className = 'btn-red-action';
+            btnEl.innerText = '➕ Importer';
+          }
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Erreur réseau lors de l’importation');
+        if (btnEl) {
+          btnEl.disabled = false;
+          btnEl.className = 'btn-red-action';
+          btnEl.innerText = '➕ Importer';
+        }
+      }
+    }
+
+    async function previewIndexerLyrics(index) {
+      const item = indexerResults[index];
+      if (!item) return;
+      openAdminLyricsModal({
+        artist: item.artist,
+        title: item.title,
+        album: item.album,
+        year: item.year,
+        cover_url: item.cover_url,
+        lyrics: item.lyrics,
+        synced_lyrics: item.synced_lyrics,
+        indexerIndex: index
+      });
+    }
+
+    async function viewCatalogueLyrics(songId) {
+      const song = allAdminSongs.find(s => s.id === songId);
+      if (!song) return;
+      openAdminLyricsModal({
+        artist: song.artist,
+        title: song.title,
+        album: song.album,
+        year: song.year,
+        cover_url: song.cover_url,
+        lyrics: song.lyrics,
+        synced_lyrics: song.synced_lyrics,
+        indexerIndex: null
+      });
+    }
+
+    async function openAdminLyricsModal(data) {
+      currentLyricsData = data;
+      currentLyricsView = 'plain';
+
+      const modal = document.getElementById('adminLyricsModal');
+      const titleEl = document.getElementById('adminLyricsTitle');
+      const artistEl = document.getElementById('adminLyricsArtist');
+      const bodyEl = document.getElementById('adminLyricsBody');
+      const thumb = document.getElementById('adminLyricsThumb');
+      const fallbackIcon = document.getElementById('adminLyricsFallbackIcon');
+      const badgesEl = document.getElementById('adminLyricsMetaBadges');
+      const lrcTabBtn = document.getElementById('btnAdminLyricsLrc');
+      const importBtn = document.getElementById('adminLyricsImportBtn');
+      const statusText = document.getElementById('adminLyricsStatusText');
+
+      titleEl.innerText = data.title;
+      artistEl.innerText = data.artist;
+
+      if (data.cover_url) {
+        thumb.src = data.cover_url;
+        thumb.style.display = 'block';
+        fallbackIcon.style.display = 'none';
+      } else {
+        thumb.style.display = 'none';
+        fallbackIcon.style.display = 'block';
+      }
+
+      badgesEl.innerHTML = `
+        ${data.album ? `<span class="bento-badge">💿 ${escapeHtml(data.album)}</span>` : ''}
+        ${data.year ? `<span class="bento-badge">${data.year}</span>` : ''}
+      `;
+
+      if (data.indexerIndex !== null && data.indexerIndex !== undefined) {
+        const isAlreadyInCatalogue = allAdminSongs.some(s => 
+          (s.artist || '').toLowerCase().trim() === data.artist.toLowerCase().trim() &&
+          (s.title || '').toLowerCase().trim() === data.title.toLowerCase().trim()
+        );
+        importBtn.style.display = 'inline-flex';
+        if (isAlreadyInCatalogue) {
+          importBtn.className = 'btn-green';
+          importBtn.innerText = '✅ Déjà au catalogue';
+          importBtn.disabled = true;
+        } else {
+          importBtn.className = 'btn-red-action';
+          importBtn.innerText = '➕ Importer ce titre';
+          importBtn.disabled = false;
+        }
+      } else {
+        importBtn.style.display = 'none';
+      }
+
+      modal.classList.add('active');
+
+      // If lyrics already present
+      if (data.lyrics || data.synced_lyrics) {
+        lrcTabBtn.style.display = data.synced_lyrics ? 'inline-block' : 'none';
+        statusText.innerText = 'Paroles chargées';
+        renderLyricsBody();
+        return;
+      }
+
+      // Otherwise fetch from endpoint
+      bodyEl.innerHTML = `
+        <div style="text-align: center; color: var(--muted); padding: 40px;">
+          <span class="spinner" style="margin-bottom: 12px;"></span>
+          <p style="color: #fff; font-weight: 600;">Recherche des paroles en direct...</p>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">Interrogation des bases de synchronisation</p>
+        </div>
+      `;
+      statusText.innerText = 'Recherche en cours...';
+
+      try {
+        const res = await fetch(`/api/admin/indexer/lyrics?artist=${encodeURIComponent(data.artist)}&title=${encodeURIComponent(data.title)}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (res.ok) {
+          const lyrData = await res.json();
+          data.lyrics = lyrData.lyrics || lyrData.plainLyrics || (typeof lyrData === 'string' ? lyrData : '');
+          data.synced_lyrics = lyrData.synced_lyrics || lyrData.syncedLyrics || '';
+
+          if (data.indexerIndex !== null && indexerResults[data.indexerIndex]) {
+            indexerResults[data.indexerIndex].lyrics = data.lyrics;
+            indexerResults[data.indexerIndex].synced_lyrics = data.synced_lyrics;
+          }
+
+          lrcTabBtn.style.display = data.synced_lyrics ? 'inline-block' : 'none';
+          statusText.innerText = data.lyrics ? 'Paroles trouvées !' : 'Aucune parole disponible';
+          renderLyricsBody();
+        } else {
+          throw new Error('Paroles introuvables');
+        }
+      } catch (err) {
+        statusText.innerText = 'Aucune parole trouvée';
+        bodyEl.innerHTML = `
+          <div style="text-align: center; color: var(--muted); padding: 40px;">
+            <div style="font-size: 36px; margin-bottom: 8px;">📝</div>
+            <p style="font-weight: 700; color: #fff;">Aucune parole trouvée pour ce titre</p>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">Vous pouvez tout de même importer le morceau et ajouter les paroles manuellement.</p>
+          </div>
+        `;
+      }
+    }
+
+    function renderLyricsBody() {
+      const bodyEl = document.getElementById('adminLyricsBody');
+      if (!currentLyricsData) return;
+
+      if (currentLyricsView === 'lrc' && currentLyricsData.synced_lyrics) {
+        bodyEl.innerText = currentLyricsData.synced_lyrics;
+      } else {
+        const raw = currentLyricsData.lyrics || currentLyricsData.synced_lyrics || '';
+        if (!raw.trim()) {
+          bodyEl.innerHTML = '<div style="text-align: center; color: var(--muted); padding: 30px;">Aucun texte de parole disponible.</div>';
+        } else {
+          bodyEl.innerText = cleanLrcLyrics(raw);
+        }
+      }
+    }
+
+    function showLyricsView(view) {
+      currentLyricsView = view;
+      document.getElementById('btnAdminLyricsPlain').classList.toggle('active', view === 'plain');
+      document.getElementById('btnAdminLyricsLrc').classList.toggle('active', view === 'lrc');
+      renderLyricsBody();
+    }
+
+    function closeAdminLyricsModal(e) {
+      if (e && e.target !== document.getElementById('adminLyricsModal')) return;
+      document.getElementById('adminLyricsModal').classList.remove('active');
+      currentLyricsData = null;
+    }
+
+    async function importFromLyricsModal() {
+      if (currentLyricsData && currentLyricsData.indexerIndex !== null) {
+        const btn = document.getElementById('adminLyricsImportBtn');
+        await importSongFromIndexer(currentLyricsData.indexerIndex, btn);
+        const cardBtn = document.getElementById(`importBtn_${currentLyricsData.indexerIndex}`);
+        if (cardBtn) {
+          cardBtn.className = 'btn-green';
+          cardBtn.innerText = '✅ Importé';
+          cardBtn.disabled = true;
+        }
+      }
+    }
+
+    function cleanLrcLyrics(text) {
+      if (!text) return '';
+      return text.split('\n')
+        .map(line => line.replace(/^\[\d{2}:\d{2}(\.\d{1,3})?\]\s*/g, ''))
+        .join('\n');
+    }
+
+    function clearIndexerSearch() {
+      document.getElementById('indexerQuery').value = '';
+      indexerResults = [];
+      document.getElementById('indexerResultsCount').innerText = '0';
+      document.getElementById('indexerGrid').style.display = 'none';
+      document.getElementById('indexerPlaceholder').style.display = 'block';
+      document.getElementById('indexerPlaceholder').innerHTML = `
+        <div style="font-size: 40px; margin-bottom: 12px; opacity: 0.8;">💿</div>
+        <p style="font-weight: 600; font-size: 15px; color: #fff;">Prêt pour l'indexation de titres</p>
+        <p style="font-size: 13px; margin-top: 4px; max-width: 460px; margin-left: auto; margin-right: auto;">
+          Entrez un titre ou un artiste ci-dessus pour récupérer instantanément les pochettes officielles HD, métadonnées et paroles synchronisées.
+        </p>
+      `;
+      document.getElementById('indexerQuery').focus();
+    }
+
+    function quickSearch(query) {
+      document.getElementById('indexerQuery').value = query;
+      handleIndexerSearch();
     }
   </script>
 </body>
