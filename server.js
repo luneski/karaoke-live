@@ -13,6 +13,7 @@ const wss = new WebSocket.Server({ server });
 const PORT = process.env.PORT || 3030;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'karaoke2026';
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data', 'karaoke.db');
+const SONGS_JSON_PATH = process.env.SONGS_JSON_PATH || path.join(__dirname, 'data', 'songs.json');
 const USER_AGENT = 'KaraokeLive/1.0 (https://karaoke.lafraternelledemareau.fr)';
 
 // Ensure data directory exists
@@ -335,6 +336,130 @@ async function fetchLyrics(artist, title) {
   };
 }
 
+/**
+ * Backfill covers, album, genre, year, and lyrics for songs missing covers.
+ * Rate-limited to prevent external API throttling.
+ */
+async function backfillMissingCovers({
+  dbInstance = db,
+  indexer = searchMusic,
+  lyricsFetcher = fetchLyrics,
+  songsJsonPath = SONGS_JSON_PATH,
+  delayMs = 250,
+  onProgress = null
+} = {}) {
+  const missingSongs = dbInstance.prepare(`
+    SELECT * FROM songs 
+    WHERE cover_url IS NULL OR cover_url = ''
+    ORDER BY id ASC
+  `).all();
+
+  const totalMissing = missingSongs.length;
+  let enrichedCount = 0;
+
+  for (let i = 0; i < missingSongs.length; i++) {
+    const song = missingSongs[i];
+    let isEnriched = false;
+
+    try {
+      // 1. Music Indexer search (iTunes with Deezer fallback)
+      let match = null;
+      let results = await indexer(`${song.artist} ${song.title}`);
+      if (!results || results.length === 0) {
+        results = await indexer(song.title);
+      }
+      if (results && results.length > 0) {
+        match = results.find((r) => r.cover_url) || results[0];
+      }
+
+      if (delayMs > 0) {
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+      }
+
+      // 2. Lyrics fetch if missing
+      let newLyrics = song.lyrics || null;
+      let newSyncedLyrics = song.synced_lyrics || null;
+      if (!newLyrics || !newLyrics.trim()) {
+        try {
+          const lyricsRes = await lyricsFetcher(song.artist, song.title);
+          if (lyricsRes && lyricsRes.found && lyricsRes.lyrics) {
+            newLyrics = lyricsRes.lyrics;
+            newSyncedLyrics = lyricsRes.synced_lyrics || newSyncedLyrics;
+            isEnriched = true;
+          }
+        } catch (lErr) {
+          console.warn(`[Backfill] Lyrics fetch error for ${song.artist} - ${song.title}: ${lErr.message}`);
+        }
+
+        if (delayMs > 0) {
+          await new Promise((resolve) => setTimeout(resolve, delayMs));
+        }
+      }
+
+      // 3. Metadata updates
+      const updatedCoverUrl = (match && match.cover_url) ? match.cover_url : (song.cover_url || null);
+      const updatedAlbum = (match && match.album) ? match.album : (song.album || null);
+      const updatedGenre = (match && match.genre) ? match.genre : (song.genre || null);
+      const updatedYear = song.year ? song.year : (match && match.year ? match.year : null);
+
+      if (match) {
+        isEnriched = true;
+      }
+
+      if (isEnriched) {
+        dbInstance.prepare(`
+          UPDATE songs
+          SET cover_url = ?, album = ?, genre = ?, year = ?, lyrics = ?, synced_lyrics = ?
+          WHERE id = ?
+        `).run(
+          updatedCoverUrl,
+          updatedAlbum,
+          updatedGenre,
+          updatedYear,
+          newLyrics,
+          newSyncedLyrics,
+          song.id
+        );
+        enrichedCount++;
+      }
+
+      if (onProgress) {
+        onProgress({
+          index: i + 1,
+          total: totalMissing,
+          artist: song.artist,
+          title: song.title,
+          status: isEnriched ? 'Done' : 'No match'
+        });
+      }
+    } catch (err) {
+      console.error(`[Backfill] Error enriching ${song.artist} - ${song.title}:`, err.message);
+      if (onProgress) {
+        onProgress({
+          index: i + 1,
+          total: totalMissing,
+          artist: song.artist,
+          title: song.title,
+          status: `Failed: ${err.message}`
+        });
+      }
+    }
+  }
+
+  // Synchronize data/songs.json if path provided and directory exists
+  if (songsJsonPath && fs.existsSync(path.dirname(songsJsonPath))) {
+    try {
+      const allSongs = dbInstance.prepare('SELECT * FROM songs ORDER BY id ASC').all();
+      fs.writeFileSync(songsJsonPath, JSON.stringify(allSongs, null, 2), 'utf8');
+      console.log(`[Backfill] Synchronized ${allSongs.length} songs to ${songsJsonPath}`);
+    } catch (syncErr) {
+      console.error(`[Backfill] Failed to synchronize songs.json:`, syncErr.message);
+    }
+  }
+
+  return { totalMissing, enrichedCount };
+}
+
 // ----------------- Public APIs -----------------
 
 // Health check endpoint
@@ -647,6 +772,33 @@ app.get('/api/admin/songs', authMiddleware, (req, res) => {
   res.json(songs);
 });
 
+// Enrich/backfill missing covers for catalogue songs
+app.post('/api/admin/songs/backfill-covers', authMiddleware, async (req, res) => {
+  try {
+    const songsJsonPath = SONGS_JSON_PATH;
+    const result = await backfillMissingCovers({
+      dbInstance: db,
+      indexer: searchMusic,
+      lyricsFetcher: fetchLyrics,
+      songsJsonPath,
+      delayMs: 250,
+      onProgress: ({ index, total, artist, title, status }) => {
+        console.log(`[${index}/${total}] Enriching: ${artist} - ${title} ... ${status}`);
+      }
+    });
+
+    broadcast('SONGS_UPDATED', { backfilled: true, enrichedCount: result.enrichedCount });
+    res.json({
+      message: 'Enrichissement terminé',
+      enrichedCount: result.enrichedCount,
+      totalMissing: result.totalMissing
+    });
+  } catch (err) {
+    console.error('[Backfill] Error in backfill-covers:', err);
+    res.status(500).json({ error: "Erreur lors de l'enrichissement des pochettes." });
+  }
+});
+
 // Toggle song availability
 app.patch('/api/admin/songs/:id/toggle', authMiddleware, (req, res) => {
   const { id } = req.params;
@@ -660,7 +812,7 @@ app.patch('/api/admin/songs/:id/toggle', authMiddleware, (req, res) => {
 });
 
 // Export app, server, and functions for testing
-module.exports = { app, server, db, searchMusic, fetchLyrics, getHdItunesCover };
+module.exports = { app, server, db, searchMusic, fetchLyrics, getHdItunesCover, backfillMissingCovers };
 
 // Start server if executed directly
 if (require.main === module) {

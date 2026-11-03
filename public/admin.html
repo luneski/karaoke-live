@@ -706,8 +706,9 @@
     <div class="panel">
       <div class="panel-title">
         <span>📚 Contrôle & Modification du Catalogue</span>
-        <div style="display: flex; gap: 10px;">
-          <input type="text" id="catSearch" class="cat-input" placeholder="Filtrer artiste, titre, année..." style="width: 260px;" oninput="renderCatalogueTable()">
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <input type="text" id="catSearch" class="cat-input" placeholder="Filtrer artiste, titre, année..." style="width: 240px;" oninput="renderCatalogueTable()">
+          <button class="btn-outline" id="btnBackfillCovers" onclick="triggerBackfillCovers()"><span>⚡</span> Enrichir les pochettes</button>
         </div>
       </div>
 
@@ -1144,6 +1145,49 @@
         headers: { 'Authorization': `Bearer ${token}` }
       });
       loadAdminSongs();
+    }
+
+    async function triggerBackfillCovers() {
+      if (!confirm("Lancer l'enrichissement automatique de toutes les pochettes manquantes ?")) {
+        return;
+      }
+
+      const btn = document.getElementById('btnBackfillCovers');
+      const originalHtml = btn ? btn.innerHTML : '';
+
+      try {
+        if (btn) {
+          btn.disabled = true;
+          btn.innerHTML = `<span class="spinner" style="width: 14px; height: 14px; border-width: 2px; margin-right: 4px;"></span> Enrichissement en cours...`;
+        }
+
+        const res = await fetch('/api/admin/songs/backfill-covers', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (res.status === 401) {
+          showAdminToast('Session expirée, veuillez vous reconnecter.', true);
+          return logout();
+        }
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.error || "Erreur lors de l'enrichissement");
+        }
+
+        const count = data.enrichedCount !== undefined ? data.enrichedCount : (data.count !== undefined ? data.count : 0);
+        showAdminToast(`⚡ Enrichissement terminé : ${count} pochette(s) ajoutée(s) !`);
+        await loadAdminSongs();
+      } catch (err) {
+        console.error('Erreur enrichissement pochettes:', err);
+        showAdminToast(err.message || "Erreur lors de l'enrichissement", true);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+        }
+      }
     }
 
     async function setStatus(id, status) {

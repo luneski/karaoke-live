@@ -1,410 +1,716 @@
 [
   {
+    "id": 1,
     "artist": "4 Non Blondes",
     "title": "What's up",
     "formation": "Solo",
     "year": 1993,
     "language": "Anglais",
-    "id": 1
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d2/aa/44/d2aa4418-7e74-7e6d-4247-9b9c1cba9e64/06UMGIM01654.rgb.jpg/600x600bb.jpg",
+    "lyrics": "25 years and my life is still\nTrying to get up that great big hill of hope\nFor a destination\nI realized quickly when I knew I should\nThat the world was made up of this brotherhood of man\nFor whatever that means\nAnd so I cry sometimes\nWhen I'm lying in bed just to get it all out\nWhat's in my head\nAnd I, I am feeling a little peculiar\nAnd so I wake in the morning\nAnd I step outside\nAnd I take a deep breath and I get real high\nAnd I scream from the top of my lungs\nWhat's going on?\nAnd I say, hey yeah yeah-eh-eh, hey yeah yeah\nI said hey, what's going on?\nAnd I say, hey yeah yeah-eh-eh, hey yeah yeah\nI said hey, what's going on?\nOoh, ooh ooh, hoo, hoo, hoo, hoo\nOoh, ooh ooh, hoo, hoo, hoo, hoo\nOoh, ooh ooh, hoo, hoo, hoo, hoo\nOoh, ooh ooh, hoo, hoo, hoo, hoo\nAnd I try, oh my god do I try!\nI try all the time, in this institution\nAnd I pray, oh my god do I pray!\nI pray every single day\nFor revolution\nAnd so I cry sometimes\nWhen I'm lying in bed just to get it all out\nWhat's in my head\nAnd I, I am feeling a little peculiar\nAnd so I wake in the morning\nAnd I step outside\nAnd I take a deep breath and I get real high\nAnd I scream from the top of my lungs\nWhat's going on?\nAnd I say, hey yeah yeah-eh-eh, hey yeah yeah\nI said hey, what's going on?\nAnd I say, hey yeah yeah-eh-eh, hey yeah yeah\nI said hey, what's going on?\nAnd I say, hey yeah yeah-eh-eh, hey yeah yeah\nI said hey, what's going on?\nAnd I say, hey yeah yeah-eh-eh, hey yeah yeah-yeah-yeah\nI said hey, what's going on?\nOoh, ooh ooh, hoo, hoo, hoo, hoo\nOoh, ooh ooh, hoo, hoo, hoo, hoo\n\n25 years and my life is still\nTrying to get up that great big hill of hope\nFor a destination\n",
+    "synced_lyrics": "[00:30.08]25 years and my life is still\n[00:33.76]Trying to get up that great big hill of hope\n[00:39.12]For a destination\n[00:44.21]I realized quickly when I knew I should\n[00:47.52]That the world was made up of this brotherhood of man\n[00:53.89]For whatever that means\n[00:58.17]And so I cry sometimes\n[01:00.85]When I'm lying in bed just to get it all out\n[01:03.44]What's in my head\n[01:05.31]And I, I am feeling a little peculiar\n[01:12.55]And so I wake in the morning\n[01:14.60]And I step outside\n[01:16.08]And I take a deep breath and I get real high\n[01:19.96]And I scream from the top of my lungs\n[01:22.48]What's going on?\n[01:25.84]And I say, hey yeah yeah-eh-eh, hey yeah yeah\n[01:33.48]I said hey, what's going on?\n[01:40.02]And I say, hey yeah yeah-eh-eh, hey yeah yeah\n[01:47.75]I said hey, what's going on?\n[01:55.38]Ooh, ooh ooh, hoo, hoo, hoo, hoo\n[02:02.04]Ooh, ooh ooh, hoo, hoo, hoo, hoo\n[02:09.81]Ooh, ooh ooh, hoo, hoo, hoo, hoo\n[02:15.99]Ooh, ooh ooh, hoo, hoo, hoo, hoo\n[02:23.61]And I try, oh my god do I try!\n[02:29.40]I try all the time, in this institution\n[02:37.14]And I pray, oh my god do I pray!\n[02:43.69]I pray every single day\n[02:47.72]For revolution\n[02:52.24]And so I cry sometimes\n[02:54.08]When I'm lying in bed just to get it all out\n[02:57.45]What's in my head\n[02:59.03]And I, I am feeling a little peculiar\n[03:06.33]And so I wake in the morning\n[03:08.18]And I step outside\n[03:09.85]And I take a deep breath and I get real high\n[03:13.45]And I scream from the top of my lungs\n[03:16.27]What's going on?\n[03:19.82]And I say, hey yeah yeah-eh-eh, hey yeah yeah\n[03:27.21]I said hey, what's going on?\n[03:33.71]And I say, hey yeah yeah-eh-eh, hey yeah yeah\n[03:41.54]I said hey, what's going on?\n[03:48.26]And I say, hey yeah yeah-eh-eh, hey yeah yeah\n[03:55.62]I said hey, what's going on?\n[04:02.12]And I say, hey yeah yeah-eh-eh, hey yeah yeah-yeah-yeah\n[04:09.93]I said hey, what's going on?\n[04:17.71]Ooh, ooh ooh, hoo, hoo, hoo, hoo\n[04:24.57]Ooh, ooh ooh, hoo, hoo, hoo, hoo\n[04:30.06]\n[04:33.22]25 years and my life is still\n[04:37.03]Trying to get up that great big hill of hope\n[04:43.13]For a destination\n[04:45.94]",
+    "album": "Bigger, Better, Faster, More!",
+    "genre": "Rock",
+    "available": 1
   },
   {
+    "id": 2,
     "artist": "Alain Souchon",
     "title": "Foule sentimentale",
     "formation": "Solo",
     "year": 1993,
     "language": "Français",
-    "id": 2
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/14/54/5b/14545b16-18f9-3296-7880-a70b86318c95/724381147559.jpg/600x600bb.jpg",
+    "lyrics": "On l'a là la vie en rose\nLe rose qu'on nous propose\nD'avoir les quantités de choses\nQui donnent envie d'autre chose\n\nAh et, on nous fait croire\nQue le bonheur c'est d'avoir\nDe l'avoir plein nos armoires\nDérision de nous, dérisoires\n\nCar, foule sentimentale\nOn a soif d'idéal\nAttirée par les étoiles, les voiles\nQue des choses pas commerciales\nFoule sentimentale\nIl faut voir comme on nous parle\nComme on nous parle\n\nIl se dégage\nDe ces cartons d'emballage\nDes gens lavés, hors d'usage\nEt tristes et sans aucun avantage\n\nOn nous inflige\nDes désirs qui nous affligent\nOn nous prend, faut pas déconner, dès qu'on est né\nPour des cons alors qu'on est\n\nUne foule sentimentale\nAvec soif d'idéal\nAttirée par les étoiles, les voiles\nQue des choses pas commerciales\nFoule sentimentale\nIl faut voir comme on nous parle\nComme on nous parle\n\nOn nous Claudia Schiffer\nOn nous Paul-Loup Sulitzer\nAh le mal qu'on peut nous faire\nEt qui ravagea la moukère\n\nDu ciel dévale\nUn désir qui nous emballe\nPour demain nos enfants pâles\nUn mieux, un rêve, un cheval\n\nFoule sentimentale\nOn a soif d'idéal\nAttirée par les étoiles, les voiles\nQue des choses pas commerciales\nFoule sentimentale\nIl faut voir comme on nous parle\nComme on nous parle\n\nFoule sentimentale (la vie en rose)\nOn a soif d'idéal (le rose qu'on nous propose)\nAttirée par les étoiles, les voiles (d'avoir les quantités de choses)\nQue des choses pas commerciales (qui donnent envie d'autre chose)\nFoule sentimentale (on nous fait croire)\nIl faut voir comme on nous parle (que le bonheur c'est d'avoir)\nComme on nous parle (de l'avoir plein les armoires)\nFoule sentimentale (dérision de nous, dérisoires)\nOn a soif d'idéal (il se dégage)\nAttirée par les étoiles, les voiles (le rose qu'on nous propose)\nQue des choses pas commerciales (des gens lavés, hors d'usage)\nFoule sentimentale (et tristes et sans aucun avantage)\nIl faut voir comme on nous parle (on nous inflige)\nComme on nous parle (des désirs qui nous affligent)\nFoule sentimentale (on nous Claudia Schiffer)\nOn a soif d'idéal (on nous Paul-Loup Sulitzer)\nAttirée par les étoiles, les voiles (on nous fait le caractère)\nQue des choses pas commerciales (d'avoir les quantités de choses)\nFoule sentimentale (qui donnent envie d'autre chose)\nIl faut voir comme on nous parle\nComme on nous parle",
+    "synced_lyrics": null,
+    "album": "Collection",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 3,
     "artist": "Alizée",
     "title": "Moi... Lolita",
     "formation": "Solo",
     "year": 2000,
     "language": "Français",
-    "id": 3
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fc/f3/81/fcf38156-2ee4-0f55-e15f-6c22700d211e/cover.jpg/600x600bb.jpg",
+    "lyrics": "Moi je m'appelle Lolita\nLo ou bien Lola, du pareil au même\nMoi je m'appelle Lolita\nQuand je rêve aux loups, c'est Lola qui saigne\n\nQuand fourche ma langue j'ai là\nUn fou rire aussi fou qu'un phénomène\nJe m'appelle Lolita\nLo de vie, Lo aux amours diluviennes\n\nC'est pas ma faute\nEt quand je donne ma langue aux chats je vois les autres\nTout prêts à se jeter sur moi, c'est pas ma faute à moi\nSi j'entends tout autour de moi\nL.O.L.I.T.A, moi Lolita\n\nMoi je m'appelle Lolita\nCollégienne aux bas, bleus de méthylène\nMoi je m'appelle Lolita\nColéreuse et pas, mi-coton, mi-laine\n\nMotus et bouche qui ne dis pas\nÀ maman que je suis un phénomène\nJe m'appelle Lolita\nLo de vie,Lo aux amours diluviennes\n\nC'est pas ma faute\nEt quand je donne ma langue aux chats je vois les autres\nTout prêts à se jeter sur moi, c'est pas ma faute à moi\nSi j'entends tout autour de moi\nL.O.L.I.T.A, moi Lolita\n\nC'est pas ma faute\nEt quand je donne ma langue aux chats je vois les autres\nTout prêts à se jeter sur moi, c'est pas ma faute à moi\nSi j'entends tout autour de moi\nL.O.L.I.T.A, moi Lolita\n\nLo-li-ta\nLo-li-ta\nLo-li-ta\nLo-li-ta\nLo-li-ta\nLo-li-ta\nLo-li-ta\nLo-li-ta\n\nC'est pas ma faute\nEt quand je donne ma langue aux chats je vois les autres\nTout prêts à se jeter sur moi, c'est pas ma faute à moi\nSi j'entends tout autour de moi\nL.O.L.I.T.A, moi Lolita\n\nC'est pas ma faute\nEt quand je donne ma langue aux chats je vois les autres\nTout prêts à se jeter sur moi, c'est pas ma faute à moi\nSi j'entends tout autour de moi\nL.O.L.I.T.A, moi Lolita\n\nC'est pas ma faute\nEt quand je donne ma langue aux chats je vois les autres\nTout prêts à se jeter sur moi, c'est pas ma faute à moi\nSi j'entends tout autour de moi\nL.O.L.I.T.A, moi Lolita\n\nC'est pas ma faute\nEt quand je donne ma langue aux chats je vois les autres\nTout prêts à se jeter sur moi, c'est pas ma faute à moi\nSi j'entends tout autour de moi\nL.O.L.I.T.A, moi Lolita",
+    "synced_lyrics": "[00:17.66]Moi je m'appelle Lolita\n[00:22.17]Lo ou bien Lola, du pareil au même\n[00:26.47]Moi je m'appelle Lolita\n[00:30.93]Quand je rêve aux loups, c'est Lola qui saigne\n[00:35.40]Quand fourche ma langue j'ai là\n[00:39.83]Un fou rire aussi fou qu'un phénomène\n[00:44.20]Je m'appelle Lolita\n[00:48.82]Lo de vie, Lo aux amours diluviennes\n[00:54.63]C'est pas ma faute\n[00:56.84]Et quand je donne ma langue aux chats je vois les autres\n[01:01.24]Tout prêts à se jeter sur moi, c'est pas ma faute à moi\n[01:05.61]Si j'entends tout autour de moi\n[01:07.97]L.O.L.I.T.A, moi Lolita\n[01:13.18]Moi je m'appelle Lolita\n[01:17.66]Collégienne aux bas, bleus de méthylène\n[01:22.19]Moi je m'appelle Lolita\n[01:26.67]Coléreuse et pas, mi-coton, mi-laine\n[01:30.95]Motus et bouche qui ne dis pas\n[01:35.48]À maman que je suis un phénomène\n[01:39.74]Je m'appelle Lolita\n[01:44.32]Lo de vie,Lo aux amours diluviennes\n[01:50.22]C'est pas ma faute\n[01:52.28]Et quand je donne ma langue aux chats je vois les autres\n[01:56.77]Tout prêts à se jeter sur moi, c'est pas ma faute à moi\n[02:01.24]Si j'entends tout autour de moi\n[02:03.37]L.O.L.I.T.A, moi Lolita\n[02:07.95]C'est pas ma faute\n[02:10.14]Et quand je donne ma langue aux chats je vois les autres\n[02:14.40]Tout prêts à se jeter sur moi, c'est pas ma faute à moi\n[02:19.06]Si j'entends tout autour de moi\n[02:21.22]L.O.L.I.T.A, moi Lolita\n[02:26.47]Lo-li-ta\n[02:30.84]Lo-li-ta\n[02:35.38]Lo-li-ta\n[02:39.92]Lo-li-ta\n[02:44.24]Lo-li-ta\n[02:48.72]Lo-li-ta\n[02:53.01]Lo-li-ta\n[02:57.46]Lo-li-ta\n[03:03.46]C'est pas ma faute\n[03:05.65]Et quand je donne ma langue aux chats je vois les autres\n[03:10.01]Tout prêts à se jeter sur moi, c'est pas ma faute à moi\n[03:14.47]Si j'entends tout autour de moi\n[03:16.83]L.O.L.I.T.A, moi Lolita\n[03:21.29]C'est pas ma faute\n[03:23.63]Et quand je donne ma langue aux chats je vois les autres\n[03:27.92]Tout prêts à se jeter sur moi, c'est pas ma faute à moi\n[03:32.37]Si j'entends tout autour de moi\n[03:34.59]L.O.L.I.T.A, moi Lolita\n[03:39.00]C'est pas ma faute\n[03:41.31]Et quand je donne ma langue aux chats je vois les autres\n[03:45.62]Tout prêts à se jeter sur moi, c'est pas ma faute à moi\n[03:50.12]Si j'entends tout autour de moi\n[03:52.30]L.O.L.I.T.A, moi Lolita\n[03:56.89]C'est pas ma faute\n[03:59.06]Et quand je donne ma langue aux chats je vois les autres\n[04:03.46]Tout prêts à se jeter sur moi, c'est pas ma faute à moi\n[04:07.95]Si j'entends tout autour de moi\n[04:10.21]L.O.L.I.T.A, moi Lolita\n[04:12.97]",
+    "album": "Gourmandises",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 4,
     "artist": "Axel Bauer & Zazie",
     "title": "A ma place",
     "formation": "Duo",
     "year": 2001,
     "language": "Français",
-    "id": 4
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/be/34/ab/be34ab11-d793-2d91-f237-716e9ff38bbf/00044007707524.rgb.jpg/600x600bb.jpg",
+    "lyrics": "Serait-elle à ma place plus forte qu'un homme\nAu bout de ces impasses où elle m'abandonne\nVivre l'enfer mourir au combat\nFaut-il pour lui plaire aller jusque là?\nSe peut-il que j'y parvienne\nSe peut-il qu'on nous pardonne\nSe peut-il qu'on nous aime\nPour ce que nous sommes\n\nSe met-il à ma place quelques fois\nQuand mes ailes se froissent\nEt mes îles se noient\nJe plie sous le poids\nPlie sous le poids\nDe cette moitié de femme\nQu'il veut que je sois\nJe veux bien faire la belle, mais pas dormir au bois\nJe veux bien être reine, mais pas l'ombre du roi\nFaut-il que je cède\nFaut il que je saigne\nPour qu'il m'aime aussi\nPour ce que je suis\n\nPourrait-il faire en sorte\nFerait-elle pour moi\nOuvrir un peu la porte\nNe serait ce qu'un pas\nPourrait il faire encore\nEncore un effort\nUn geste un pas\nUn pas vers moi...\n\nJe n'attends pas de toi que tu sois la même\nJe n'attends pas de toi que tu me comprennes,\nSeulement que tu m'aimes pour ce que je suis\n\nSe met-elle à ma place quelques fois\nQue faut-il que je fasse pour qu'elle me voit\nVivre l'enfer mourir au combat,\nVeux-tu faire de moi ce que je ne suis pas?\nJe veux bien tenter l'effort de regarder en face\nMais le silence est mort et le tien me glace\nMon âme sœur cherche l'erreur\nPlus mon sang se vide et plus tu as peur\n\nFaut-il que je t'apprenne\nJe ne demande rien\nLes eaux troubles où je traîne\nOù tu vas d'où tu viens\nFaut-il vraiment que tu saches\nTout ce que tu caches\nTout au fond de moi\nAu fond de toi\n\nJe n'attends pas de toi que tu sois la même\nJe n'attends pas de toi que tu me comprennes,\nMais seulement que tu m'aimes\nSeulement que tu m'aimes\nPour ce que je suis\n\nQuand je doute\nQuand je tombe\nEt quand la route est trop longue\nQuand parfois je ne suis pas\nCe que tu attends de moi\nQue veux-tu qu'on y fasse\nQu'aurais-tu fais à ma place?",
+    "synced_lyrics": "[00:12.54]Serait-elle à ma place plus forte qu'un homme\n[00:16.04]Au bout de ces impasses où elle m'abandonne\n[00:21.68]Vivre l'enfer mourir au combat\n[00:26.54]Faut-il pour lui plaire aller jusque là?\n[00:31.51]Se peut-il que j'y parvienne\n[00:40.68]Se peut-il qu'on nous pardonne\n[00:41.42]Se peut-il qu'on nous aime\n[00:45.22]Pour ce que nous sommes\n[00:51.04]Se met-il à ma place quelques fois\n[00:55.96]Quand mes ailes se froissent\n[00:58.57]Et mes îles se noient\n[01:01.49]Je plie sous le poids\n[01:04.08]Plie sous le poids\n[01:06.32]De cette moitié de femme\n[01:08.43]Qu'il veut que je sois\n[01:11.08]Je veux bien faire la belle, mais pas dormir au bois\n[01:15.98]Je veux bien être reine, mais pas l'ombre du roi\n[01:21.10]Faut-il que je cède\n[01:23.90]Faut il que je saigne\n[01:26.16]Pour qu'il m'aime aussi\n[01:29.23]Pour ce que je suis\n[01:33.16]Pourrait-il faire en sorte\n[01:35.52]Ferait-elle pour moi\n[01:37.55]Ouvrir un peu la porte\n[01:40.15]Ne serait ce qu'un pas\n[01:42.48]Pourrait il faire encore\n[01:46.07]Encore un effort\n[01:47.66]Un geste un pas\n[01:49.97]Un pas vers moi...\n[01:51.26]Je n'attends pas de toi que tu sois la même\n[01:55.42]Je n'attends pas de toi que tu me comprennes,\n[02:00.01]Seulement que tu m'aimes pour ce que je suis\n[02:11.15]Se met-elle à ma place quelques fois\n[02:15.54]Que faut-il que je fasse pour qu'elle me voit\n[02:20.48]Vivre l'enfer mourir au combat,\n[02:26.05]Veux-tu faire de moi ce que je ne suis pas?\n[02:31.09]Je veux bien tenter l'effort de regarder en face\n[02:36.02]Mais le silence est mort et le tien me glace\n[02:40.48]Mon âme sœur cherche l'erreur\n[02:46.63]Plus mon sang se vide et plus tu as peur\n[02:53.18]Faut-il que je t'apprenne\n[02:56.85]Je ne demande rien\n[02:57.73]Les eaux troubles où je traîne\n[03:00.47]Où tu vas d'où tu viens\n[03:02.77]Faut-il vraiment que tu saches\n[03:04.95]Tout ce que tu caches\n[03:07.36]Tout au fond de moi\n[03:10.46]Au fond de toi\n[03:11.35]Je n'attends pas de toi que tu sois la même\n[03:15.46]Je n'attends pas de toi que tu me comprennes,\n[03:20.32]Mais seulement que tu m'aimes\n[03:25.59]Seulement que tu m'aimes\n[03:30.63]Pour ce que je suis\n[03:41.85]Quand je doute\n[03:45.74]Quand je tombe\n[03:48.18]Et quand la route est trop longue\n[03:53.03]Quand parfois je ne suis pas\n[03:57.62]Ce que tu attends de moi\n[03:58.04]Que veux-tu qu'on y fasse\n[04:09.50]Qu'aurais-tu fais à ma place?\n[04:13.68]",
+    "album": "Ze Live !! (Live)",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 5,
     "artist": "Axelle Red & Renaud",
     "title": "Manhattan Kaboul",
     "formation": "Duo",
     "year": 2002,
     "language": "Français",
-    "id": 5
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/4d/a4/bf/4da4bfcb-4bd1-8146-c78d-d3baa808268a/094636922454.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "100 Chansons",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 6,
     "artist": "BB Brunes",
     "title": "Dis-moi",
     "formation": "Solo",
     "year": 2006,
     "language": "Français",
-    "id": 6
+    "cover_url": "https://cdn-images.dzcdn.net/images/cover/f444edecf14eb653d5b2b0df663ce369/1000x1000-000000-80-0-0.jpg",
+    "lyrics": "Une légère envie de violence quand elle relace ses bas\nJe ne suis plus à vendre, Houna je ne suis plus comme ça\nDes rumeurs adolescentes disent que je ne suis pas\nÀ toi et je pense qu'une part de vrai se cache\n\nDis-moi si je dois partir ou pas\nDis-moi hou hou\nDis-moi si tu aimes ça Houna\nCar je suis fou de toi Houna\nQuand tu ne m'appartiens pas\n\nUne violente envie de descente lorsque t'embrasse ces gars\nJe ne ferai point l'enfant tout ça ne m'atteint pas\nDes rumeurs adolescentes disent que je ne suis pas\nUn homme à femmes et rien d'autre qu'un homme à toi\n\nDis-moi si je dois partir ou pas\nDis-moi hou hou\nDis-moi si tu aimes ça Houna\nCar je suis fou de toi Houna\nQuand tu ne m'appartiens pas\n\nQuand tu me mords où ça dérange\nEt tu m'attaches les bras\nQuand je fais sautiller sa frange\nSes cris se tirent dans les graves\n\nLes voyeurs en redemandent\nMoi je ne veux que Houna\nLa plus belle des plus belles jambes\nEt de la place pour trois\n\nDis-moi si je dois partir ou pas\nDis-moi hou hou\nDis-moi si tu aimes ça Houna\nDis-moi hou hou\nDis-moi non je ne craquerai pas\nDis-moi hou hou\nDis-moi si tu aimes ça Houna\nCar je suis fou de toi Houna\nQuand tu ne m'appartiens pas",
+    "synced_lyrics": "[00:04.01]Une légère envie de violence quand elle relace ses bas\n[00:08.03]Je ne suis plus à vendre, Houna je ne suis plus comme ça\n[00:11.60]Des rumeurs adolescentes disent que je ne suis pas\n[00:15.03]À toi et je pense qu'une part de vrai se cache\n[00:19.36]Dis-moi si je dois partir ou pas\n[00:23.00]Dis-moi hou hou\n[00:26.92]Dis-moi si tu aimes ça Houna\n[00:30.22]Car je suis fou de toi Houna\n[00:33.25]Quand tu ne m'appartiens pas\n[00:37.93]Une violente envie de descente lorsque t'embrasse ces gars\n[00:41.16]Je ne ferai point l'enfant tout ça ne m'atteint pas\n[00:44.60]Des rumeurs adolescentes disent que je ne suis pas\n[00:48.59]Un homme à femmes et rien d'autre qu'un homme à toi\n[00:52.25]Dis-moi si je dois partir ou pas\n[00:55.98]Dis-moi hou hou\n[00:59.49]Dis-moi si tu aimes ça Houna\n[01:03.15]Car je suis fou de toi Houna\n[01:06.14]Quand tu ne m'appartiens pas\n[01:36.64]Quand tu me mords où ça dérange\n[01:38.34]Et tu m'attaches les bras\n[01:40.44]Quand je fais sautiller sa frange\n[01:42.28]Ses cris se tirent dans les graves\n[01:44.34]Les voyeurs en redemandent\n[01:45.81]Moi je ne veux que Houna\n[01:48.47]La plus belle des plus belles jambes\n[01:49.82]Et de la place pour trois\n[01:51.92]Dis-moi si je dois partir ou pas\n[01:55.44]Dis-moi hou hou\n[01:59.26]Dis-moi si tu aimes ça Houna\n[02:02.77]Dis-moi hou hou\n[02:06.99]Dis-moi non je ne craquerai pas\n[02:10.48]Dis-moi hou hou\n[02:14.02]Dis-moi si tu aimes ça Houna\n[02:17.52]Car je suis fou de toi Houna\n[02:20.58]Quand tu ne m'appartiens pas\n[02:22.88]",
+    "album": "Dis Moi (single digital)",
+    "genre": null,
+    "available": 1
   },
   {
+    "id": 7,
     "artist": "Bon Jovi",
     "title": "Livin' on a prayer",
     "formation": "Solo",
     "year": 1986,
     "language": "Anglais",
-    "id": 7
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/40/16/3e/40163e24-6985-b785-d4ea-cbae07d74812/06UMGIM05422.rgb.jpg/600x600bb.jpg",
+    "lyrics": "Once upon a time\nNot so long ago\n\nTommy used to work on the docks\nUnion's been on strike, he's down on his luck\nIt's tough, so tough\n\nGina works the diner all day\nWorking for her man, she brings home her pay for love\nMmm, for love\n\nShe says, \"We've gotta hold on to what we've got\nIt doesn't make a difference if we make it or not\nWe got each other, and that's a lot for love\nWe'll give it a shot\"\n\nWhoa, we're half way there\nOh-oh, livin' on a prayer\nTake my hand, we'll make it, I swear\nOh-oh, livin' on a prayer\n\nTommy's got his six-string in hock\nNow he's holding in what he used to make it talk\nSo tough, ooh, it's tough\n\nGina dreams of running away\nWhen she cries in the night, Tommy whispers\n\"Baby it's okay, someday\"\n\nWe've gotta hold on to what we've got\nIt doesn't make a difference if we make it or not\nWe got each other, and that's a lot for love\nWe'll give it a shot\"\n\nOh, we're half way there\nOh-oh, livin' on a prayer\nTake my hand, we'll make it, I swear\nWoah-oh, livin' on a prayer\nLivin' on a prayer\n\nOoh, we gotta hold on, ready or not\nYou live for the fight when that's all that you've got\n\nWhoa, we're half way there\nWhoa-oh, livin' on a prayer\nTake my hand, and we'll make it, I swear\nWhoa-oh, livin' on a prayer\n\nWhoa, we're half way there\nWhoa-oh, livin' on a prayer\nTake my hand, and we'll make it, I swear\nWhoa-oh, livin' on a prayer\nWhoa, we're half way there\nWhoa-oh, livin' on a prayer\nTake my hand, and we'll make it, I swear\nWoah-ah",
+    "synced_lyrics": "[00:38.62]Once upon a time\n[00:40.71]Not so long ago\n[00:45.72]Tommy used to work on the docks\n[00:49.69]Union's been on strike, he's down on his luck\n[00:53.37]It's tough, so tough\n[01:01.55]Gina works the diner all day\n[01:05.54]Working for her man, she brings home her pay for love\n[01:11.61]Mmm, for love\n[01:16.05]She says, \"We've gotta hold on to what we've got\n[01:21.00]It doesn't make a difference if we make it or not\n[01:25.08]We got each other, and that's a lot for love\n[01:30.76]We'll give it a shot\"\n[01:33.08]Whoa, we're half way there\n[01:36.94]Oh-oh, livin' on a prayer\n[01:40.88]Take my hand, we'll make it, I swear\n[01:44.62]Oh-oh, livin' on a prayer\n[01:49.36]\n[01:52.55]Tommy's got his six-string in hock\n[01:56.16]Now he's holding in what he used to make it talk\n[01:59.81]So tough, ooh, it's tough\n[02:06.07]\n[02:08.15]Gina dreams of running away\n[02:11.75]When she cries in the night, Tommy whispers\n[02:14.94]\"Baby it's okay, someday\"\n[02:22.89]We've gotta hold on to what we've got\n[02:27.54]It doesn't make a difference if we make it or not\n[02:31.49]We got each other, and that's a lot for love\n[02:37.12]We'll give it a shot\"\n[02:39.34]Oh, we're half way there\n[02:43.38]Oh-oh, livin' on a prayer\n[02:47.05]Take my hand, we'll make it, I swear\n[02:51.03]Woah-oh, livin' on a prayer\n[02:54.93]Livin' on a prayer\n[02:58.43]\n[03:14.08]Ooh, we gotta hold on, ready or not\n[03:20.15]You live for the fight when that's all that you've got\n[03:23.65]Whoa, we're half way there\n[03:27.67]Whoa-oh, livin' on a prayer\n[03:31.52]Take my hand, and we'll make it, I swear\n[03:35.21]Whoa-oh, livin' on a prayer\n[03:39.01]Whoa, we're half way there\n[03:43.14]Whoa-oh, livin' on a prayer\n[03:46.86]Take my hand, and we'll make it, I swear\n[03:50.72]Whoa-oh, livin' on a prayer\n[03:54.42]Whoa, we're half way there\n[03:58.53]Whoa-oh, livin' on a prayer\n[04:02.41]Take my hand, and we'll make it, I swear\n[04:06.17]Woah-ah\n[04:07.41]",
+    "album": "Slippery When Wet",
+    "genre": "Hard Rock",
+    "available": 1
   },
   {
+    "id": 8,
     "artist": "Bruno Mars & Lady Gaga",
     "title": "Die with a smile",
     "formation": "Duo",
     "year": 2024,
     "language": "Anglais",
-    "id": 8
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/ae/f2/11aef294-f57c-bab9-c9fc-529162984e62/24UMGIM85348.rgb.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Die With A Smile - Single",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 9,
     "artist": "Calogero & Passi",
     "title": "Face à la mer",
     "formation": "Duo",
     "year": 2004,
     "language": "Français",
-    "id": 9
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1f/d5/a8/1fd5a84d-3f75-8a08-70c3-2cbc386f0902/06UMGIM42500.rgb.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Calog3ro",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 10,
     "artist": "Clara Luciani",
     "title": "La grenade",
     "formation": "Solo",
     "year": 2017,
     "language": "Français",
-    "id": 10
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/05/a1/af/05a1af52-ad8d-6017-37b3-ac16643dc3f1/5063858240290_cover.jpg/600x600bb.jpg",
+    "lyrics": "Hé toi\nQu'est-ce que tu regardes?\nT'as jamais vu une femme qui se bat\nSuis-moi\nDans la ville blafarde\nEt je te montrerai\nComme je mords, comme j'aboie\n\nPrends garde\nSous mon sein, la grenade\nSous mon sein, là, regarde\nSous mon sein, la grenade\nPrends garde\nSous mon sein, la grenade\nSous mon sein, là, regarde\nSous mon sein, la grenade\n\nHé toi\nMais qu'est-ce que tu crois?\nJe ne suis qu'un animal\nDéguisé en madone\nHé toi\nJe pourrais te faire mal\nJe pourrais te blesser, oui\nDans la nuit qui frissonne\n\nPrends garde\nSous mon sein, la grenade\nSous mon sein, là, regarde\nSous mon sein, la grenade\nPrends garde\nSous mon sein, la grenade\nSous mon sein, là, regarde\nSous mon sein, la grenade\n\nHé toi\nQu'est-ce que tu t'imagines?\nJe suis aussi vorace\nAussi vivante que toi\nSais-tu\nQue là sous ma poitrine\nUne rage sommeille (une rage sommeille)\nQue tu ne soupçonnes pas?\n\nPrends garde\nSous mon sein, la grenade\nSous mon sein, là, regarde\nSous mon sein, la grenade\nPrends garde\nSous mon sein, la grenade\nSous mon sein, là, regarde\nSous mon sein, la grenade\nPrends garde",
+    "synced_lyrics": "[00:10.30]Hé toi\n[00:13.17]Qu'est-ce que tu regardes?\n[00:16.39]T'as jamais vu une femme qui se bat\n[00:24.99]Suis-moi\n[00:28.00]Dans la ville blafarde\n[00:31.73]Et je te montrerai\n[00:35.37]Comme je mords, comme j'aboie\n[00:39.47]Prends garde\n[00:41.47]Sous mon sein, la grenade\n[00:45.41]Sous mon sein, là, regarde\n[00:49.15]Sous mon sein, la grenade\n[00:54.92]Prends garde\n[00:56.67]Sous mon sein, la grenade\n[01:00.32]Sous mon sein, là, regarde\n[01:04.06]Sous mon sein, la grenade\n[01:09.29]Hé toi\n[01:12.23]Mais qu'est-ce que tu crois?\n[01:15.90]Je ne suis qu'un animal\n[01:19.75]Déguisé en madone\n[01:23.47]Hé toi\n[01:27.01]Je pourrais te faire mal\n[01:30.29]Je pourrais te blesser, oui\n[01:34.57]Dans la nuit qui frissonne\n[01:39.10]Prends garde\n[01:40.72]Sous mon sein, la grenade\n[01:44.61]Sous mon sein, là, regarde\n[01:48.42]Sous mon sein, la grenade\n[01:53.40]Prends garde\n[01:55.57]Sous mon sein, la grenade\n[01:59.83]Sous mon sein, là, regarde\n[02:02.93]Sous mon sein, la grenade\n[02:08.76]Hé toi\n[02:11.60]Qu'est-ce que tu t'imagines?\n[02:15.12]Je suis aussi vorace\n[02:18.84]Aussi vivante que toi\n[02:22.70]Sais-tu\n[02:26.44]Que là sous ma poitrine\n[02:31.33]Une rage sommeille (une rage sommeille)\n[02:34.67]Que tu ne soupçonnes pas?\n[02:38.61]Prends garde\n[02:40.53]Sous mon sein, la grenade\n[02:43.92]Sous mon sein, là, regarde\n[02:47.94]Sous mon sein, la grenade\n[02:52.82]Prends garde\n[02:55.05]Sous mon sein, la grenade\n[02:59.29]Sous mon sein, là, regarde\n[03:02.90]Sous mon sein, la grenade\n[03:09.28]Prends garde\n[03:10.26]",
+    "album": "Danse comme Clara Luciani - Single",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 11,
     "artist": "Céline & JJ Goldman",
     "title": "J'irai ou tu iras",
     "formation": "Duo",
     "year": 1996,
     "language": "Français",
-    "id": 11
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1a/a6/5f/1aa65fde-28a1-7557-0094-d3051bdea898/828768766521.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "D'eux",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 12,
     "artist": "Céline Dion & Garou",
     "title": "Sous le vent",
     "formation": "Duo",
     "year": 2001,
     "language": "Français",
-    "id": 12
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/17/30/45/173045a7-3ac5-0400-82bd-16c0cbebc204/196874384459.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "On ne change pas",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 13,
     "artist": "Daniel Balavoine",
     "title": "Le chanteur",
     "formation": "Solo",
     "year": 1978,
     "language": "Français",
-    "id": 13
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/09/de/15/09de15b5-21d0-1de0-094c-57eb090d8a14/06UMGIM30601.rgb.jpg/600x600bb.jpg",
+    "lyrics": "J'me présente, je m'appelle Henri\nJ'voudrais bien réussir ma vie, être aimé\nÊtre beau, gagner de l'argent\nPuis surtout être intelligent\nMais pour tout ça il faudrait que j'bosse à plein temps\n\nJ'suis chanteur, je chante pour mes copains\nJ'veux faire des tubes et que ça tourne bien, tourne bien\nJ'veux écrire une chanson dans le vent\nUn air gai, chic et entraînant\nPour faire danser dans les soirées de Monsieur Durand\n\nEt partout dans la rue\nJ'veux qu'on parle de moi\nQue les filles soient nues\nQu'elles se jettent sur moi\nQu'elles m'admirent, qu'elles me tuent\nQu'elles s'arrachent ma vertu\n\nPour les anciennes de l'école\nDevenir une idole\nJ'veux que toutes les nuits\nEssoufflées dans leurs lits\nElles trompent leurs maris\nDans leurs rêves maudits\n\nPuis après je ferai des galas\nMon public se prosternera devant moi\nDes concerts de cent mille personnes\nOù même le tout-Paris s'étonne\nEt se lève pour prolonger le combat\n\nEt partout dans la rue\nJ'veux qu'on parle de moi\nQue les filles soient nues\nQu'elles se jettent sur moi\nQu'elles m'admirent, qu'elles me tuent\nQu'elles s'arrachent ma vertu\n\nPuis quand j'en aurai assez\nDe rester leur idole\nJe remonterai sur scène\nComme dans les années folles\nJe ferai pleurer mes yeux\nJe ferai mes adieux\n\nEt puis l'année d'après\nJe recommencerai\nEt puis l'année d'après\nJe recommencerai\nJe me prostituerai\nPour la postérité\n\nLes nouvelles de l'école\nDiront que j'suis pédé\nQue mes yeux puent l'alcool\nQue j'fais bien d'arrêter\nBrûleront mon auréole\nSaliront mon passé\n\nAlors je serai vieux\nEt je pourrai crever\nJe me chercherai un Dieu\nPour tout me pardonner\nJ'veux mourir malheureux\nPour ne rien regretter\nJ'veux mourir malheureux",
+    "synced_lyrics": "[00:06.56]J'me présente, je m'appelle Henri\n[00:12.50]J'voudrais bien réussir ma vie, être aimé\n[00:17.89]Être beau, gagner de l'argent\n[00:23.55]Puis surtout être intelligent\n[00:27.58]Mais pour tout ça il faudrait que j'bosse à plein temps\n[00:33.29]J'suis chanteur, je chante pour mes copains\n[00:38.42]\n[00:41.35]J'veux faire des tubes et que ça tourne bien, tourne bien\n[00:47.04]J'veux écrire une chanson dans le vent\n[00:52.24]Un air gai, chic et entraînant\n[00:56.04]Pour faire danser dans les soirées de Monsieur Durand\n[01:02.04]Et partout dans la rue\n[01:07.18]J'veux qu'on parle de moi\n[01:08.84]Que les filles soient nues\n[01:10.91]Qu'elles se jettent sur moi\n[01:12.97]Qu'elles m'admirent, qu'elles me tuent\n[01:16.42]Qu'elles s'arrachent ma vertu\n[01:20.32]Pour les anciennes de l'école\n[01:22.24]Devenir une idole\n[01:24.36]J'veux que toutes les nuits\n[01:26.17]Essoufflées dans leurs lits\n[01:28.29]Elles trompent leurs maris\n[01:32.18]Dans leurs rêves maudits\n[01:36.02]Puis après je ferai des galas\n[01:40.32]\n[01:48.62]Mon public se prosternera devant moi\n[01:54.28]Des concerts de cent mille personnes\n[01:59.28]Où même le tout-Paris s'étonne\n[02:03.10]Et se lève pour prolonger le combat\n[02:09.70]Et partout dans la rue\n[02:14.56]J'veux qu'on parle de moi\n[02:16.33]Que les filles soient nues\n[02:18.36]Qu'elles se jettent sur moi\n[02:20.02]Qu'elles m'admirent, qu'elles me tuent\n[02:23.45]Qu'elles s'arrachent ma vertu\n[02:27.55]Puis quand j'en aurai assez\n[02:29.58]De rester leur idole\n[02:31.67]Je remonterai sur scène\n[02:33.66]Comme dans les années folles\n[02:35.37]Je ferai pleurer mes yeux\n[02:39.16]Je ferai mes adieux\n[02:42.92]Et puis l'année d'après\n[02:45.01]Je recommencerai\n[02:46.75]Et puis l'année d'après\n[02:48.74]Je recommencerai\n[02:50.78]Je me prostituerai\n[02:54.55]Pour la postérité\n[02:58.69]Les nouvelles de l'école\n[03:00.32]Diront que j'suis pédé\n[03:02.48]Que mes yeux puent l'alcool\n[03:04.13]Que j'fais bien d'arrêter\n[03:06.18]Brûleront mon auréole\n[03:09.75]Saliront mon passé\n[03:13.73]Alors je serai vieux\n[03:15.67]Et je pourrai crever\n[03:17.67]Je me chercherai un Dieu\n[03:19.45]Pour tout me pardonner\n[03:21.56]J'veux mourir malheureux\n[03:25.16]Pour ne rien regretter\n[03:29.15]J'veux mourir malheureux\n[03:30.58]",
+    "album": "Les 100 plus belles chansons de Daniel Balavoine",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 14,
     "artist": "Diam's",
     "title": "La boulette",
     "formation": "Solo",
     "year": 2006,
     "language": "Français",
-    "id": 14
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/e4/cc/5b/e4cc5b90-f81b-d49e-e42e-2bf9b28f56c4/094635064452.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "La boulette - Single",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 15,
     "artist": "Disiz & Théodora",
     "title": "melodrama",
     "formation": "Duo",
     "year": 2025,
     "language": "Français",
-    "id": 15
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bc/d7/46/bcd7465a-b33a-53e2-f7a6-f4880ffbb185/196873615851.jpg/600x600bb.jpg",
+    "lyrics": "Blessé bg, végéter dans l'TGV\nDégouté, qu'est-ce que j'ai fait?\nQu'est-ce que j'ai fait?\nEncore, toujours, pareil (encore)\nIl pleut de l'eau d'javel\nÇa fait de l'aquarelle\nSur les couleurs de la vie sans elle\nTout coule, tout coule sur moi\nSur la douleur de la vie sans toi\nTout roule, tout roule pour toi\n\nJ'suis comme un son que t'aurais pas Shazam\nJ'suis comme un con dans c'méli-mélo drame\nÇa fait si mal alors qu'ça fait pas longtime\nJ'suis comme ce son que t'aurais pas Shazam\nJ'suis comme un con dans c'méli-mélo drame\nC'est donc la dernière fois qu'on s'raccompagne\n\nPoches pleines surtout sous les yeux\nBabe, tu m'as fait trop de peine, j'ai même pleuré Dieu\nJe t'ai dit \"je t'aime\" plus d'une fois ou deux\nMais moi, j'ai dit \"je t'aime\" à un homme, pas deux\nTu m'donnes le blues d'hiver\nJe suis dans un étoilé, mais je repense à hier\nGalères et RER\nSi ton pied, c'est mon pied, pourquoi tout foutre en l'air\n\nJ'suis comme ce son que t'aurais pas Shazam\nY a ton odeur dans mon lit, dans mes draps\nJ'ai jamais vraiment été ta Valentine\nJ'suis comme ce son que t'aurais pas Shazam\nY a ton odeur dans mon lit, dans mes draps\nJ'ai jamais vraiment été ta Valentine\n\nC'est tout à ton bonheur de m'vouloir du mal\nMoi, j'suis venu pour l'amour, pas pour l'tribunal\nJe plaide coupable de toute façon\nY a l'enfance dans l'équation\n\nJ'suis comme un son que t'aurais pas Shazam\nJ'suis comme un con dans c'méli-mélo drame\nÇa fait si mal alors qu'ça fait pas longtime\nJ'suis comme ce son que t'aurais pas Shazam\nY a ton odeur dans mon lit, dans mes draps\nJ'ai jamais vraiment été ta Valentine",
+    "synced_lyrics": "[00:11.53]Blessé bg, végéter dans l'TGV\n[00:18.12]Dégouté, qu'est-ce que j'ai fait?\n[00:21.97]Qu'est-ce que j'ai fait?\n[00:23.59]Encore, toujours, pareil (encore)\n[00:26.30]Il pleut de l'eau d'javel\n[00:29.41]Ça fait de l'aquarelle\n[00:33.12]Sur les couleurs de la vie sans elle\n[00:35.63]Tout coule, tout coule sur moi\n[00:38.71]Sur la douleur de la vie sans toi\n[00:42.09]Tout roule, tout roule pour toi\n[00:46.05]\n[00:48.46]J'suis comme un son que t'aurais pas Shazam\n[00:51.66]J'suis comme un con dans c'méli-mélo drame\n[00:54.64]Ça fait si mal alors qu'ça fait pas longtime\n[01:00.81]J'suis comme ce son que t'aurais pas Shazam\n[01:04.28]J'suis comme un con dans c'méli-mélo drame\n[01:07.22]C'est donc la dernière fois qu'on s'raccompagne\n[01:11.42]\n[01:14.82]Poches pleines surtout sous les yeux\n[01:17.14]Babe, tu m'as fait trop de peine, j'ai même pleuré Dieu\n[01:20.24]Je t'ai dit \"je t'aime\" plus d'une fois ou deux\n[01:23.31]Mais moi, j'ai dit \"je t'aime\" à un homme, pas deux\n[01:26.85]Tu m'donnes le blues d'hiver\n[01:28.98]Je suis dans un étoilé, mais je repense à hier\n[01:32.93]Galères et RER\n[01:34.96]Si ton pied, c'est mon pied, pourquoi tout foutre en l'air\n[01:38.55]J'suis comme ce son que t'aurais pas Shazam\n[01:41.39]Y a ton odeur dans mon lit, dans mes draps\n[01:43.82]J'ai jamais vraiment été ta Valentine\n[01:47.67]\n[01:50.66]J'suis comme ce son que t'aurais pas Shazam\n[01:53.97]Y a ton odeur dans mon lit, dans mes draps\n[01:56.45]J'ai jamais vraiment été ta Valentine\n[02:00.09]\n[02:04.16]C'est tout à ton bonheur de m'vouloir du mal\n[02:07.50]Moi, j'suis venu pour l'amour, pas pour l'tribunal\n[02:10.17]Je plaide coupable de toute façon\n[02:13.53]Y a l'enfance dans l'équation\n[02:17.78]\n[02:27.70]J'suis comme un son que t'aurais pas Shazam\n[02:31.38]J'suis comme un con dans c'méli-mélo drame\n[02:34.05]Ça fait si mal alors qu'ça fait pas longtime\n[02:38.01]\n[02:40.42]J'suis comme ce son que t'aurais pas Shazam\n[02:43.40]Y a ton odeur dans mon lit, dans mes draps\n[02:46.25]J'ai jamais vraiment été ta Valentine\n[02:48.71]",
+    "album": "melodrama - Single",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 16,
     "artist": "Eddy Mitchell",
     "title": "Couleur menthe à l'eau",
     "formation": "Solo",
     "year": 1980,
     "language": "Français",
-    "id": 16
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d8/33/64/d8336414-d545-b727-9b83-402d6f246b3d/00731454905923.rgb.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Eddy Mitchell",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 17,
     "artist": "Elton John",
     "title": "I'm still standing",
     "formation": "Solo",
     "year": 1983,
     "language": "Anglais",
-    "id": 17
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/45/e5/b4/45e5b409-0564-a7a3-186c-1dc116c3ffb7/06UMGIM49712.rgb.jpg/600x600bb.jpg",
+    "lyrics": "You could never know what it's like\nYour blood like winter freezes just like ice\nAnd there's a cold lonely light that shines from you\nYou'll wind up like the wreck you hide\nBehind that mask you use\n\nAnd did you think this fool could never win\nWell look at me, I'm coming back again\nI got a taste of love in a simple way\nAnd if you need to know while I'm still standing\nYou just fade away\n\nDon't you know\nI'm still standing better than I ever did\nLooking like a true survivor, feeling like a little kid\nAnd I'm still standing after all this time\nPicking up the pieces of my life\nWithout you on my mind\n\nI'm still standing\n(Yeah, yeah, yeah)\nI'm still standing\n(Yeah, yeah, yeah)\n\nOnce I never could hope to win\nYou starting down the road leaving me again\nThe threats you made were meant to cut me down\nAnd if our love was just a circus\nYou'd be a clown by now\n\nYou know, I'm still standing better than I ever did\nLooking like a true survivor, feeling like a little kid\nI'm still standing after all this time\nPicking up the pieces of my life\nWithout you on my mind\n\nI'm still standing\n(Yeah, yeah, yeah)\nI'm still standing\n(Yeah, yeah, yeah)\n\nDon't you know that\nI'm still standing better than I ever did\nLooking like a true survivor, feeling like a little kid\nBut I'm still standing after all this time\nPicking up the pieces of my life\nWithout you on my mind\n\nI'm still standing\n(Yeah, yeah, yeah)\nI'm still standing\n(Yeah, yeah, yeah)\n\nI'm still standing\n(Yeah, yeah, yeah)\nI'm still standing\n(Yeah, yeah, yeah)\nI'm still standing\n(Yeah, yeah, yeah)",
+    "synced_lyrics": "[00:11.88]You could never know what it's like\n[00:14.23]Your blood like winter freezes just like ice\n[00:16.63]And there's a cold lonely light that shines from you\n[00:19.48]You'll wind up like the wreck you hide\n[00:21.56]Behind that mask you use\n[00:25.32]And did you think this fool could never win\n[00:27.67]Well look at me, I'm coming back again\n[00:30.32]I got a taste of love in a simple way\n[00:32.76]And if you need to know while I'm still standing\n[00:35.10]You just fade away\n[00:37.87]Don't you know\n[00:38.84]I'm still standing better than I ever did\n[00:43.36]Looking like a true survivor, feeling like a little kid\n[00:49.26]And I'm still standing after all this time\n[00:54.41]Picking up the pieces of my life\n[00:56.89]Without you on my mind\n[00:59.63]I'm still standing\n[01:01.62](Yeah, yeah, yeah)\n[01:04.87]I'm still standing\n[01:07.02](Yeah, yeah, yeah)\n[01:11.53]Once I never could hope to win\n[01:13.94]You starting down the road leaving me again\n[01:16.53]The threats you made were meant to cut me down\n[01:18.99]And if our love was just a circus\n[01:21.39]You'd be a clown by now\n[01:24.29]You know, I'm still standing better than I ever did\n[01:29.46]Looking like a true survivor, feeling like a little kid\n[01:35.46]I'm still standing after all this time\n[01:40.23]Picking up the pieces of my life\n[01:42.84]Without you on my mind\n[01:45.54]I'm still standing\n[01:47.82](Yeah, yeah, yeah)\n[01:51.07]I'm still standing\n[01:53.08](Yeah, yeah, yeah)\n[01:56.76]\n[02:09.80]Don't you know that\n[02:10.64]I'm still standing better than I ever did\n[02:15.20]Looking like a true survivor, feeling like a little kid\n[02:20.97]But I'm still standing after all this time\n[02:26.26]Picking up the pieces of my life\n[02:28.57]Without you on my mind\n[02:31.57]I'm still standing\n[02:33.73](Yeah, yeah, yeah)\n[02:36.70]I'm still standing\n[02:38.83](Yeah, yeah, yeah)\n[02:42.20]I'm still standing\n[02:44.42](Yeah, yeah, yeah)\n[02:47.53]I'm still standing\n[02:49.54](Yeah, yeah, yeah)\n[02:53.04]I'm still standing\n[02:55.11](Yeah, yeah, yeah)\n[02:56.53]",
+    "album": "Too Low For Zero (Bonus Track Version)",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 18,
     "artist": "France Gall",
     "title": "Ella elle l'a",
     "formation": "Solo",
     "year": 1987,
     "language": "Français",
-    "id": 18
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/c9/f1/5e/c9f15e15-c40c-ce7e-4d56-6d47abe198e9/888608916905.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Ella, elle l'a (Version Karaoké Playback) [Rendu célèbre par France Gall] - Single",
+    "genre": "Karaoke",
+    "available": 1
   },
   {
+    "id": 19,
     "artist": "Gold",
     "title": "Plus près des étoiles",
     "formation": "Solo",
     "year": 1985,
     "language": "Français",
-    "id": 19
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/70/b4/41/70b441ce-a386-99b5-4401-c89377b6d770/859719292585_cover.jpg/600x600bb.jpg",
+    "lyrics": "Ils ont quitté leurs terres\nLeurs champs de fleurs et leurs livres sacrés\nTraversés les rizières\nJusqu'au grand fleuve salé\nSans amour, sans un cri\nIls ont fermé leurs visages de miel\nLes yeux mouillés de pluie\nLes mains tendues vers le ciel\n\nUn peu plus près des étoiles\nAu jardin de lumière et d'argent\nPour oublier les rivages brûlants\nUn peu plus près des étoiles\nÀ l'abri des colères du vent\nÀ peine un peu plus libres qu'avant\n\nAu pied des murs de pierres\nIls ont brûlé leurs dragons de papier\nRefermés leurs paupières\nSur les chenilles d'acier\nEux qui croyaient vieillir\nEn regardant grandir leurs enfants\nÀ l'ombre du sourire\nDes bouddhas de marbre blanc\n\nUn peu plus près des étoiles\nAu jardin de lumière et d'argent\nPour oublier les rivages brûlants\nUn peu plus près des étoiles\nÀ l'abri des colères du vent\nÀ peine un peu plus libres qu'avant\n\nIls parlent à demi-mots\nÀ mi-chemin entre la vie et la mort\nEt dans leurs yeux mi-clos\nDu soleil, du soleil brille encore\nUne île de lumière\nUn cerf-volant s'est posé sur la mer\nUn vent de liberté\nTrop loin, trop loin pour les emporter\n\nUn peu plus près des étoiles\nAu jardin de lumière et d'argent\nPour oublier les rivages brûlants\nUn peu plus près des étoiles\nÀ l'abri des colères du vent\nÀ peine un peu plus libres qu'avant\nUn peu plus près des étoiles\nAu jardin de lumière et d'argent\nPour oublier les rivages brûlants\nUn peu plus près des étoiles\nÀ l'abri des colères du vent\nÀ peine un peu plus libres qu'avant",
+    "synced_lyrics": "[00:03.16]Ils ont quitté leurs terres\n[00:07.69]Leurs champs de fleurs et leurs livres sacrés\n[00:12.66]Traversés les rizières\n[00:17.09]Jusqu'au grand fleuve salé\n[00:21.18]Sans amour, sans un cri\n[00:24.36]Ils ont fermé leurs visages de miel\n[00:29.19]Les yeux mouillés de pluie\n[00:33.74]Les mains tendues vers le ciel\n[00:35.72]Un peu plus près des étoiles\n[00:38.53]Au jardin de lumière et d'argent\n[00:44.28]Pour oublier les rivages brûlants\n[00:52.27]Un peu plus près des étoiles\n[00:55.34]À l'abri des colères du vent\n[01:00.47]À peine un peu plus libres qu'avant\n[01:09.65]Au pied des murs de pierres\n[01:14.44]Ils ont brûlé leurs dragons de papier\n[01:19.00]Refermés leurs paupières\n[01:22.97]Sur les chenilles d'acier\n[01:27.52]Eux qui croyaient vieillir\n[01:30.77]En regardant grandir leurs enfants\n[01:35.23]À l'ombre du sourire\n[01:39.78]Des bouddhas de marbre blanc\n[01:42.21]Un peu plus près des étoiles\n[01:45.14]Au jardin de lumière et d'argent\n[01:50.02]Pour oublier les rivages brûlants\n[01:58.61]Un peu plus près des étoiles\n[02:01.47]À l'abri des colères du vent\n[02:07.06]À peine un peu plus libres qu'avant\n[02:15.55]Ils parlent à demi-mots\n[02:19.61]À mi-chemin entre la vie et la mort\n[02:25.18]Et dans leurs yeux mi-clos\n[02:29.02]Du soleil, du soleil brille encore\n[02:33.20]Une île de lumière\n[02:36.84]Un cerf-volant s'est posé sur la mer\n[02:41.32]Un vent de liberté\n[02:44.48]Trop loin, trop loin pour les emporter\n[02:48.09]Un peu plus près des étoiles\n[02:51.21]Au jardin de lumière et d'argent\n[02:56.62]Pour oublier les rivages brûlants\n[03:05.03]Un peu plus près des étoiles\n[03:07.33]À l'abri des colères du vent\n[03:12.61]À peine un peu plus libres qu'avant\n[03:20.69]Un peu plus près des étoiles\n[03:23.97]Au jardin de lumière et d'argent\n[03:29.36]Pour oublier les rivages brûlants\n[03:37.25]Un peu plus près des étoiles\n[03:40.51]À l'abri des colères du vent\n[03:45.38]À peine un peu plus libres qu'avant\n[03:54.31]",
+    "album": "GOLD Le long chemin (50ème anniversaire)",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 20,
     "artist": "Goldman",
     "title": "Envole moi",
     "formation": "Solo",
     "year": 1984,
     "language": "Français",
-    "id": 20
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5d/a9/f0/5da9f08c-fe52-1dbe-2323-65ef6688a799/886447882641.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Positif",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 21,
     "artist": "Goldman",
     "title": "Quand la musique est bonne",
     "formation": "Solo",
     "year": 1982,
     "language": "Français",
-    "id": 21
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/3a/61/b7/3a61b76d-a450-fc5d-93c0-42428598e3d2/888880415950.jpg/600x600bb.jpg",
+    "lyrics": "J'ai trop saigné sur les Gibson\nJ'ai trop rôdé dans les Tobacco road\nY'a plus qu'les caisses qui me résonnent\nEt quand j'me casse, j'voyage toujours en fraude\nDes champs d'coton dans ma mémoire\nTrois not' d'blues c'est un peu d'amour noir\nQuand j'suis trop court, quand j'suis trop tard\nC'est un recours pour une autr' histoire\n\nQuand la musique est bonne (Bonne, bonne, bonne)\nQuand la musique donne (Donne, donne, donne)\nQuand la musique sonne (sonne), sonne (sonne), sonne (sonne)\nQuand elle ne triche pas (Quand elle ne triche pas)\nQuand la musique est bonne (Bonne, bonne, bonne)\nQuand la musique donne (Donne, donne, donne)\nQuand la musique sonne (sonne), sonne (sonne), sonne (sonne)\nQuand elle guide mes pas (Quand elle guide mes pas)\n\nJ'ai plus l'amour, j'ai pas le temps\nJ'ai plus l'humour, j'sais plus d'où vient le vent\nJ'ai plus qu'un clou, une étincelle\nDes trucs en plomb qui me brisent les ailes\nUn peu de swing, un peu du King\nPas mal de feeling et de décibels\nC'est pas l'usine, c'est pas la mine\nMais ça suffit pour se faire la belle\n\nQuand la musique est bonne (Bonne, bonne, bonne)\nQuand la musique donne (Donne, donne, donne)\nQuand la musique sonne (sonne), sonne (sonne), sonne (sonne)\nQuand elle ne triche pas (Quand elle guide mes pas)\nQuand la musique est bonne (Bonne, bonne, bonne)\nQuand la musique donne (Donne, donne, donne)\nQuand la musique sonne (sonne), sonne (sonne), sonne (sonne)\nQuand elle guide mes pas (Quand elle guide mes pas)\n\n(Sonne, sonne, sonne)\n(Sonne, sonne, sonne)\n(Sonne, sonne, sonne)\n(Sonne, sonne, sonne)\n(Sonne, sonne, sonne)\n(Sonne, sonne, sonne)\n(Sonne, sonne, sonne)\n\nQuand la musique est bonne (Bonne, bonne, bonne)\nQuand la musique donne (Donne, donne, donne)\nQuand la musique sonne (sonne), sonne (sonne), sonne (sonne)\nQuand elle ne triche pas (Quand elle ne triche pas)\nQuand la musique est bonne (Bonne, bonne, bonne)\nQuand la musique donne (Donne, donne, donne)\nQuand la musique sonne (sonne), sonne (sonne), sonne (sonne)\nQuand elle guide mes pas (Quand elle guide mes pas)\nQuand la musique est bonne (Bonne, bonne, bonne)\nQuand la musique donne (Donne, donne, donne)\nQuand la musique sonne (sonne), sonne (sonne), sonne (sonne)\nQuand elle ne triche pas (Quand elle ne triche pas)\nQuand la musique est bonne (Bonne, bonne, bonne)\nQuand la musique donne (Donne, donne, donne)\nQuand la musique sonne (sonne), sonne (sonne), sonne (sonne)\nQuand elle guide mes pas (Quand elle guide mes pas)\nQuand la musique est bonne (Bonne, bonne, bonne)\nQuand la musique donne (Donne, donne, donne)",
+    "synced_lyrics": "[00:20.26]J'ai trop saigné sur les Gibson\n[00:24.05]J'ai trop rôdé dans les Tobacco road\n[00:27.63]Y'a plus qu'les caisses qui me résonnent\n[00:31.55]Et quand j'me casse, j'voyage toujours en fraude\n[00:35.24]Des champs d'coton dans ma mémoire\n[00:38.90]Trois not' d'blues c'est un peu d'amour noir\n[00:42.76]Quand j'suis trop court, quand j'suis trop tard\n[00:46.37]C'est un recours pour une autr' histoire\n[00:50.41]Quand la musique est bonne (Bonne, bonne, bonne)\n[00:54.28]Quand la musique donne (Donne, donne, donne)\n[00:57.85]Quand la musique sonne (sonne), sonne (sonne), sonne (sonne)\n[01:01.71]Quand elle ne triche pas (Quand elle ne triche pas)\n[01:05.53]Quand la musique est bonne (Bonne, bonne, bonne)\n[01:09.11]Quand la musique donne (Donne, donne, donne)\n[01:12.98]Quand la musique sonne (sonne), sonne (sonne), sonne (sonne)\n[01:16.69]Quand elle guide mes pas (Quand elle guide mes pas)\n[01:21.99]J'ai plus l'amour, j'ai pas le temps\n[01:25.69]J'ai plus l'humour, j'sais plus d'où vient le vent\n[01:29.42]J'ai plus qu'un clou, une étincelle\n[01:33.33]Des trucs en plomb qui me brisent les ailes\n[01:37.08]Un peu de swing, un peu du King\n[01:40.95]Pas mal de feeling et de décibels\n[01:44.74]C'est pas l'usine, c'est pas la mine\n[01:48.40]Mais ça suffit pour se faire la belle\n[01:52.59]Quand la musique est bonne (Bonne, bonne, bonne)\n[01:56.42]Quand la musique donne (Donne, donne, donne)\n[02:00.28]Quand la musique sonne (sonne), sonne (sonne), sonne (sonne)\n[02:03.95]Quand elle ne triche pas (Quand elle guide mes pas)\n[02:08.22]Quand la musique est bonne (Bonne, bonne, bonne)\n[02:11.61]Quand la musique donne (Donne, donne, donne)\n[02:15.32]Quand la musique sonne (sonne), sonne (sonne), sonne (sonne)\n[02:19.09]Quand elle guide mes pas (Quand elle guide mes pas)\n[02:24.37](Sonne, sonne, sonne)\n[02:26.26](Sonne, sonne, sonne)\n[02:28.14](Sonne, sonne, sonne)\n[02:30.01](Sonne, sonne, sonne)\n[02:32.05](Sonne, sonne, sonne)\n[02:33.70](Sonne, sonne, sonne)\n[02:35.88](Sonne, sonne, sonne)\n[02:38.77]\n[02:41.96]Quand la musique est bonne (Bonne, bonne, bonne)\n[02:45.58]Quand la musique donne (Donne, donne, donne)\n[02:49.34]Quand la musique sonne (sonne), sonne (sonne), sonne (sonne)\n[02:53.28]Quand elle ne triche pas (Quand elle ne triche pas)\n[02:56.82]Quand la musique est bonne (Bonne, bonne, bonne)\n[03:00.75]Quand la musique donne (Donne, donne, donne)\n[03:04.46]Quand la musique sonne (sonne), sonne (sonne), sonne (sonne)\n[03:08.31]Quand elle guide mes pas (Quand elle guide mes pas)\n[03:11.95]Quand la musique est bonne (Bonne, bonne, bonne)\n[03:15.75]Quand la musique donne (Donne, donne, donne)\n[03:19.23]Quand la musique sonne (sonne), sonne (sonne), sonne (sonne)\n[03:23.18]Quand elle ne triche pas (Quand elle ne triche pas)\n[03:26.84]Quand la musique est bonne (Bonne, bonne, bonne)\n[03:30.59]Quand la musique donne (Donne, donne, donne)\n[03:34.32]Quand la musique sonne (sonne), sonne (sonne), sonne (sonne)\n[03:38.14]Quand elle guide mes pas (Quand elle guide mes pas)\n[03:41.89]Quand la musique est bonne (Bonne, bonne, bonne)\n[03:45.65]Quand la musique donne (Donne, donne, donne)\n[03:48.83]",
+    "album": "Quand la musique est bonne",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 22,
     "artist": "Il était une fois",
     "title": "J'ai encore rêvé d'elle",
     "formation": "Solo/Duo",
     "year": 1975,
     "language": "Français",
-    "id": 22
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/95/72/04/957204de-b41b-1e60-8a55-d0d493ae072b/0094639583850_1500x1500_300dpi.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "60 Chansons",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 23,
     "artist": "Johnny",
     "title": "L'Envie",
     "formation": "Solo",
     "year": 1988,
     "language": "Français",
-    "id": 23
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/1d/40/c1/1d40c15d-f3c8-ddcd-de55-e4ea97c7f44b/19UMGIM62610.rgb.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Johnny",
+    "genre": "Soft Rock",
+    "available": 1
   },
   {
+    "id": 24,
     "artist": "K-Maro",
     "title": "Femme like u",
     "formation": "Solo/Duo",
     "year": 2004,
     "language": "Français",
-    "id": 24
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/3f/9b/4d/3f9b4d47-6d21-e7b2-2110-3dd1b5dcaca1/cover.jpg/600x600bb.jpg",
+    "lyrics": "Yes\nJe m'apelle K-Maro\nHey Martinez, are you ready girl\n(C'mon, let's do this gangsta)\n\nDonne-moi ton cœur baby, ton corps baby\nDonne-moi ton bon vieux funk, ton rock baby, ta soul baby\nChante avec moi, je veux une femme like you\nPour m'emmener au bout du monde, une femme like you\nHey, hey\n\nDonne-moi ton cœur baby, ton corps baby\nDonne-moi ton bon vieux funk, ton rock baby, ta soul baby\nChante avec moi, je veux un homme like you\nBad boy, tu sais qu'tu m'plais, un homme like you\nHey, hey\n\nQuand tu chantes, j'oublie\nJ'ai plus le moindre soucis\nJ'ai le mal qui fuit\nTu donnes un son à ma vie\n\nEt puis j'sais pas qu'est-ce qui s'passe\nT'as ce regard dans la face\nQui me ramène à la case départ, là où j'suis parti\nNous ramène à la soirée du bar quand on est sortis\n\nEt c'est cette même complicité qui s'installe\nOù quand on est sur la scène et qu'on brille sous la même étoile\nQuand ta voix croise la mienne, que j'ai ta soul dans mes veines\nQue mon vibe coule dans les tiennes\n\nFemme, t'es belle et quand tu chantes t'es sexy\nFlash sur elle, rock, soul baby (oh yeah)\n\nDonne-moi ton cœur baby, ton corps baby\nDonne-moi ton bon vieux funk, ton rock baby, ta soul baby\nChante avec moi, je veux une femme like you\nPour m'emmener au bout du monde, une femme like you\nHey, hey\n\nDonne-moi ton cœur baby, ton corps baby\nDonne-moi ton bon vieux funk, ton rock baby, ta soul baby\nChante avec moi, je veux un homme like you\nBad boy, tu sais qu'tu m'plais, un homme like you\nHey, hey\n\nComplice, on leur donne un bon son live\nSoulmate, à la Diddy, Mary J. Blige\nGlamourous, ton style et ton charme\nT'es fabulous, un délice pour un mec à dames\n\nHmm baby, baby, si tu savais comme j'te hmm baby, baby\nCrois-moi que l'atmosphère est parfaite\nEt plus tu chantes, plus je j'glisse sur la pente\nEt j'perds la tête\n\nDeux vies, deux voix qui s'rencontrent\nDeux histoires qui se racontent\nUne chanson pour le dire\nY a les mots, les images pour le décrire\n\nUne belle rencontre à l'ancienne\nPrends un flash, y a d'la magie sur scène\nLe rideau tombe et c'est terminé\nUne belle collabo', des mots sur une feuille, pour se rappeler\n\nDonne-moi ton cœur baby, ton corps baby\nDonne-moi ton bon vieux funk, ton rock baby, ta soul baby\nChante avec moi, je veux une femme like you\nPour m'emmener au bout du monde, une femme like you\nHey, hey\n\nDonne-moi ton cœur baby, ton corps baby\nDonne-moi ton bon vieux funk, ton rock baby, ta soul baby\nChante avec moi, je veux un homme like you\nBad boy, tu sais qu'tu m'plais, un homme like you\nHey, hey (Bad boy)\n\nDonne-moi ton cœur\nDonne-moi ton corps\nDonne-moi ta soul\nTon rock'n'roll\n\nJe veux une femme like you\nUn homme like you (only like you, baby)\n\nDonne-moi ton cœur baby, ton corps baby\nDonne-moi ton bon vieux funk, ton rock baby, ta soul baby\nChante avec moi, je veux une femme like you\nPour m'emmener au bout du monde, une femme like you\nHey, hey\n\nDonne-moi ton cœur baby, ton corps baby\nDonne-moi ton bon vieux funk, ton rock baby, ta soul baby\nChante avec moi, je veux un homme like you\nBad boy, tu sais qu'tu m'plais, un homme like you\nHey, hey",
+    "synced_lyrics": "[00:02.65]Yes\n[00:06.01]Je m'apelle K-Maro\n[00:10.78]Hey Martinez, are you ready girl\n[00:14.32](C'mon, let's do this gangsta)\n[00:17.59]Donne-moi ton cœur baby, ton corps baby\n[00:20.53]Donne-moi ton bon vieux funk, ton rock baby, ta soul baby\n[00:24.62]Chante avec moi, je veux une femme like you\n[00:28.37]Pour m'emmener au bout du monde, une femme like you\n[00:31.69]Hey, hey\n[00:33.90]Donne-moi ton cœur baby, ton corps baby\n[00:36.82]Donne-moi ton bon vieux funk, ton rock baby, ta soul baby\n[00:41.02]Chante avec moi, je veux un homme like you\n[00:44.72]Bad boy, tu sais qu'tu m'plais, un homme like you\n[00:49.10]Hey, hey\n[00:50.89]Quand tu chantes, j'oublie\n[00:52.97]J'ai plus le moindre soucis\n[00:54.66]J'ai le mal qui fuit\n[00:57.04]Tu donnes un son à ma vie\n[00:58.82]Et puis j'sais pas qu'est-ce qui s'passe\n[01:00.87]T'as ce regard dans la face\n[01:02.91]Qui me ramène à la case départ, là où j'suis parti\n[01:05.32]Nous ramène à la soirée du bar quand on est sortis\n[01:07.74]Et c'est cette même complicité qui s'installe\n[01:11.15]Où quand on est sur la scène et qu'on brille sous la même étoile\n[01:15.01]Quand ta voix croise la mienne, que j'ai ta soul dans mes veines\n[01:18.26]Que mon vibe coule dans les tiennes\n[01:19.69]Femme, t'es belle et quand tu chantes t'es sexy\n[01:21.84]Flash sur elle, rock, soul baby (oh yeah)\n[01:27.36]Donne-moi ton cœur baby, ton corps baby\n[01:30.26]Donne-moi ton bon vieux funk, ton rock baby, ta soul baby\n[01:34.49]Chante avec moi, je veux une femme like you\n[01:38.02]Pour m'emmener au bout du monde, une femme like you\n[01:42.36]Hey, hey\n[01:43.68]Donne-moi ton cœur baby, ton corps baby\n[01:46.76]Donne-moi ton bon vieux funk, ton rock baby, ta soul baby\n[01:50.76]Chante avec moi, je veux un homme like you\n[01:54.51]Bad boy, tu sais qu'tu m'plais, un homme like you\n[01:58.77]Hey, hey\n[02:00.84]Complice, on leur donne un bon son live\n[02:02.60]Soulmate, à la Diddy, Mary J. Blige\n[02:04.97]Glamourous, ton style et ton charme\n[02:06.86]T'es fabulous, un délice pour un mec à dames\n[02:09.03]Hmm baby, baby, si tu savais comme j'te hmm baby, baby\n[02:12.50]Crois-moi que l'atmosphère est parfaite\n[02:14.45]Et plus tu chantes, plus je j'glisse sur la pente\n[02:16.12]Et j'perds la tête\n[02:17.47]Deux vies, deux voix qui s'rencontrent\n[02:19.52]Deux histoires qui se racontent\n[02:21.27]Une chanson pour le dire\n[02:22.99]Y a les mots, les images pour le décrire\n[02:25.49]Une belle rencontre à l'ancienne\n[02:27.17]Prends un flash, y a d'la magie sur scène\n[02:29.60]Le rideau tombe et c'est terminé\n[02:31.34]Une belle collabo', des mots sur une feuille, pour se rappeler\n[02:33.21]Donne-moi ton cœur baby, ton corps baby\n[02:35.91]Donne-moi ton bon vieux funk, ton rock baby, ta soul baby\n[02:40.08]Chante avec moi, je veux une femme like you\n[02:43.70]Pour m'emmener au bout du monde, une femme like you\n[02:47.95]Hey, hey\n[02:49.36]Donne-moi ton cœur baby, ton corps baby\n[02:52.36]Donne-moi ton bon vieux funk, ton rock baby, ta soul baby\n[02:56.45]Chante avec moi, je veux un homme like you\n[03:00.29]Bad boy, tu sais qu'tu m'plais, un homme like you\n[03:04.42]Hey, hey (Bad boy)\n[03:07.82]Donne-moi ton cœur\n[03:09.73]Donne-moi ton corps\n[03:11.88]Donne-moi ta soul\n[03:13.93]Ton rock'n'roll\n[03:15.90]Je veux une femme like you\n[03:18.53]Un homme like you (only like you, baby)\n[03:24.14]Donne-moi ton cœur baby, ton corps baby\n[03:27.29]Donne-moi ton bon vieux funk, ton rock baby, ta soul baby\n[03:31.27]Chante avec moi, je veux une femme like you\n[03:35.06]Pour m'emmener au bout du monde, une femme like you\n[03:39.29]Hey, hey\n[03:40.63]Donne-moi ton cœur baby, ton corps baby\n[03:43.57]Donne-moi ton bon vieux funk, ton rock baby, ta soul baby\n[03:47.76]Chante avec moi, je veux un homme like you\n[03:51.55]Bad boy, tu sais qu'tu m'plais, un homme like you\n[03:55.64]Hey, hey\n[03:59.16]",
+    "album": "Femme Like U - Single",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 25,
     "artist": "Kyo",
     "title": "Dernière danse",
     "formation": "Solo",
     "year": 2003,
     "language": "Français",
-    "id": 25
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f5/e6/f8/f5e6f87f-b505-e8dc-4b95-f4d963b2123a/196871207515.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Dernière danse (feat. Cœur de pirate) - Single",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 26,
     "artist": "Les Jones",
     "title": "Burgers",
     "formation": "Solo",
     "year": 2022,
     "language": "Anglais",
-    "id": 26
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/9f/7e/50/9f7e5094-66a5-21c8-dfed-c58d29d94a61/artwork.jpg/600x600bb.jpg",
+    "lyrics": "Le fromage, hum\n\nCan I get some burger, with some peanut butter?\nDo you think it's better, with a Dr. Pepper?\n\nCan I get some turkey? I need more proteins\nCan I get some whisky, I could drink a fountain\nBaby, I'm still hungry, since this morning I need, bacon, cheese and paincakes\n\nFried chicken, not a live chicken, I prefer a fried chicken, fried chicken inside my burger\nNot a raw chicken, because I love fried chicken, fried chicken\n\nBaby, I just love the taste of the chicken wings\n\nI don't want a candy, I want beef, chips, ribs and burgers\nVegan people hate me, because I love cheesecakes and burgers\nI'm American, so you can blame me, but I will not eat in your gourmet restaurant\n\nMac & cheese, pizza, donut, waffle, Coca Cola, bretzel, Taco Bell\nNachos, tacos, peanut butter, ice cream, bacon, cheddar, fried cheddar\n\nBaby, I just love the taste of the chicken wings\n\nI don't want a candy, I want beef, chips, ribs and burgers\nVegan people hate me, because I love cheesecakes and burgers\nI'm American, so you can blame me, but I will not eat in your gourmet restaurant\n\nThe only french food I love is fried\nI bring you to Burger King tonight\nWe taking Sundaes from McDonalds\nTomorrow we'll make it of Five Guys\n\nBaby, I just love the taste of the chicken wings\n\nI don't want a candy, I want beef, chips, ribs and burgers\nVegan people hate me, because I love cheesecakes and burgers\nI'm American, so you can blame me, but I will not eat in your gourmet restaurant",
+    "synced_lyrics": "[00:06.21]Le fromage, hum\n[00:14.06]Can I get some burger, with some peanut butter?\n[00:18.09]Do you think it's better, with a Dr. Pepper?\n[00:21.76]Can I get some turkey? I need more proteins\n[00:25.45]Can I get some whisky, I could drink a fountain\n[00:29.13]Baby, I'm still hungry, since this morning I need, bacon, cheese and paincakes\n[00:37.35]Fried chicken, not a live chicken, I prefer a fried chicken, fried chicken inside my burger\n[00:45.90]Not a raw chicken, because I love fried chicken, fried chicken\n[00:51.98]Baby, I just love the taste of the chicken wings\n[00:58.94]I don't want a candy, I want beef, chips, ribs and burgers\n[01:06.99]Vegan people hate me, because I love cheesecakes and burgers\n[01:13.83]I'm American, so you can blame me, but I will not eat in your gourmet restaurant\n[01:19.69]\n[01:21.78]Mac & cheese, pizza, donut, waffle, Coca Cola, bretzel, Taco Bell\n[01:29.21]Nachos, tacos, peanut butter, ice cream, bacon, cheddar, fried cheddar\n[01:36.66]Baby, I just love the taste of the chicken wings\n[01:44.15]I don't want a candy, I want beef, chips, ribs and burgers\n[01:51.66]Vegan people hate me, because I love cheesecakes and burgers\n[01:58.62]I'm American, so you can blame me, but I will not eat in your gourmet restaurant\n[02:05.65]The only french food I love is fried\n[02:09.53]I bring you to Burger King tonight\n[02:13.22]We taking Sundaes from McDonalds\n[02:16.74]Tomorrow we'll make it of Five Guys\n[02:21.50]Baby, I just love the taste of the chicken wings\n[02:28.80]I don't want a candy, I want beef, chips, ribs and burgers\n[02:35.91]Vegan people hate me, because I love cheesecakes and burgers\n[02:43.52]I'm American, so you can blame me, but I will not eat in your gourmet restaurant\n[02:47.59]",
+    "album": "United States Of Rock - EP",
+    "genre": "Country",
+    "available": 1
   },
   {
+    "id": 27,
     "artist": "Maxime le Forestier",
     "title": "San Francisco",
     "formation": "Solo",
     "year": 1972,
     "language": "Français",
-    "id": 27
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/55/f6/2c/55f62c79-be81-9f70-145e-f7af935889c8/00042282351524.rgb.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Mon frère",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 28,
     "artist": "Mecano",
     "title": "Une femme avec une femme",
     "formation": "Solo",
     "year": 1990,
     "language": "Français",
-    "id": 28
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/a4/91/8ea4912e-dd4e-72e0-8997-c98600fe3a15/0859381167419.jpg/600x600bb.jpg",
+    "lyrics": "Deux femmes qui se tiennent la main\nÇa n'a rien qui peut gêner la morale\nLà où le doute s'installe\nC'est que ce geste se fasse sous la table\nQuand elles sont seules\nComme elles n'ont rien à perdre\nAprès les mains, la peau de tout le reste\n\nUn amour qui est secret\nMême nues, elles ne pourraient le cacher\nAlors sous les yeux des autres\nDans la rue, elles le déguisent en amitié\nL'une des deux dit que c'est mal agir\nEt l'autre dit qu'il vaut mieux laisser dire\n\nCe qu'ils en pensent ou disent ne pourrait rien y faire\nQui arrête les colombes en plein vol?\nÀ deux au ras du sol\nUne femme avec une femme\n\nJe ne veux pas les juger\nJe ne veux pas jeter la première pierre\nEt si en poussant la porte\nJe les trouve bouche à bouche dans le salon\nJe n'aurai pas l'audace de tousser\nSi ça m'dérange, je n'ai qu'à m'en aller\n\nAvec mes pierres, elles construiraient leur forteresse\nQui arrête les colombes en plein vol?\nÀ deux au ras du sol\nUne femme avec une femme\n\nL'une des deux dit que c'est mal agir\nEt l'autre dit qu'il vaut mieux laisser dire\nCe qu'ils en pensent ou disent ne pourrait rien y faire\nQui arrête les colombes en plein vol?\nÀ deux au ras du sol\nUne femme avec une femme\n\nQui arrête les colombes en plein vol?\nÀ deux au ras du sol\nUne femme avec une femme",
+    "synced_lyrics": "[00:01.46]Deux femmes qui se tiennent la main\n[00:07.78]Ça n'a rien qui peut gêner la morale\n[00:14.44]Là où le doute s'installe\n[00:20.98]C'est que ce geste se fasse sous la table\n[00:25.42]Quand elles sont seules\n[00:27.95]Comme elles n'ont rien à perdre\n[00:32.06]Après les mains, la peau de tout le reste\n[00:40.81]Un amour qui est secret\n[00:47.45]Même nues, elles ne pourraient le cacher\n[00:54.05]Alors sous les yeux des autres\n[01:00.73]Dans la rue, elles le déguisent en amitié\n[01:05.08]L'une des deux dit que c'est mal agir\n[01:11.85]Et l'autre dit qu'il vaut mieux laisser dire\n[01:20.40]Ce qu'ils en pensent ou disent ne pourrait rien y faire\n[01:24.82]Qui arrête les colombes en plein vol?\n[01:31.14]À deux au ras du sol\n[01:34.58]Une femme avec une femme\n[01:39.59]\n[01:42.05]Je ne veux pas les juger\n[01:48.43]Je ne veux pas jeter la première pierre\n[01:55.33]Et si en poussant la porte\n[02:01.78]Je les trouve bouche à bouche dans le salon\n[02:06.25]Je n'aurai pas l'audace de tousser\n[02:12.86]Si ça m'dérange, je n'ai qu'à m'en aller\n[02:21.37]Avec mes pierres, elles construiraient leur forteresse\n[02:26.12]Qui arrête les colombes en plein vol?\n[02:32.12]À deux au ras du sol\n[02:35.41]Une femme avec une femme\n[02:41.20]\n[03:02.44]L'une des deux dit que c'est mal agir\n[03:09.06]Et l'autre dit qu'il vaut mieux laisser dire\n[03:17.52]Ce qu'ils en pensent ou disent ne pourrait rien y faire\n[03:22.12]Qui arrête les colombes en plein vol?\n[03:28.23]À deux au ras du sol\n[03:31.51]Une femme avec une femme\n[03:35.82]\n[03:38.87]Qui arrête les colombes en plein vol?\n[03:44.82]À deux au ras du sol\n[03:48.23]Une femme avec une femme\n[03:51.77]",
+    "album": "Descanso Dominical / Une Femme Avec Une Femme",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 29,
     "artist": "Michel Fugain",
     "title": "Une belle histoire",
     "formation": "Solo",
     "year": 1972,
     "language": "Français",
-    "id": 29
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c2/28/d4/c228d4a8-d360-6161-07e7-d6d9ff8cd062/cover.jpg/600x600bb.jpg",
+    "lyrics": "C'est un beau roman\nC'est une belle histoire\nC'est une romance d'aujourd'hui\nIl rentrait chez lui, là-haut, vers le brouillard\nElle descendait dans le Midi, le Midi\n\nIls se sont trouvés au bord du chemin\nSur l'autoroute des vacances\nC'était sans doute un jour de chance\nIls avaient le ciel à portée de main\nUn cadeau de la providence\nAlors, pourquoi penser aux lendemains?\n\nIls se sont cachés dans un grand champ de blé\nSe laissant porter par le courant\nSe sont racontés leurs vies qui commençaient\nIls n'étaient encore que des enfants, des enfants\n\nQui s'étaient trouvés au bord du chemin\nSur l'autoroute des vacances\nC'était sans doute un jour de chance\nQui cueillirent le ciel aux creux de leurs mains\nComme on cueille la providence\nRefusant de penser aux lendemains\n\nC'est un beau roman\nC'est une belle histoire\nC'est une romance d'aujourd'hui\nIl rentrait chez lui, là-haut, vers le brouillard\nElle descendait dans le Midi, le Midi\n\nIls se sont quittés au bord du matin\nSur l'autoroute des vacances\nC'était fini le jour de chance\nIls reprirent alors chacun leur chemin\nSaluèrent la providence\nEn se faisant un signe de la main\n\nIl rentra chez lui, là-haut, vers le brouillard\nElle est descendue, là-bas, dans le Midi\n\nC'est un beau roman\nC'est une belle histoire\nC'est une romance d'aujourd'hui",
+    "synced_lyrics": "[00:11.92]C'est un beau roman\n[00:14.08]C'est une belle histoire\n[00:17.65]C'est une romance d'aujourd'hui\n[00:23.12]Il rentrait chez lui, là-haut, vers le brouillard\n[00:29.11]Elle descendait dans le Midi, le Midi\n[00:34.72]Ils se sont trouvés au bord du chemin\n[00:40.69]Sur l'autoroute des vacances\n[00:43.47]C'était sans doute un jour de chance\n[00:46.55]Ils avaient le ciel à portée de main\n[00:52.24]Un cadeau de la providence\n[00:55.11]Alors, pourquoi penser aux lendemains?\n[01:03.75]Ils se sont cachés dans un grand champ de blé\n[01:09.80]Se laissant porter par le courant\n[01:15.68]Se sont racontés leurs vies qui commençaient\n[01:21.36]Ils n'étaient encore que des enfants, des enfants\n[01:27.18]Qui s'étaient trouvés au bord du chemin\n[01:32.64]Sur l'autoroute des vacances\n[01:35.58]C'était sans doute un jour de chance\n[01:38.62]Qui cueillirent le ciel aux creux de leurs mains\n[01:44.15]Comme on cueille la providence\n[01:47.26]Refusant de penser aux lendemains\n[01:55.91]C'est un beau roman\n[01:58.15]C'est une belle histoire\n[02:01.65]C'est une romance d'aujourd'hui\n[02:07.73]Il rentrait chez lui, là-haut, vers le brouillard\n[02:13.38]Elle descendait dans le Midi, le Midi\n[02:19.24]Ils se sont quittés au bord du matin\n[02:25.00]Sur l'autoroute des vacances\n[02:27.73]C'était fini le jour de chance\n[02:30.54]Ils reprirent alors chacun leur chemin\n[02:36.39]Saluèrent la providence\n[02:39.35]En se faisant un signe de la main\n[02:47.93]Il rentra chez lui, là-haut, vers le brouillard\n[02:53.43]Elle est descendue, là-bas, dans le Midi\n[02:59.98]C'est un beau roman\n[03:01.85]C'est une belle histoire\n[03:05.05]C'est une romance d'aujourd'hui\n[03:13.97]",
+    "album": "À L'Alhambra (Live)",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 30,
     "artist": "Miley Cyrus",
     "title": "Dream as One (Avatar: Fire & Ash)",
     "formation": "Solo",
     "year": 2025,
     "language": "Anglais",
-    "id": 30
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/88/ad/2e88ad02-9852-54b6-190b-ee291f32b570/196873785127.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Dream As One (from Avatar: Fire and Ash) - Single",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 31,
     "artist": "Mylène Farmer",
     "title": "Désenchantée",
     "formation": "Solo",
     "year": 1991,
     "language": "Français",
-    "id": 31
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/76/1a/07/761a0784-0627-5f39-0afc-abf9a4e33172/06UMGIM40671.rgb.jpg/600x600bb.jpg",
+    "lyrics": "Nager dans les eaux troubles\nDes lendemains, attendre ici la fin\nFlotter dans l'air trop lourd\nDu presque rien à qui tendre la main\n\nSi je dois tomber de haut que ma chute soit lente\nJe n'ai trouvé de repos que dans l'indifférence\nPourtant, je voudrais retrouver l'innocence\nMais rien n'a de sens, et rien ne va\n\nTout est chaos à côté\nTous mes idéaux, des mots abimés\nJe cherche une âme, qui pourra m'aider\nJe suis d'une génération désenchantée\nDésenchantée\n\nQui pourrait m'empêcher\nDe tout entendre quand la raison s'effondre\nÀ quel saint se vouer\nQui peut prétendre nous bercer dans son ventre\n\nSi la mort est un mystère, la vie n'a rien de tendre\nSi le ciel a un enfer, le ciel peut bien m'attendre\nDis-moi, dans ces vents contraires comment s'y prendre\nPlus rien n'a de sens, plus rien ne va\n\nTout est chaos à côté\nTous mes idéaux, des mots abimés\nJe cherche une âme, qui pourra m'aider\nJe suis d'une génération désenchantée\nDésenchantée\n\nChaos\nChaos\nCha-cha-cha-cha-cha-cha-cha\nChaos\nChaos\nCha-cha-cha-cha-cha-cha-cha\n\nTout est chaos à côté\nTous mes idéaux, des mots abimés\nJe cherche une âme, qui pourra m'aider\nJe suis d'une génération désenchantée\n\nTout est chaos à côté (chaos, chaos)\nTous mes idéaux, des mots abimés (chaos, chaos)\nJe cherche une âme, qui pourra m'aider (chaos, chaos)\nJe suis d'une génération désenchantée (chaos, chaos)\n\nTout est chaos à côté (chaos, chaos)\nTous mes idéaux, des mots abimés (chaos, chaos)",
+    "synced_lyrics": "[00:16.93]Nager dans les eaux troubles\n[00:20.88]Des lendemains, attendre ici la fin\n[00:31.83]Flotter dans l'air trop lourd\n[00:35.40]Du presque rien à qui tendre la main\n[00:45.62]Si je dois tomber de haut que ma chute soit lente\n[00:53.13]Je n'ai trouvé de repos que dans l'indifférence\n[01:00.88]Pourtant, je voudrais retrouver l'innocence\n[01:12.17]Mais rien n'a de sens, et rien ne va\n[01:19.45]Tout est chaos à côté\n[01:27.29]Tous mes idéaux, des mots abimés\n[01:34.93]Je cherche une âme, qui pourra m'aider\n[01:41.77]Je suis d'une génération désenchantée\n[01:50.26]Désenchantée\n[01:54.05]\n[01:56.55]Qui pourrait m'empêcher\n[02:00.23]De tout entendre quand la raison s'effondre\n[02:11.15]À quel saint se vouer\n[02:15.34]Qui peut prétendre nous bercer dans son ventre\n[02:25.30]Si la mort est un mystère, la vie n'a rien de tendre\n[02:32.86]Si le ciel a un enfer, le ciel peut bien m'attendre\n[02:40.57]Dis-moi, dans ces vents contraires comment s'y prendre\n[02:49.86]\n[02:51.91]Plus rien n'a de sens, plus rien ne va\n[02:59.28]Tout est chaos à côté\n[03:07.15]Tous mes idéaux, des mots abimés\n[03:14.71]Je cherche une âme, qui pourra m'aider\n[03:21.53]Je suis d'une génération désenchantée\n[03:30.11]Désenchantée\n[03:33.31]\n[03:50.37]Chaos\n[03:51.99]Chaos\n[03:53.79]Cha-cha-cha-cha-cha-cha-cha\n[03:57.29]Chaos\n[03:59.62]Chaos\n[04:01.53]Cha-cha-cha-cha-cha-cha-cha\n[04:04.28]Tout est chaos à côté\n[04:11.95]Tous mes idéaux, des mots abimés\n[04:19.44]Je cherche une âme, qui pourra m'aider\n[04:26.40]Je suis d'une génération désenchantée\n[04:34.79]Tout est chaos à côté (chaos, chaos)\n[04:42.53]Tous mes idéaux, des mots abimés (chaos, chaos)\n[04:49.98]Je cherche une âme, qui pourra m'aider (chaos, chaos)\n[04:56.95]Je suis d'une génération désenchantée (chaos, chaos)\n[05:06.02]Tout est chaos à côté (chaos, chaos)\n[05:13.11]Tous mes idéaux, des mots abimés (chaos, chaos)\n[05:18.98]",
+    "album": "L'autre",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 32,
     "artist": "Natasha St-Pier",
     "title": "Tu trouveras",
     "formation": "Solo",
     "year": 2002,
     "language": "Français",
-    "id": 32
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music/51/a0/e9/mzi.udwqzwww.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Tu trouveras. . . 10 ans de succès",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 33,
     "artist": "Nino Ferrer",
     "title": "Le Sud",
     "formation": "Solo",
     "year": 1975,
     "language": "Français",
-    "id": 33
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/47/26/8e/47268e4f-3d56-452e-75dc-c417c5b73b34/00602537544035.rgb.jpg/600x600bb.jpg",
+    "lyrics": "C'est un endroit qui ressemble à la Louisiane\nÀ l'Italie\nIl y a du linge étendu sur la terrasse\nEt c'est joli\n\nOn dirait le Sud\nLe temps dure longtemps\nEt la vie sûrement\nPlus d'un million d'années\n\nEt toujours en été\n\nY'a plein d'enfants qui se roulent sur la pelouse\n\nY'a plein de chiens\nY'a même un chat, une tortue, des poissons rouges\nIl ne manque rien\n\nOn dirait le Sud\n\nLe temps dure longtemps\nEt la vie sûrement\nPlus d'un million d'années\n\nEt toujours en été\n\nTili, tilita...\n\nUn jour ou l'autre, il faudra qu'il y ait la guerre\nOn le sait bien\nOn n'aime pas ça, mais on ne sait pas quoi faire\nC'est le destin\n\nTant pis pour le Sud\nC'était pourtant bien\nOn aurait pu vivre\nPlus d'un million d'années\n\nEt toujours en été",
+    "synced_lyrics": "[00:11.42]C'est un endroit qui ressemble à la Louisiane\n[00:18.56]À l'Italie\n[00:22.60]Il y a du linge étendu sur la terrasse\n[00:29.17]Et c'est joli\n[00:32.07]\n[00:36.33]On dirait le Sud\n[00:41.86]Le temps dure longtemps\n[00:47.16]Et la vie sûrement\n[00:52.31]Plus d'un million d'années\n[00:58.61]\n[01:02.69]Et toujours en été\n[01:06.03]\n[01:15.63]Y'a plein d'enfants qui se roulent sur la pelouse\n[01:20.22]\n[01:22.22]Y'a plein de chiens\n[01:26.37]Y'a même un chat, une tortue, des poissons rouges\n[01:32.82]Il ne manque rien\n[01:36.11]\n[01:40.53]On dirait le Sud\n[01:45.84]Le temps dure longtemps\n[01:51.13]Et la vie sûrement\n[01:56.29]Plus d'un million d'années\n[02:02.10]\n[02:06.49]Et toujours en été\n[02:09.68]\n[02:19.29]Tili, tilita...\n[02:32.59]\n[03:28.56]Un jour ou l'autre, il faudra qu'il y ait la guerre\n[03:35.16]On le sait bien\n[03:39.13]On n'aime pas ça, mais on ne sait pas quoi faire\n[03:45.34]C'est le destin\n[03:49.20]\n[03:53.14]Tant pis pour le Sud\n[03:58.32]C'était pourtant bien\n[04:03.57]On aurait pu vivre\n[04:08.88]Plus d'un million d'années\n[04:14.05]\n[04:19.20]Et toujours en été\n[04:20.10]",
+    "album": "Nino and Radiah Et Le Sud",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 34,
     "artist": "Notre-Dame de Paris",
     "title": "Le temps des cathédrales",
     "formation": "Solo",
     "year": 1998,
     "language": "Français",
-    "id": 34
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a7/6a/82/a76a8247-f840-8b0e-46fa-0905fc289af2/3617399329772_cover.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Dedicated",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 35,
     "artist": "Pascal Obispo",
     "title": "Lucie",
     "formation": "Solo",
     "year": 1996,
     "language": "Français",
-    "id": 35
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f9/42/ca/f942caac-76cf-9e13-0a40-056d24efa60b/3617057491698_Cover.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Superflu",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 36,
     "artist": "Pokémon",
     "title": "Pokémon",
     "formation": "Solo",
     "year": 1998,
     "language": "Français",
-    "id": 36
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/33/a7/44/33a74428-56ca-1ed5-8a61-5999fef6d815/8721215934721.png/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Pokémon X : Ten Years Of Pokémon (Original Soundtrack)",
+    "genre": "Soundtrack",
+    "available": 1
   },
   {
+    "id": 37,
     "artist": "Polnareff",
     "title": "Lettre à France",
     "formation": "Solo",
     "year": 1978,
     "language": "Français",
-    "id": 37
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/bb/fe/66/bbfe6636-e626-2126-38c3-3ba47b6c0116/00731454985321.rgb.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Coucou me revoilou",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 38,
     "artist": "RHCP",
     "title": "Californication",
     "formation": "Solo",
     "year": 1999,
     "language": "Anglais",
-    "id": 38
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4c/86/1d/4c861dab-5428-f3b7-8068-82bb69db5e89/093624932130.jpg/600x600bb.jpg",
+    "lyrics": "Psychic spies from China try to steal your mind's elation\nAnd little girls from Sweden dream of silver-screen quotation\nAnd if you want these kind of dreams\nIt's Californication\n\nIt's the edge of the world, end all of western civilization\nThe Sun may rise in the East, at least it's settled in the final location\nIt's understood that Hollywood sells Californication\n\nPay your surgeon very well to break the spell of aging\nCelebrity skin, is this your chin, or is that war you're waging?\nFirstborn unicorn\nHardcore soft-porn\n\nDream of Californication\nDream of Californication\nDream of Californication\nDream of Californication\n\nMarry me, girl, be my fairy to the world, be my very own constellation\nA teenage bride with a baby inside, gettin' high on information\nAnd buy me a star on the boulevard\nIt's Californication\n\nSpace may be the final frontier, but it's made in a Hollywood basement\nAnd Cobain, can you hear the spheres, singing songs off station to station?\nAnd Alderaan's not far away\nIt's Californication\n\nBorn and raised by those who praise control of population\nWell, everybody's been there, and I don't mean on vacation\nFirstborn unicorn\nHardcore soft-porn\n\nDream of Californication\nDream of Californication\nDream of Californication\nDream of Californication\n\nDestruction leads to a very rough road, but it also breeds creation\nAnd earthquakes are to a girl's guitar, they're just another good vibration\nAnd tidal waves couldn't save the world from Californication\n\nPay your surgeon very well to break the spell of aging\nSicker than the rest, there is no test, but this is what you're craving\nFirstborn unicorn\nHardcore soft-porn\n\nDream of Californication\nDream of Californication\nDream of Californication\nDream of Californication",
+    "synced_lyrics": "[00:20.51]Psychic spies from China try to steal your mind's elation\n[00:25.55]And little girls from Sweden dream of silver-screen quotation\n[00:30.64]And if you want these kind of dreams\n[00:33.08]It's Californication\n[00:36.02]\n[00:45.25]It's the edge of the world, end all of western civilization\n[00:50.69]The Sun may rise in the East, at least it's settled in the final location\n[00:55.62]It's understood that Hollywood sells Californication\n[01:01.41]\n[01:10.79]Pay your surgeon very well to break the spell of aging\n[01:15.54]Celebrity skin, is this your chin, or is that war you're waging?\n[01:21.88]Firstborn unicorn\n[01:26.15]Hardcore soft-porn\n[01:30.43]Dream of Californication\n[01:35.47]Dream of Californication\n[01:40.37]Dream of Californication\n[01:45.35]Dream of Californication\n[01:49.58]\n[02:00.36]Marry me, girl, be my fairy to the world, be my very own constellation\n[02:05.16]A teenage bride with a baby inside, gettin' high on information\n[02:10.05]And buy me a star on the boulevard\n[02:12.56]It's Californication\n[02:15.59]\n[02:25.02]Space may be the final frontier, but it's made in a Hollywood basement\n[02:30.09]And Cobain, can you hear the spheres, singing songs off station to station?\n[02:34.94]And Alderaan's not far away\n[02:37.35]It's Californication\n[02:38.14]Born and raised by those who praise control of population\n[02:52.94]\n[02:54.98]Well, everybody's been there, and I don't mean on vacation\n[03:01.03]Firstborn unicorn\n[03:05.42]Hardcore soft-porn\n[03:09.64]Dream of Californication\n[03:14.60]Dream of Californication\n[03:19.58]Dream of Californication\n[03:24.67]Dream of Californication\n[03:28.75]\n[04:18.83]Destruction leads to a very rough road, but it also breeds creation\n[04:23.73]And earthquakes are to a girl's guitar, they're just another good vibration\n[04:28.73]And tidal waves couldn't save the world from Californication\n[04:34.57]\n[04:43.51]Pay your surgeon very well to break the spell of aging\n[04:48.39]Sicker than the rest, there is no test, but this is what you're craving\n[04:54.51]Firstborn unicorn\n[04:58.73]Hardcore soft-porn\n[05:03.08]Dream of Californication\n[05:08.05]Dream of Californication\n[05:12.83]Dream of Californication\n[05:17.82]Dream of Californication\n[05:19.78]",
+    "album": "Californication (Remastered)",
+    "genre": "Alternative",
+    "available": 1
   },
   {
+    "id": 39,
     "artist": "Richard Cocciante",
     "title": "Le coup de soleil",
     "formation": "Solo",
     "year": 1979,
     "language": "Français",
-    "id": 39
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/92/85/339285f0-ca9a-e4a5-39a2-1855ecbf84c8/196874173763.jpg/600x600bb.jpg",
+    "lyrics": "J'ai attrapé un coup de soleil\nUn coup d'amour, un coup d'je t'aime\nJ'sais pas comment, faut qu'j'me rappelle\nSi c'est un rêve, t'es super belle\nJ'dors plus la nuit, j'fais des voyages\nSur des bateaux qui font naufrages\nJ'te vois toute nue sur du satin\nEt j'en dors plus, viens m'voir demain\n\nMais tu n'es pas là, et si je rêve tant pis\nQuand tu t'en vas j'dors plus la nuit\nMais tu n'es pas là, et tu sais j'ai envie d'aller là-bas\nLa fenêtre en face et d'visiter ton paradis\n\nJ'mets tes photos dans mes chansons\nEt des voiliers dans ma maison\nJ'voulais m'tirer, mais j'me tire plus\nJ'vis à l'envers, j'aime plus ma rue\nJ'avais cent ans, j'me r'connais plus\nJ'aime plus les gens depuis qu'j't'ai vue\nJ'veux plus rêver, j'voudrais qu'tu viennes\nMe faire voler, me faire je t'aime\n\nMais tu n'es pas là, et si je rêve tant pis\nQuand tu t'en vas j'dors plus la nuit\nMais tu n'es pas là, et tu sais j'ai envie d'aller là-bas\nLa fenêtre en face et d'visiter ton paradis\n\nÇa y est, c'est sûr, faut qu'j'me décide\nJ'vais faire le mur et j'tombe dans l'vide\nJ'sais qu'tu m'attends près d'la fontaine\nJ't'ai vu descendre d'un arc-en-ciel\nJe m'jette à l'eau des pluies d'été\nJ'fais du bateau dans mon quartier\nIl fait très beau, on peut ramer\nLa mer est calme, on peut s'tirer\n\nMais tu n'es pas là, et si je rêve tant pis\nQuand tu t'en vas j'dors plus la nuit\nMais tu n'es pas là, et tu sais j'ai envie d'aller là-bas\nLa fenêtre en face et d'visiter ton paradis\n\nMais tu n'es pas là laa-laa-la-la\nMais tu n'es pas là, et si je rêve tant pis\nQuand tu t'en vas, j'dors plus la nuit\n\nMais tu n'es pas là\nMais tu n'es pas là\nNah nah-nah naah-naah\nJ'ai attrappé un coup de soleil\nUn coup d'amour, un coup d'je t'aime\nJ'sais pas comment, faut qu'j'me rappelle\nEt si je rêve, tant pis\nJ'ai attrappé un coup de soleil\nUn coup d'amour, un coup d'je t'aime\nUn coup d'amour, un coup d'je t'aime\nNah nah-naah naah-naah\nNah nah-naah",
+    "synced_lyrics": null,
+    "album": "Au clair de tes silences",
+    "genre": "Pop",
+    "available": 1
   },
   {
+    "id": 40,
     "artist": "Scorpions",
     "title": "Wind of change",
     "formation": "Solo",
     "year": 1990,
     "language": "Anglais",
-    "id": 40
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/65/29/ca/6529cad4-827a-8aa5-ebbc-f9de2ea33af2/00602567825265.rgb.jpg/600x600bb.jpg",
+    "lyrics": "I follow the Moskva and down to Gorky Park\nListening to the wind of change\nAn August summer night, soldiers passing by\nListening to the wind of change\n♪\nThe world is closing in, and did you ever think\nThat we could be so close like brothers?\nThe future's in the air, I can feel it everywhere\nI'm blowing with the wind of change\nTake me to the magic of the moment\nOn a glory night\nWhere the children of tomorrow dream away (dream away)\nIn the wind of change\n♪\nMm-mm, walking down the street\nAnd distant memories are buried in the past forever\nI follow the Moskva and down to Gorky Park\nListening to the wind of change\nTake me (take me) to the magic of the moment\nOn a glory night (a glory night)\nWhere the children of tomorrow share their dreams (share their dreams)\nWith you and me (with you and me)\nTake me (take me) to the magic of the moment\nOn a glory night (a glory night)\nWhere the children of tomorrow dream away (dream away)\nIn the wind of change (the wind of change)\nThe wind of change blows straight into the face of time\nLike a storm wind that will ring the freedom bell for peace of mind\nLet your balalaika sing what my guitar wants to say (say)\n♪\nTake me (take me) to the magic of the moment\nOn a glory night (a glory night)\nWhere the children of tomorrow share their dreams (share their dreams)\nWith you and me (you and me)\nTake me (take me) to the magic of the moment\nOn a glory night (a glory night)\nWhere the children of tomorrow dream away (dream away)\nIn the wind of change (the wind of change)\n",
+    "synced_lyrics": "[00:22.66]I follow the Moskva and down to Gorky Park\n[00:28.60]Listening to the wind of change\n[00:36.88]An August summer night, soldiers passing by\n[00:42.83]Listening to the wind of change\n[00:49.45]♪\n[01:11.10]The world is closing in, and did you ever think\n[01:17.87]That we could be so close like brothers?\n[01:25.85]The future's in the air, I can feel it everywhere\n[01:31.82]I'm blowing with the wind of change\n[01:40.00]Take me to the magic of the moment\n[01:46.15]On a glory night\n[01:49.11]Where the children of tomorrow dream away (dream away)\n[01:54.97]In the wind of change\n[01:58.07]♪\n[02:04.81]Mm-mm, walking down the street\n[02:09.86]And distant memories are buried in the past forever\n[02:20.98]I follow the Moskva and down to Gorky Park\n[02:27.49]Listening to the wind of change\n[02:35.37]Take me (take me) to the magic of the moment\n[02:41.30]On a glory night (a glory night)\n[02:44.93]Where the children of tomorrow share their dreams (share their dreams)\n[02:50.31]With you and me (with you and me)\n[02:54.31]Take me (take me) to the magic of the moment\n[02:59.78]On a glory night (a glory night)\n[03:05.30]Where the children of tomorrow dream away (dream away)\n[03:09.35]In the wind of change (the wind of change)\n[03:14.95]The wind of change blows straight into the face of time\n[03:20.35]Like a storm wind that will ring the freedom bell for peace of mind\n[03:27.55]Let your balalaika sing what my guitar wants to say (say)\n[03:35.01]♪\n[03:38.38]Take me (take me) to the magic of the moment\n[04:09.92]On a glory night (a glory night)\n[04:13.52]Where the children of tomorrow share their dreams (share their dreams)\n[04:19.23]With you and me (you and me)\n[04:23.28]Take me (take me) to the magic of the moment\n[04:29.33]On a glory night (a glory night)\n[04:32.60]Where the children of tomorrow dream away (dream away)\n[04:38.12]In the wind of change (the wind of change)\n[04:41.27]",
+    "album": "20th Century Masters - The Millennium Collection: The Best of Scorpions",
+    "genre": "Hard Rock",
+    "available": 1
   },
   {
+    "id": 41,
     "artist": "Starmania",
     "title": "Le blues du businessman",
     "formation": "Solo",
     "year": 1976,
     "language": "Français",
-    "id": 41
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fb/d0/94/fbd094da-0ae2-5877-8943-1417c30b91e4/mzi.xyluknee.jpg/600x600bb.jpg",
+    "lyrics": "J'ai du succès dans mes affaires\nJ'ai du succès dans mes amours\nJe change souvent de secrétaire\nJ'ai mon bureau en haut d'une tour\nD'où je vois la ville à l'envers\nD'où je contrôle mon univers\n\nJ'passe la moitié d'ma vie en l'air\nEntre New York et Singapour\nJe voyage toujours en première\nJ'ai ma résidence secondaire\nDans tous les Hilton de la Terre\nJ'peux pas supporter la misère\n\n(Au moins êtes-vous heureux?)\nJ'suis pas heureux mais j'en ai l'air\nJ'ai perdu le sens de l'humour\nDepuis que j'ai le sens des affaires\nJ'ai réussi et j'en suis fier\nAu fond je n'ai qu'un seul regret\nJ'fais pas c'que j'aurais voulu faire\n\n(Qu'est-ce que tu veux, mon vieux?\nDans la vie on fait ce qu'on peut\nPas ce qu'on veut)\n\nJ'aurais voulu être un artiste\nPour pouvoir faire mon numéro\nQuand l'avion se pose sur la piste\nÀ Rotterdam ou à Rio\nJ'aurais voulu être un chanteur\nPour pouvoir crier qui je suis\nJ'aurais voulu être un auteur\nPour pouvoir inventer ma vie\nPour pouvoir inventer ma vie\n\nJ'aurais voulu être un acteur\nPour, tous les jours, changer de peau\nEt pour pouvoir me trouver beau\nSur un grand écran en couleur\nSur un grand écran en couleur\nJ'aurais voulu être un artiste\nPour avoir le monde à refaire\nPour pouvoir être un anarchiste\nEt vivre comme un millionnaire\nEt vivre comme un millionnaire\n\nJ'aurais voulu être un artiste\n\nPour pouvoir dire pourquoi j'existe",
+    "synced_lyrics": "[00:04.18]J'ai du succès dans mes affaires\n[00:07.15]J'ai du succès dans mes amours\n[00:09.89]Je change souvent de secrétaire\n[00:15.74]J'ai mon bureau en haut d'une tour\n[00:18.59]D'où je vois la ville à l'envers\n[00:21.37]D'où je contrôle mon univers\n[00:27.18]J'passe la moitié d'ma vie en l'air\n[00:30.18]Entre New York et Singapour\n[00:33.00]Je voyage toujours en première\n[00:38.73]J'ai ma résidence secondaire\n[00:41.67]Dans tous les Hilton de la Terre\n[00:44.66]J'peux pas supporter la misère\n[00:49.36](Au moins êtes-vous heureux?)\n[00:52.01]J'suis pas heureux mais j'en ai l'air\n[00:54.74]J'ai perdu le sens de l'humour\n[00:57.42]Depuis que j'ai le sens des affaires\n[01:03.47]J'ai réussi et j'en suis fier\n[01:06.21]Au fond je n'ai qu'un seul regret\n[01:09.05]J'fais pas c'que j'aurais voulu faire\n[01:13.99](Qu'est-ce que tu veux, mon vieux?\n[01:16.03]Dans la vie on fait ce qu'on peut\n[01:19.69]Pas ce qu'on veut)\n[01:23.45]J'aurais voulu être un artiste\n[01:30.16]Pour pouvoir faire mon numéro\n[01:36.71]Quand l'avion se pose sur la piste\n[01:43.98]À Rotterdam ou à Rio\n[01:50.97]J'aurais voulu être un chanteur\n[01:57.69]Pour pouvoir crier qui je suis\n[02:04.31]J'aurais voulu être un auteur\n[02:11.10]Pour pouvoir inventer ma vie\n[02:17.63]Pour pouvoir inventer ma vie\n[02:24.49]J'aurais voulu être un acteur\n[02:30.96]Pour, tous les jours, changer de peau\n[02:37.52]Et pour pouvoir me trouver beau\n[02:44.03]Sur un grand écran en couleur\n[02:50.65]Sur un grand écran en couleur\n[02:57.30]J'aurais voulu être un artiste\n[03:03.81]Pour avoir le monde à refaire\n[03:10.34]Pour pouvoir être un anarchiste\n[03:16.80]Et vivre comme un millionnaire\n[03:23.34]Et vivre comme un millionnaire\n[03:29.62]J'aurais voulu être un artiste\n[03:36.89]\n[03:40.48]\n[03:50.17]Pour pouvoir dire pourquoi j'existe\n[03:58.78]",
+    "album": "Ses plus belles chansons",
+    "genre": "French Pop",
+    "available": 1
   },
   {
+    "id": 42,
     "artist": "Superbus",
     "title": "Lola",
     "formation": "Solo",
     "year": 2007,
     "language": "Français",
-    "id": 42
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f5/7b/b7/f57bb744-97a0-1913-af00-5f5acd803495/07UMGIM09207.rgb.jpg/600x600bb.jpg",
+    "lyrics": "Allo Lola, c'est encore moi\nJ'ai beaucoup pensé à toi, Lola\nAllo Lola, ne raccroche pas\nNe mets pas de holà, Lola, oh là\nAllo Lola, comme un garçon\nJ'ai le cœur qui fait boum et les cheveux longs\nAllo Lola, comme un garçon\nC'est la première fois pour moi que tes yeux me font\nBoum boum boum boum boum boum boum boum boum\nOh là, Lola sait\nBoum boum boum boum boum boum boum boum boum\nLola c'est osé\n\nAllo Lola, oui, c'est bien moi\nJe n'ai pas dormi pour toi\nJe n'en reviens pas\nAllo Lola ne raccroche pas\nLola lit dans l'au-delà, ma jolie Lola\nAllo Lola, comme un garçon\nJ'ai le cœur qui fait boum et les cheveux longs\nAllo Lola, comme un garçon\nC'est la première fois pour moi que tes yeux me font\nBoum boum boum boum boum boum boum boum boum\nOh là, Lola sait\nBoum boum boum boum boum boum boum boum boum\nLola c'est osé",
+    "synced_lyrics": "[00:01.07]Allo Lola, c'est encore moi\n[00:04.46]J'ai beaucoup pensé à toi, Lola\n[00:08.12]Allo Lola, ne raccroche pas\n[00:12.21]Ne mets pas de holà, Lola, oh là\n[00:17.24]\n[00:20.05]Allo Lola, comme un garçon\n[00:24.04]J'ai le cœur qui fait boum et les cheveux longs\n[00:27.98]Allo Lola, comme un garçon\n[00:31.35]C'est la première fois pour moi que tes yeux me font\n[00:35.29]Boum boum boum boum boum boum boum boum boum\n[00:40.62]Oh là, Lola sait\n[00:43.18]Boum boum boum boum boum boum boum boum boum\n[00:48.03]Lola c'est osé\n[00:51.08]Allo Lola, oui, c'est bien moi\n[00:55.05]Je n'ai pas dormi pour toi\n[00:57.03]Je n'en reviens pas\n[00:58.87]Allo Lola ne raccroche pas\n[01:02.37]Lola lit dans l'au-delà, ma jolie Lola\n[01:06.26]Allo Lola, comme un garçon\n[01:09.76]J'ai le cœur qui fait boum et les cheveux longs\n[01:14.26]Allo Lola, comme un garçon\n[01:18.15]C'est la première fois pour moi que tes yeux me font\n[01:22.06]Boum boum boum boum boum boum boum boum boum\n[01:26.72]Oh là, Lola sait\n[01:29.29]Boum boum boum boum boum boum boum boum boum\n[01:34.23]Lola c'est osé\n[01:36.11]",
+    "album": "Wow",
+    "genre": "Rock",
+    "available": 1
   },
   {
+    "id": 43,
     "artist": "Supertramp",
     "title": "Breakfast in America",
     "formation": "Solo",
     "year": 1979,
     "language": "Anglais",
-    "id": 43
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ff/b8/25/ffb825b3-d485-ffc6-b509-5686f568cbd8/26UMGIM11000.rgb.jpg/600x600bb.jpg",
+    "lyrics": "Take a look at my girlfriend\nShe's the only one I got\nNot much of a girlfriend\nI've never seem to get a lot\n\nTake a jumbo across the water\nLike to see America\nSee the girls in California\nI'm hopin', it's going to come true\nBut there's not a lot, I can do\n\nCould we have kippers for breakfast\nMummy dear, Mummy dear\nThey got to have 'em in Texas\n'Cos everyone's a millionaire\n\nI'm a winner, I'm a sinner\nDo you want my autograph\nI'm a loser, what a joker\nI'm playing my jokes upon you\nWhile there's nothin' better to do\nHey\n\nPapararam pano daram no no no\nPapararam pano daram no no no\nNa na na nana na na na\n\nDon't you look at my girlfriend\n(Girlfriend)\nShe's the only one I got\nNot much of a girlfriend\n(Girlfriend)\nI've never seem to get a lot\n(What she got in another land)\n\nTake a jumbo cross the water\nLike to see America\nSee the girls in California\nI'm hoping it's going to come true\nBut there's not a lot I can do\n\nHey\nPapararam pano daram no no no\nPapararam pano daram no no no\nHey aham\nHey aham\nHey aham\nHey aham\nHey aham\nHey aham\nHey aham\nHey aham\nNa na na nana na na na",
+    "synced_lyrics": "[00:06.99]Take a look at my girlfriend\n[00:09.80]She's the only one I got\n[00:13.61]Not much of a girlfriend\n[00:16.32]I've never seem to get a lot\n[00:20.02]Take a jumbo across the water\n[00:22.70]Like to see America\n[00:26.39]See the girls in California\n[00:29.06]I'm hopin', it's going to come true\n[00:32.16]But there's not a lot, I can do\n[00:37.65]Could we have kippers for breakfast\n[00:40.71]Mummy dear, Mummy dear\n[00:44.37]They got to have 'em in Texas\n[00:47.01]'Cos everyone's a millionaire\n[00:50.72]I'm a winner, I'm a sinner\n[00:53.54]Do you want my autograph\n[00:56.84]I'm a loser, what a joker\n[00:59.71]I'm playing my jokes upon you\n[01:02.95]While there's nothin' better to do\n[01:07.58]Hey\n[01:08.73]Papararam pano daram no no no\n[01:14.66]Papararam pano daram no no no\n[01:20.66]\n[01:24.05]Na na na nana na na na\n[01:29.69]Don't you look at my girlfriend\n[01:31.92](Girlfriend)\n[01:32.36]She's the only one I got\n[01:36.47]Not much of a girlfriend\n[01:38.95](Girlfriend)\n[01:39.36]I've never seem to get a lot\n[01:40.80](What she got in another land)\n[01:42.67]Take a jumbo cross the water\n[01:45.63]Like to see America\n[01:48.70]See the girls in California\n[01:51.67]I'm hoping it's going to come true\n[01:54.55]But there's not a lot I can do\n[01:59.12]Hey\n[02:00.00]Papararam pano daram no no no\n[02:06.55]Papararam pano daram no no no\n[02:12.71]Hey aham\n[02:13.87]Hey aham\n[02:15.41]Hey aham\n[02:16.96]Hey aham\n[02:18.88]Hey aham\n[02:20.09]Hey aham\n[02:21.78]Hey aham\n[02:23.60]Hey aham\n[02:24.64]Na na na nana na na na\n[02:34.64]",
+    "album": "Breakfast In America (Remastered 2026)",
+    "genre": "Rock",
+    "available": 1
   },
   {
+    "id": 44,
     "artist": "The Beatles",
     "title": "Here comes the sun",
     "formation": "Solo",
     "year": 1969,
     "language": "Anglais",
-    "id": 44
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/df/db/61/dfdb615d-47f8-06e9-9533-b96daccc029f/18UMGIM31076.rgb.jpg/600x600bb.jpg",
+    "lyrics": "Here comes the sun, doo-doo-doo-doo\nHere comes the sun, and I say\nIt's alright\n\nLittle darlin', it's been a long, cold, lonely winter\nLittle darlin', it feels like years since it's been here\n\nHere comes the sun, doo-doo-doo-doo\nHere comes the sun, and I say\nIt's alright\n\nLittle darlin', the smile's returning to their faces\nLittle darlin', it seems like years since it's been here\n\nHere comes the sun\nHere comes the sun, and I say\nIt's alright\n\nSun, sun, sun, here it comes\nSun, sun, sun, here it comes\nSun, sun, sun, here it comes\nSun, sun, sun, here it comes\nSun, sun, sun, here it comes\n\nLittle darlin', I feel that ice is slowly melting\nLittle darlin', it seems like years since it's been clear\n\nHere comes the sun, doo-doo-doo-doo\nHere comes the sun, and I say\nIt's alright\n\nHere comes the sun, doo-doo-doo-doo\nHere comes the sun\nIt's alright\n\nIt's alright",
+    "synced_lyrics": "[00:15.02]Here comes the sun, doo-doo-doo-doo\n[00:18.77]Here comes the sun, and I say\n[00:22.06]It's alright\n[00:24.97]\n[00:27.54]Little darlin', it's been a long, cold, lonely winter\n[00:34.86]Little darlin', it feels like years since it's been here\n[00:42.51]Here comes the sun, doo-doo-doo-doo\n[00:46.46]Here comes the sun, and I say\n[00:50.28]It's alright\n[00:53.15]\n[00:59.56]Little darlin', the smile's returning to their faces\n[01:06.95]Little darlin', it seems like years since it's been here\n[01:14.53]Here comes the sun\n[01:18.24]Here comes the sun, and I say\n[01:21.60]It's alright\n[01:24.67]\n[01:36.48]Sun, sun, sun, here it comes\n[01:42.24]Sun, sun, sun, here it comes\n[01:48.09]Sun, sun, sun, here it comes\n[01:53.93]Sun, sun, sun, here it comes\n[01:59.88]Sun, sun, sun, here it comes\n[02:04.66]\n[02:11.92]Little darlin', I feel that ice is slowly melting\n[02:19.16]Little darlin', it seems like years since it's been clear\n[02:26.85]Here comes the sun, doo-doo-doo-doo\n[02:30.76]Here comes the sun, and I say\n[02:34.52]It's alright\n[02:37.20]\n[02:40.15]Here comes the sun, doo-doo-doo-doo\n[02:43.83]Here comes the sun\n[02:47.42]It's alright\n[02:49.99]\n[02:52.94]It's alright\n[02:53.27]",
+    "album": "Abbey Road (Remastered)",
+    "genre": "Rock",
+    "available": 1
   },
   {
+    "id": 45,
     "artist": "The Beatles",
     "title": "Hey Jude",
     "formation": "Solo",
     "year": 1968,
     "language": "Anglais",
-    "id": 45
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a6/8b/65/a68b657c-cac6-68e6-3bde-b79d58fbc795/18UMGIM30762.rgb.jpg/600x600bb.jpg",
+    "lyrics": "Hey Jude, don't make it bad\nTake a sad song and make it better\nRemember to let her into your heart\nThen you can start to make it better\n\nHey Jude, don't be afraid\nYou were made to go out and get her\nThe minute you let her under your skin\nThen you begin to make it better\n\nAnd anytime you feel the pain, hey Jude, refrain\nDon't carry the world upon your shoulders\nFor well you know that it's a fool who plays it cool\nBy making his world a little colder\nNa-na-na-na-na\nNa-na-na-na\n\nHey Jude, don't let me down\nYou have found her, now go and get her\n(Let it out and let it in)\nRemember (hey Jude) to let her into your heart\nThen you can start to make it better\n\nSo let it out and let it in, hey Jude, begin\nYou're waiting for someone to perform with\nAnd don't you know that it's just you, hey Jude, you'll do\nThe movement you need is on your shoulder\nNa-na-na-na-na\nNa-na-na-na, yeah\n\nHey Jude, don't make it bad\nTake a sad song and make it better\nRemember to let her under your skin\nThen you'll begin to make it\nBetter, better, better, better, better, better, oh\n\nYeah, yeah, yeah, yeah, yeah, yeah, yeah\nNa-na-na-na-na\nNa-na-na-na, hey Jude\nNa-na-na-na-na\nNa-na-na-na, hey Jude\nNa-na-na-na-na\nNa-na-na-na, hey Jude\nNa-na-na-na-na\nNa-na-na-na, hey Jude (Jude, Judy, Judy, Judy, Judy, Judy)\n\n(Au, wow) na-na-na-na-na\nNa-na-na-na, hey Jude (Jude, Jude, Jude, Jude, Jude)\nNa-na-na-na-na (yeah, yeah, yeah)\nNa-na-na-na, hey Jude (you know you can make, Jude, Jude, You're not gonna break it)\n\nNa-na-na-na-na (don't make it bad Jude, take a sad song and make it better)\nNa-na-na-na, hey Jude (hey Jude wow)\nNa-na-na-na-na\nNa-na-na-na, hey Jude\nNa-na-na-na-na\nNa-na-na-na, hey Jude (Jude, Jude, Jude, Jude, Jude, Jude)\n\nNa-na-na-na-na\nNa-na-na-na, hey Jude\nNa-na-na-na-na\nNa-na-na-na, hey Jude (na-na-na-na-na-na-na-na-na-na, wow)\nNa-na-na-na-na\nNa-na-na-na, hey Jude\nNa-na-na-na-na\nNa-na-na-na, hey Jude\n\nNa-na-na-na-na (make it Jude)\nNa-na-na-na, hey Jude (yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah,yeah, yeah)\nNa-na-na-na-na (yeah, yeah, yeah, yeah ha-ha-ha-ha)\nNa-na-na-na, hey Jude (go listen to ya ma-ma-ma-ma-ma-ma-ma-ma)\n\nNa-na-na-na-na\nNa-na-na-na, hey Jude\nNa-na-na-na-na\nNa-na-na-na, hey Jude\nNa-na-na-na-na\nNa-na-na-na, hey Jude",
+    "synced_lyrics": "[00:00.35]Hey Jude, don't make it bad\n[00:06.74]Take a sad song and make it better\n[00:13.58]Remember to let her into your heart\n[00:18.44]Then you can start to make it better\n[00:25.52]Hey Jude, don't be afraid\n[00:32.44]You were made to go out and get her\n[00:38.91]The minute you let her under your skin\n[00:44.08]Then you begin to make it better\n[00:49.81]\n[00:52.87]And anytime you feel the pain, hey Jude, refrain\n[00:59.32]Don't carry the world upon your shoulders\n[01:06.47]\n[01:08.73]For well you know that it's a fool who plays it cool\n[01:15.42]By making his world a little colder\n[01:23.31]Na-na-na-na-na\n[01:26.59]Na-na-na-na\n[01:31.51]Hey Jude, don't let me down\n[01:37.63]You have found her, now go and get her\n[01:43.17](Let it out and let it in)\n[01:44.85]Remember (hey Jude) to let her into your heart\n[01:49.92]Then you can start to make it better\n[01:55.67]\n[01:58.32]So let it out and let it in, hey Jude, begin\n[02:05.28]You're waiting for someone to perform with\n[02:14.99]And don't you know that it's just you, hey Jude, you'll do\n[02:21.41]The movement you need is on your shoulder\n[02:29.33]Na-na-na-na-na\n[02:32.76]Na-na-na-na, yeah\n[02:37.16]Hey Jude, don't make it bad\n[02:44.49]Take a sad song and make it better\n[02:51.52]Remember to let her under your skin\n[02:56.68]Then you'll begin to make it\n[03:01.18]Better, better, better, better, better, better, oh\n[03:08.16]Yeah, yeah, yeah, yeah, yeah, yeah, yeah\n[03:12.83]Na-na-na-na-na\n[03:15.03]Na-na-na-na, hey Jude\n[03:19.64]Na-na-na-na-na\n[03:24.47]Na-na-na-na, hey Jude\n[03:33.95]Na-na-na-na-na\n[03:37.69]Na-na-na-na, hey Jude\n[03:47.48]Na-na-na-na-na\n[03:53.73]Na-na-na-na, hey Jude (Jude, Judy, Judy, Judy, Judy, Judy)\n[04:01.36](Au, wow) na-na-na-na-na\n[04:04.60]Na-na-na-na, hey Jude (Jude, Jude, Jude, Jude, Jude)\n[04:13.87]Na-na-na-na-na (yeah, yeah, yeah)\n[04:20.98]Na-na-na-na, hey Jude (you know you can make, Jude, Jude, You're not gonna break it)\n[04:27.01]Na-na-na-na-na (don't make it bad Jude, take a sad song and make it better)\n[04:32.87]Na-na-na-na, hey Jude (hey Jude wow)\n[04:39.50]Na-na-na-na-na\n[04:43.05]Na-na-na-na, hey Jude\n[04:52.34]Na-na-na-na-na\n[04:55.85]Na-na-na-na, hey Jude (Jude, Jude, Jude, Jude, Jude, Jude)\n[05:04.77]Na-na-na-na-na\n[05:10.07]Na-na-na-na, hey Jude\n[05:18.14]Na-na-na-na-na\n[05:23.57]Na-na-na-na, hey Jude (na-na-na-na-na-na-na-na-na-na, wow)\n[05:31.67]Na-na-na-na-na\n[05:34.48]Na-na-na-na, hey Jude\n[05:43.13]Na-na-na-na-na\n[05:47.03]Na-na-na-na, hey Jude\n[05:56.08]Na-na-na-na-na (make it Jude)\n[06:01.96]Na-na-na-na, hey Jude (yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah,yeah, yeah)\n[06:09.52]Na-na-na-na-na (yeah, yeah, yeah, yeah ha-ha-ha-ha)\n[06:15.97]Na-na-na-na, hey Jude (go listen to ya ma-ma-ma-ma-ma-ma-ma-ma)\n[06:22.12]Na-na-na-na-na\n[06:25.96]Na-na-na-na, hey Jude\n[06:34.30]Na-na-na-na-na\n[06:38.27]Na-na-na-na, hey Jude\n[06:46.73]Na-na-na-na-na\n[06:50.86]Na-na-na-na, hey Jude\n[06:56.26]",
+    "album": "The Beatles 1967-1970 (The Blue Album)",
+    "genre": "Rock",
+    "available": 1
   },
   {
+    "id": 46,
     "artist": "The Cranberries",
     "title": "Zombie",
     "formation": "Solo",
     "year": 1993,
     "language": "Anglais",
-    "id": 46
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a3/77/a3/a377a309-8e52-f787-2250-2b34d320bf7b/25UMGIM64146.rgb.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "No Need To Argue (2025 Remastered)",
+    "genre": "Rock",
+    "available": 1
   },
   {
+    "id": 47,
     "artist": "The Police",
     "title": "Roxanne",
     "formation": "Solo",
     "year": 1978,
     "language": "Anglais",
-    "id": 47
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/42/b7/db/42b7dbe1-d13f-c600-5b78-daa57c5d0f08/06UMGIM50761.rgb.jpg/600x600bb.jpg",
+    "lyrics": "Roxanne\nYou don't have to put on the red light\nThose days are over\nYou don't have to sell your body to the night\n\nRoxanne\nYou don't have to wear that dress tonight\nWalk the streets for money\nYou don't care if it's wrong or if it's right\n\nRoxanne\nYou don't have to put on the red light\nRoxanne\nYou don't have to put on the red light\n\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nI loved you since I knew you\n\nI wouldn't talk down to you\nI have to tell you just how I feel\nI won't share you with another boy\n\nI know my mind is made up\nSo put away your make up\nTold you once I won't tell you again\nIt's a bad way\n\nRoxanne\nYou don't have to put on the red light\nRoxanne\nYou don't have to put on the red light\nRoxanne (You don't have to put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (You don't have to put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)\nRoxanne (Put on the red light)",
+    "synced_lyrics": "[00:17.03]Roxanne\n[00:20.07]You don't have to put on the red light\n[00:25.05]Those days are over\n[00:29.02]You don't have to sell your body to the night\n[00:32.02]Roxanne\n[00:35.08]You don't have to wear that dress tonight\n[00:40.09]Walk the streets for money\n[00:44.00]You don't care if it's wrong or if it's right\n[00:47.03]Roxanne\n[00:50.06]You don't have to put on the red light\n[00:54.06]Roxanne\n[00:57.09]You don't have to put on the red light\n[01:01.02]Roxanne (Put on the red light)\n[01:05.08]Roxanne (Put on the red light)\n[01:08.08]Roxanne (Put on the red light)\n[01:11.06]Roxanne (Put on the red light)\n[01:15.03]Roxanne (Put on the red light)\n[01:19.08]\n[01:31.03]I loved you since I knew you\n[01:35.04]I wouldn't talk down to you\n[01:38.07]I have to tell you just how I feel\n[01:41.05]I won't share you with another boy\n[01:45.09]I know my mind is made up\n[01:48.08]So put away your make up\n[01:52.03]Told you once I won't tell you again\n[01:56.06]It's a bad way\n[01:58.00]Roxanne\n[02:02.07]You don't have to put on the red light\n[02:06.08]Roxanne\n[02:09.01]You don't have to put on the red light\n[02:13.07]Roxanne (You don't have to put on the red light)\n[02:16.00]Roxanne (Put on the red light)\n[02:20.05]Roxanne (Put on the red light)\n[02:23.04]Roxanne (Put on the red light)\n[02:27.05]Roxanne (Put on the red light)\n[02:30.07]Roxanne (Put on the red light)\n[02:34.07]Roxanne (Put on the red light)\n[02:37.04]Roxanne (Put on the red light)\n[02:41.07]Roxanne (Put on the red light)\n[02:44.07]Roxanne (Put on the red light)\n[02:47.08]Roxanne (You don't have to put on the red light)\n[02:51.03]Roxanne (Put on the red light)\n[02:54.03]Roxanne (Put on the red light)\n[02:58.08]Roxanne (Put on the red light)\n[03:01.06]Roxanne (Put on the red light)\n[03:03.05]",
+    "album": "The Very Best of Sting & The Police",
+    "genre": "Rock",
+    "available": 1
   },
   {
+    "id": 48,
     "artist": "Tryo",
     "title": "Désolé pour hier soir",
     "formation": "Solo",
     "year": 2003,
     "language": "Français",
-    "id": 48
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a6/13/69/a613690b-83bb-c7cf-40cd-3ebde58ad18e/886445659283.jpg/600x600bb.jpg",
+    "lyrics": "Réveil matin, quinze heures\nJ'me réveille comme une fleur\nMarguerite dans le macadam\nA besoin d'un Doliprane\nRéveil matin, quinze heures\nJ'me réveille comme une fleur\nÇa va les gars? Bien dormi?\nPas de réponse tant pis\nPutain les gars, abusé\nQui c'est qui a fini le café, là?\nOh, ça va, ça va, tu vas pas nous gonfler\nQu'est-ce qu'il y a Guiz'\nT'as quelque chose à me dire?\nBen hier t'étais pas bourré\nOuais, t'étais pire\n\nPrise de conscience, seize heures\nJ'fais mine d'aller me coucher\nJe mets les mains dans les poches\nRefile le cours de ma soirée\nLes tickets de carte bleue\nQuelques tickets de caisse\nMe font remonter le temps\nOh putain merde, ma caisse\nTa Ferrari n'est pas là\nTu ne l'as pas prise avec toi\nT'as dû la laisser au milieu du parking du Macumba\nJ'ai la mémoire qui flanche\nEt les yeux rouges\nEt en plus surprise\nDans ton lit ça bouge\n\nSur ce coup-là, man\nT'as été un homme\nT'as ramené le croisé de Jackie Sardou et d'un Pokémon\nT'as du style, t'as du style\nT'as du style, hé mon frère\nQuand tu vois double tu ramènes de la bombe nucléaire\n\nDésolé pour hier soir\nD'avoir fini à l'envers\nLa tête dans le cul, le cul dans le brouillard\nLes gars désolé pour hier\nDésolé pour hier soir\nD'avoir fini à l'envers\nPromis demain j'arrête de boire\nHier c'était la dernière\n\nBon ben salut, on s'appelle?\n\nFille remerciée, dix-sept heures\nJe provoque une assemblée\nJ'ai des relents de gin, de vodka, de sky et de saké\nT'as l'œil qui part en vrille\nY'a des coins dans vos sourires\nOn me cache quelque chose\nQu'ai-je pu bien faire de pire?\n\nFallait mani-mani-manier mieux la nuit, man\nArrête l'alcool tu deviens grave\nFallait mani-mani-manier mieux la nuit, man\nArrête l'alcool tu deviens grave\nMais je sais pas, rappelez-moi\nJ'me souviens pas, les gars\nBen, t'étais grave\nT'as pété ton câble, souviens-toi\n\nHé ho, hé ho\nT'es monté sur le chapiteau\nAccroché aux cordages\nT'as failli t'aplatir comme un blaireau\nHé ho, hé ho\nTu voulais pas redescendre\nQuitte à vivre en hauteur\nC'est mieux que de se pendre\n\nDésolé pour hier soir\nD'avoir fini à l'envers\nLa tête dans le cul, le cul dans le brouillard\nLes gars désolé pour hier\nDésolé pour hier soir\nD'avoir fini à l'envers\nPromis demain j'arrête de boire\nHier c'était la dernière\n\nFallait mani-mani-manier mieux la nuit, man\nArrête l'alcool tu deviens grave\nFallait mani-mani-manier mieux la nuit, man\nArrête l'alcool tu deviens grave\n\nMe voilà donc fin prêt\nPour de nouvelles résolutions\nUn esprit de sainteté\nDans un super corps de champion\nMe voilà donc prêt\nJ'me colle devant la télé\nSoupe de légumes, bol de thé\nEt qu'on me foute la paix\nC'est fou qu'on puisse à ce point\nÊtre mal le lendemain\nDans son canap'\nDans ton canap' on est bien\nÀ quoi bon sortir\nSe foutre la guerre?\nPlus jamais, j'vous jure, plus jamais comme hier\n\nHé Mali\nHé ho, hé ho\nQu'est-ce que tu fais avec ton verre d'eau?\nC'est l'annif' à Titi, allez on va se taper l'apéro\nHé ho, hé ho\nAllez Mali, Mali bouge tes fesses\nT'as promis à Titi il faut tenir ses promesses\n\nBah désolé pour ce soir si je finis à l'envers\nMali, on se retrouve au comptoir\nTiti fête son anniversaire\nEt désolé pour ce soir\nSi je finis à l'envers\nAprès celle-là, j'arrête de boire\nLaissez-moi juste la dernière\n\nDésolé pour hier soir (fallait mani-mani-manier mieux la nuit, man)\nArrête l'alcool tu deviens grave\nLa tête dans le cul, le cul dans le brouillard (fallait mani-mani-manier mieux la nuit, man)\nArrête l'alcool tu deviens grave\nDésolé pour hier soir (fallait mani-mani-manier mieux la nuit, man)\nArrête l'alcool tu deviens grave\nPromis demain j'arrête de boire (fallait mani-mani-manier mieux la nuit, man)\nArrête l'alcool tu deviens grave\nFallait mani-mani-manier mieux la nuit, man",
+    "synced_lyrics": "[00:03.75]Réveil matin, quinze heures\n[00:05.34]J'me réveille comme une fleur\n[00:06.58]Marguerite dans le macadam\n[00:07.85]A besoin d'un Doliprane\n[00:08.89]Réveil matin, quinze heures\n[00:10.12]J'me réveille comme une fleur\n[00:11.38]Ça va les gars? Bien dormi?\n[00:12.83]Pas de réponse tant pis\n[00:14.38]Putain les gars, abusé\n[00:15.55]Qui c'est qui a fini le café, là?\n[00:16.63]Oh, ça va, ça va, tu vas pas nous gonfler\n[00:18.97]Qu'est-ce qu'il y a Guiz'\n[00:20.17]T'as quelque chose à me dire?\n[00:21.55]Ben hier t'étais pas bourré\n[00:22.96]Ouais, t'étais pire\n[00:23.96]Prise de conscience, seize heures\n[00:25.15]J'fais mine d'aller me coucher\n[00:26.36]Je mets les mains dans les poches\n[00:27.62]Refile le cours de ma soirée\n[00:28.99]Les tickets de carte bleue\n[00:30.13]Quelques tickets de caisse\n[00:31.45]Me font remonter le temps\n[00:32.34]Oh putain merde, ma caisse\n[00:33.88]Ta Ferrari n'est pas là\n[00:34.93]Tu ne l'as pas prise avec toi\n[00:36.22]T'as dû la laisser au milieu du parking du Macumba\n[00:38.45]J'ai la mémoire qui flanche\n[00:39.80]Et les yeux rouges\n[00:41.28]Et en plus surprise\n[00:42.37]Dans ton lit ça bouge\n[00:43.62]Sur ce coup-là, man\n[00:44.43]T'as été un homme\n[00:45.92]T'as ramené le croisé de Jackie Sardou et d'un Pokémon\n[00:48.31]T'as du style, t'as du style\n[00:49.49]T'as du style, hé mon frère\n[00:50.81]Quand tu vois double tu ramènes de la bombe nucléaire\n[00:53.13]Désolé pour hier soir\n[00:54.97]D'avoir fini à l'envers\n[00:57.25]La tête dans le cul, le cul dans le brouillard\n[00:59.82]Les gars désolé pour hier\n[01:02.02]Désolé pour hier soir\n[01:04.78]D'avoir fini à l'envers\n[01:07.09]Promis demain j'arrête de boire\n[01:09.50]Hier c'était la dernière\n[01:13.03]Bon ben salut, on s'appelle?\n[01:15.76]Fille remerciée, dix-sept heures\n[01:17.27]Je provoque une assemblée\n[01:18.59]J'ai des relents de gin, de vodka, de sky et de saké\n[01:20.92]T'as l'œil qui part en vrille\n[01:22.18]Y'a des coins dans vos sourires\n[01:23.28]On me cache quelque chose\n[01:24.56]Qu'ai-je pu bien faire de pire?\n[01:25.83]Fallait mani-mani-manier mieux la nuit, man\n[01:28.13]Arrête l'alcool tu deviens grave\n[01:30.54]Fallait mani-mani-manier mieux la nuit, man\n[01:32.87]Arrête l'alcool tu deviens grave\n[01:35.55]Mais je sais pas, rappelez-moi\n[01:37.29]J'me souviens pas, les gars\n[01:39.98]Ben, t'étais grave\n[01:41.43]T'as pété ton câble, souviens-toi\n[01:45.16]Hé ho, hé ho\n[01:46.80]T'es monté sur le chapiteau\n[01:47.67]Accroché aux cordages\n[01:48.98]T'as failli t'aplatir comme un blaireau\n[01:50.51]Hé ho, hé ho\n[01:51.47]Tu voulais pas redescendre\n[01:52.70]Quitte à vivre en hauteur\n[01:53.85]C'est mieux que de se pendre\n[01:54.84]Désolé pour hier soir\n[01:56.85]D'avoir fini à l'envers\n[01:59.17]La tête dans le cul, le cul dans le brouillard\n[02:01.57]Les gars désolé pour hier\n[02:04.04]Désolé pour hier soir\n[02:06.57]D'avoir fini à l'envers\n[02:08.97]Promis demain j'arrête de boire\n[02:11.49]Hier c'était la dernière\n[02:14.03]Fallait mani-mani-manier mieux la nuit, man\n[02:16.63]Arrête l'alcool tu deviens grave\n[02:19.09]Fallait mani-mani-manier mieux la nuit, man\n[02:21.46]Arrête l'alcool tu deviens grave\n[02:24.12]Me voilà donc fin prêt\n[02:25.37]Pour de nouvelles résolutions\n[02:26.52]Un esprit de sainteté\n[02:27.86]Dans un super corps de champion\n[02:28.90]Me voilà donc prêt\n[02:30.17]J'me colle devant la télé\n[02:31.33]Soupe de légumes, bol de thé\n[02:32.47]Et qu'on me foute la paix\n[02:33.76]C'est fou qu'on puisse à ce point\n[02:34.91]Être mal le lendemain\n[02:36.09]Dans son canap'\n[02:37.03]Dans ton canap' on est bien\n[02:38.62]À quoi bon sortir\n[02:39.87]Se foutre la guerre?\n[02:41.02]Plus jamais, j'vous jure, plus jamais comme hier\n[02:44.43]Hé Mali\n[02:45.94]Hé ho, hé ho\n[02:47.43]Qu'est-ce que tu fais avec ton verre d'eau?\n[02:48.49]C'est l'annif' à Titi, allez on va se taper l'apéro\n[02:51.29]Hé ho, hé ho\n[02:52.09]Allez Mali, Mali bouge tes fesses\n[02:53.46]T'as promis à Titi il faut tenir ses promesses\n[02:55.26]Bah désolé pour ce soir si je finis à l'envers\n[02:59.53]Mali, on se retrouve au comptoir\n[03:02.14]Titi fête son anniversaire\n[03:04.84]Et désolé pour ce soir\n[03:07.22]Si je finis à l'envers\n[03:09.77]Après celle-là, j'arrête de boire\n[03:11.98]Laissez-moi juste la dernière\n[03:14.00]Désolé pour hier soir (fallait mani-mani-manier mieux la nuit, man)\n[03:17.24]Arrête l'alcool tu deviens grave\n[03:19.30]La tête dans le cul, le cul dans le brouillard (fallait mani-mani-manier mieux la nuit, man)\n[03:22.07]Arrête l'alcool tu deviens grave\n[03:24.47]Désolé pour hier soir (fallait mani-mani-manier mieux la nuit, man)\n[03:26.88]Arrête l'alcool tu deviens grave\n[03:28.98]Promis demain j'arrête de boire (fallait mani-mani-manier mieux la nuit, man)\n[03:31.73]Arrête l'alcool tu deviens grave\n[03:34.20]Fallait mani-mani-manier mieux la nuit, man\n[03:36.93]",
+    "album": "Grain de sable",
+    "genre": "Reggae",
+    "available": 1
   },
   {
+    "id": 49,
     "artist": "Téléphone",
     "title": "Cendrillon",
     "formation": "Solo",
     "year": 1982,
     "language": "Français",
-    "id": 49
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/54/82/27/54822797-6ef4-f20c-7501-677a4766cb15/dj.irgzmvcf.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Platinum",
+    "genre": "Rock",
+    "available": 1
   },
   {
+    "id": 50,
     "artist": "Téléphone",
     "title": "NY avec toi",
     "formation": "Solo",
     "year": 1984,
     "language": "Français",
-    "id": 50
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/63/34/54/6334547d-261b-2e88-4b8b-2a30f01ff7ba/724385061257.jpg/600x600bb.jpg",
+    "lyrics": null,
+    "synced_lyrics": null,
+    "album": "Best Of",
+    "genre": "Rock",
+    "available": 1
   },
   {
+    "id": 51,
     "artist": "Zazie",
     "title": "Je suis un homme",
     "formation": "Solo",
     "year": 2007,
     "language": "Français",
-    "id": 51
+    "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/46/44/71/4644717a-3b0a-ef12-020d-d5942f6920d9/00731453299122.rgb.jpg/600x600bb.jpg",
+    "lyrics": "Je suis un homme de Cro-Magnon\nJe suis un singe ou un poisson\nSur la Terre, en toute saison\nMoi, je tourne en rond, je tourne en rond\n\nJe suis un seul puis des millions\nJe suis un homme au cœur de lion\nÀ la guerre en toute saison\nMoi, je tourne en rond, je tourne en rond\n\nJe suis un homme plein d'ambition\nBelle voiture et belle maison\nDans la chambre, dans le salon\nMoi, je tourne en rond, je tourne en rond \nJ'ai fait l'amour et la révolution\nJ'ai fait le tour de la question\nJ'avance, avance à reculons\nOui, je tourne en rond, je tourne en rond\n\nTu vois, j'suis pas un homme\nJe suis le roi de l'illusion\nAu fond, qu'on me pardonne\nJe suis le roi, le roi des cons\n\nJ'ai fait le monde à ma façon\nCoulé dans l'or et le béton\nCorps en cage et cœur en prison\nMoi, je tourne en rond, je tourne en rond\n\nAssis devant ma télévision\nJe suis de l'Homme la négation\nPur produit de consommation\nOui, mon compte est bon, mon compte est bon\n\nTu vois, j'suis pas un homme\nJe suis le roi de l'illusion\nAu fond, qu'on me pardonne\nJe suis le roi, le roi des cons\n\nC'est moi le maître du feu\nLe maître du jeu\nLe maître du monde et vois ce que j'en ai fait\nUne terre glacée\nUne terre brûlée\nLa terre des hommes que les hommes abandonnent\n♫♪ ♫♪ ♫♪\nJe suis un homme au pied du mur\nComme une erreur de la nature\nSur la Terre, sans d'autre raison\nMoi, je tourne en rond, je tourne en rond\n\nJe suis un homme et je mesure\nToute l'horreur de ma nature\nPour ma peine, ma punition (je suis le roi, le roi des cons)\nMoi, je tourne en rond, je tourne en rond\n\nJe suis un homme et je mesure (au fond, qu'on me pardonne)\nToute l'horreur de ma nature\nPour ma peine, ma punition (je suis le roi, le roi des cons)\nMoi, je tourne en rond, je tourne en rond\n♫♪ ♫♪ ♫♪\nMoi, je tourne en rond, je tourne en rond\nEn rond\n",
+    "synced_lyrics": "[00:08.79]Je suis un homme de Cro-Magnon\n[00:11.24]Je suis un singe ou un poisson\n[00:13.99]Sur la Terre, en toute saison\n[00:16.67]Moi, je tourne en rond, je tourne en rond\n[00:19.75]\n[00:22.45]Je suis un seul puis des millions\n[00:25.21]Je suis un homme au cœur de lion\n[00:28.08]À la guerre en toute saison\n[00:30.65]Moi, je tourne en rond, je tourne en rond\n[00:34.93]\n[00:36.73]Je suis un homme plein d'ambition\n[00:39.28]Belle voiture et belle maison\n[00:42.14]Dans la chambre, dans le salon\n[00:44.55]Moi, je tourne en rond, je tourne en rond\n[00:48.06]J'ai fait l'amour et la révolution\n[00:50.63]J'ai fait le tour de la question\n[00:53.43]J'avance, avance à reculons\n[00:56.10]Oui, je tourne en rond, je tourne en rond\n[00:59.07]\n[01:01.79]Tu vois, j'suis pas un homme\n[01:06.62]Je suis le roi de l'illusion\n[01:12.93]Au fond, qu'on me pardonne\n[01:18.05]Je suis le roi, le roi des cons\n[01:22.81]\n[01:24.53]J'ai fait le monde à ma façon\n[01:27.18]Coulé dans l'or et le béton\n[01:29.97]Corps en cage et cœur en prison\n[01:32.66]Moi, je tourne en rond, je tourne en rond\n[01:35.57]\n[01:36.01]Assis devant ma télévision\n[01:38.58]Je suis de l'Homme la négation\n[01:41.26]Pur produit de consommation\n[01:43.45]Oui, mon compte est bon, mon compte est bon\n[01:46.86]\n[01:49.65]Tu vois, j'suis pas un homme\n[01:54.33]Je suis le roi de l'illusion\n[02:00.95]Au fond, qu'on me pardonne\n[02:05.79]Je suis le roi, le roi des cons\n[02:10.87]\n[02:12.08]C'est moi le maître du feu\n[02:16.39]Le maître du jeu\n[02:19.19]Le maître du monde et vois ce que j'en ai fait\n[02:24.87]Une terre glacée\n[02:27.67]Une terre brûlée\n[02:30.88]La terre des hommes que les hommes abandonnent\n[02:35.00]♫♪ ♫♪ ♫♪\n[02:46.16]Je suis un homme au pied du mur\n[02:48.89]Comme une erreur de la nature\n[02:51.72]Sur la Terre, sans d'autre raison\n[02:54.49]Moi, je tourne en rond, je tourne en rond\n[02:57.28]\n[02:57.68]Je suis un homme et je mesure\n[03:00.28]Toute l'horreur de ma nature\n[03:02.96]Pour ma peine, ma punition (je suis le roi, le roi des cons)\n[03:06.28]Moi, je tourne en rond, je tourne en rond\n[03:08.16]\n[03:09.21]Je suis un homme et je mesure (au fond, qu'on me pardonne)\n[03:11.48]Toute l'horreur de ma nature\n[03:14.25]Pour ma peine, ma punition (je suis le roi, le roi des cons)\n[03:16.57]Moi, je tourne en rond, je tourne en rond\n[03:19.81]♫♪ ♫♪ ♫♪\n[03:31.21]Moi, je tourne en rond, je tourne en rond\n[03:36.48]En rond\n[03:38.89]",
+    "album": "Zen",
+    "genre": "French Pop",
+    "available": 1
   }
 ]

@@ -24,10 +24,15 @@ legacyDb.exec(`
 legacyDb.close();
 
 // Set DB_PATH environment variable for server.js to use this DB
+const testSongsJsonPath = path.join(__dirname, 'data', 'test_songs.json');
+if (fs.existsSync(testSongsJsonPath)) fs.unlinkSync(testSongsJsonPath);
+
 process.env.DB_PATH = testDbPath;
+process.env.SONGS_JSON_PATH = testSongsJsonPath;
 process.env.PORT = '3039';
 
-const { app, server, db, searchMusic, fetchLyrics, getHdItunesCover } = require('./server');
+const { app, server, db, searchMusic, fetchLyrics, getHdItunesCover, backfillMissingCovers } = require('./server');
+assert(typeof backfillMissingCovers === 'function', 'backfillMissingCovers must be exported as a function');
 
 // Check that migration added the columns to the legacy DB
 const tableCols = db.prepare('PRAGMA table_info(songs)').all().map(c => c.name);
@@ -206,7 +211,24 @@ async function runEndpointsTest() {
   assert(updatedSong.year === 2025, 'Updated year verified');
   console.log('✓ PUT /api/admin/songs/:id verified.');
 
-  // 5.8 Cleanup test song
+  // 5.8 POST /api/admin/songs/backfill-covers
+  const unauthBackfill = await fetch(`${baseUrl}/api/admin/songs/backfill-covers`, {
+    method: 'POST'
+  });
+  assert(unauthBackfill.status === 401, 'Unauthorized backfill must return 401');
+
+  const authBackfill = await fetch(`${baseUrl}/api/admin/songs/backfill-covers`, {
+    method: 'POST',
+    headers: { Authorization: 'Bearer karaoke2026' }
+  });
+  assert(authBackfill.status === 200, 'Authorized backfill must return 200');
+  const backfillBody = await authBackfill.json();
+  assert(backfillBody.message === 'Enrichissement terminé', 'Must return expected message');
+  assert('enrichedCount' in backfillBody, 'Must return enrichedCount');
+  assert('totalMissing' in backfillBody, 'Must return totalMissing');
+  console.log('✓ POST /api/admin/songs/backfill-covers verified.');
+
+  // 5.9 Cleanup test song
   const delRes = await fetch(`${baseUrl}/api/admin/songs/${createdSong.id}`, {
     method: 'DELETE',
     headers: { Authorization: 'Bearer karaoke2026' }
@@ -221,19 +243,21 @@ async function runEndpointsTest() {
 }
 
 (async () => {
+  let exitCode = 0;
   try {
     await runIndexerTest();
     await runLyricsTest();
     await runEndpointsTest();
-    process.exit(0);
   } catch (err) {
     console.error('❌ TEST FAILED:', err);
-    process.exit(1);
+    exitCode = 1;
   } finally {
-    // cleanup test legacy db
+    // cleanup test legacy db and test songs json
     try {
       db.close();
       if (fs.existsSync(testDbPath)) fs.unlinkSync(testDbPath);
+      if (fs.existsSync(testSongsJsonPath)) fs.unlinkSync(testSongsJsonPath);
     } catch (e) {}
+    process.exit(exitCode);
   }
 })();

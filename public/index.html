@@ -100,7 +100,7 @@
     }
 
     .container {
-      max-width: 680px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 16px;
     }
@@ -231,12 +231,24 @@
       font-size: 18px;
     }
 
+    /* Catalogue Toolbar & Filters */
+    .catalogue-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
     .filter-tags {
       display: flex;
       gap: 8px;
-      margin-bottom: 16px;
       overflow-x: auto;
       scrollbar-width: none;
+      flex: 1;
+      min-width: 260px;
+      padding-bottom: 2px;
     }
     .filter-tags::-webkit-scrollbar { display: none; }
 
@@ -258,6 +270,327 @@
       color: white;
       border-color: transparent;
       box-shadow: 0 2px 10px var(--red-glow);
+    }
+
+    /* View Mode Switch */
+    .view-toggle {
+      display: inline-flex;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 3px;
+      gap: 2px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .view-toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 13px;
+      border-radius: 16px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .view-toggle-btn:hover {
+      color: #ffffff;
+    }
+
+    .view-toggle-btn.active {
+      background: var(--red-gradient);
+      color: #ffffff;
+      box-shadow: 0 2px 8px var(--red-glow);
+    }
+
+    /* Song Grid View */
+    .song-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    @media (min-width: 601px) and (max-width: 860px) {
+      .song-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .song-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+      }
+    }
+
+    /* Modern Song Tile */
+    .song-tile {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.22s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .song-tile:hover {
+      transform: translateY(-4px);
+      border-color: rgba(220, 53, 69, 0.45);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45), 0 0 20px var(--red-glow);
+    }
+
+    .song-tile:active {
+      transform: scale(0.98);
+    }
+
+    /* Cover Image Container */
+    .tile-cover-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 10px;
+    }
+
+    .tile-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+      transition: transform 0.25s ease;
+    }
+
+    .song-tile:hover .tile-cover-img {
+      transform: scale(1.04);
+    }
+
+    /* Fallback Cover */
+    .tile-cover-fallback {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(220, 53, 69, 0.25) 0%, rgba(15, 23, 42, 0.95) 75%);
+      border: 1px solid rgba(220, 53, 69, 0.2);
+      position: relative;
+      transition: transform 0.25s ease;
+    }
+
+    .song-tile:hover .tile-cover-fallback {
+      transform: scale(1.04);
+    }
+
+    .tile-cover-fallback .vinyl-icon {
+      font-size: 42px;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+    }
+
+    .tile-cover-fallback .note-icon {
+      position: absolute;
+      font-size: 18px;
+      color: var(--gold);
+      top: 24%;
+      right: 24%;
+      animation: floatNote 2.4s ease-in-out infinite alternate;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    }
+
+    @keyframes floatNote {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+      100% { transform: translateY(-5px) rotate(14deg); opacity: 1; }
+    }
+
+    /* Floating Glassmorphic Badges */
+    .tile-badge-left, .tile-badge-right {
+      position: absolute;
+      top: 8px;
+      z-index: 3;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 8px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .tile-badge-left {
+      left: 8px;
+      background: rgba(11, 15, 25, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+    }
+
+    .tile-badge-left.badge-duo {
+      background: rgba(245, 158, 11, 0.35);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #fbbf24;
+    }
+
+    .tile-badge-left.badge-solo {
+      background: rgba(220, 53, 69, 0.35);
+      border: 1px solid rgba(220, 53, 69, 0.5);
+      color: #fca5a5;
+    }
+
+    .tile-badge-right {
+      right: 8px;
+      background: rgba(11, 15, 25, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    /* Tile Content */
+    .tile-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      min-width: 0;
+    }
+
+    .tile-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #ffffff;
+      margin-bottom: 3px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 38px;
+    }
+
+    .tile-artist {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 4px;
+    }
+
+    .tile-subtitle-tag {
+      font-size: 11px;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .tile-subtitle-tag span {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* Tile Actions */
+    .tile-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .btn-tile-lyrics {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      padding: 8px 10px;
+      border-radius: 9px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn-tile-lyrics:hover {
+      background: rgba(220, 53, 69, 0.2);
+      border-color: rgba(220, 53, 69, 0.4);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-tile-sing {
+      background: var(--red-gradient);
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 9px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      box-shadow: 0 3px 10px var(--red-glow);
+      transition: all 0.15s ease;
+      flex: 1;
+      white-space: nowrap;
+    }
+
+    .btn-tile-sing:hover {
+      background: linear-gradient(135deg, #ef4444 0%, #b02a37 100%);
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 440px) {
+      .btn-tile-lyrics .btn-lyrics-text {
+        display: none;
+      }
+      .btn-tile-lyrics {
+        padding: 8px 9px;
+      }
+      .btn-tile-sing {
+        padding: 8px 10px;
+        font-size: 11.5px;
+      }
+      .song-tile {
+        padding: 10px;
+      }
+      .tile-title {
+        font-size: 14px;
+        min-height: 35px;
+      }
+      .tile-artist {
+        font-size: 12px;
+      }
     }
 
     /* Song List */
@@ -779,16 +1112,27 @@
       <input type="text" id="searchInput" class="search-input" placeholder="Rechercher par titre ou artiste...">
     </div>
 
-    <div class="filter-tags">
-      <button class="tag-btn active" data-filter="all">Tous (<span id="totalCount">0</span>)</button>
-      <button class="tag-btn" data-filter="Français">🇫🇷 Français</button>
-      <button class="tag-btn" data-filter="Anglais">🇬🇧 Anglais</button>
-      <button class="tag-btn" data-filter="Duo">👥 Duos</button>
-      <button class="tag-btn" data-filter="Solo">👤 Solos</button>
+    <div class="catalogue-toolbar">
+      <div class="filter-tags">
+        <button class="tag-btn active" data-filter="all">Tous (<span id="totalCount">0</span>)</button>
+        <button class="tag-btn" data-filter="Français">🇫🇷 Français</button>
+        <button class="tag-btn" data-filter="Anglais">🇬🇧 Anglais</button>
+        <button class="tag-btn" data-filter="Duo">👥 Duos</button>
+        <button class="tag-btn" data-filter="Solo">👤 Solos</button>
+      </div>
+
+      <div class="view-toggle">
+        <button type="button" class="view-toggle-btn active" id="viewBtnGrid" onclick="setViewMode('grid')" title="Vue en Tuiles">
+          <span>🔲</span> <span>Tuiles</span>
+        </button>
+        <button type="button" class="view-toggle-btn" id="viewBtnList" onclick="setViewMode('list')" title="Vue en Liste">
+          <span>☰</span> <span>Liste</span>
+        </button>
+      </div>
     </div>
 
-    <!-- Songs -->
-    <div class="song-list" id="songList">
+    <!-- Songs Container (Grid or List based on viewMode) -->
+    <div class="song-grid" id="songList">
       <!-- Injected via JS -->
     </div>
 
@@ -865,6 +1209,28 @@
   <script>
     let allSongs = [];
     let currentFilter = 'all';
+    let currentViewMode = localStorage.getItem('karaoke_view_mode') || 'grid';
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      localStorage.setItem('karaoke_view_mode', mode);
+      updateViewToggleUI();
+      renderSongs();
+    }
+
+    function updateViewToggleUI() {
+      const btnGrid = document.getElementById('viewBtnGrid');
+      const btnList = document.getElementById('viewBtnList');
+      if (!btnGrid || !btnList) return;
+
+      if (currentViewMode === 'grid') {
+        btnGrid.classList.add('active');
+        btnList.classList.remove('active');
+      } else {
+        btnList.classList.add('active');
+        btnGrid.classList.remove('active');
+      }
+    }
 
     async function loadSongs() {
       try {
@@ -919,6 +1285,7 @@
     function renderSongs() {
       const search = document.getElementById('searchInput').value.toLowerCase().trim();
       const list = document.getElementById('songList');
+      if (!list) return;
 
       const filtered = allSongs.filter(song => {
         const matchesSearch = song.title.toLowerCase().includes(search) || 
@@ -934,36 +1301,110 @@
         return true;
       });
 
+      // Update layout class based on view mode
+      if (currentViewMode === 'grid') {
+        list.className = 'song-grid';
+      } else {
+        list.className = 'song-list';
+      }
+
       if (filtered.length === 0) {
-        list.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--text-muted);">Aucune chanson trouvée pour "${escapeHtml(search)}"</div>`;
+        list.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 48px 16px; color: var(--text-muted); background: var(--card-bg); border-radius: var(--radius); border: 1px dashed var(--card-border);">
+            <div style="font-size: 36px; margin-bottom: 10px;">🔍</div>
+            <p style="font-weight: 700; color: #fff; font-size: 16px;">Aucune chanson trouvée pour "${escapeHtml(search)}"</p>
+            <p style="font-size: 13px; margin-top: 4px;">Essayez d'autres mots-clés ou modifiez les filtres de formation / langue.</p>
+          </div>
+        `;
         return;
       }
 
-      list.innerHTML = filtered.map(song => `
-        <div class="song-card" onclick="openSignup(${song.id})">
-          ${song.cover_url ? `
-            <div class="song-cover-wrap">
-              <img src="${escapeHtml(song.cover_url)}" alt="Pochette" class="song-cover-thumb" onerror="this.parentElement.style.display='none';">
+      if (currentViewMode === 'grid') {
+        list.innerHTML = filtered.map(song => {
+          const isDuo = (song.formation || '').toLowerCase().includes('duo');
+          const langBadge = song.language === 'Français' ? '🇫🇷 FR' : (song.language === 'Anglais' ? '🇬🇧 EN' : escapeHtml(song.language || 'FR'));
+          
+          let submetaParts = [];
+          if (song.year) submetaParts.push(`<span>📅 ${song.year}</span>`);
+          if (song.album) submetaParts.push(`<span>💿 ${escapeHtml(song.album)}</span>`);
+          const submetaHtml = submetaParts.join(' • ');
+
+          return `
+            <div class="song-tile" onclick="openSignup(${song.id})">
+              <div class="tile-cover-wrap">
+                <span class="tile-badge-left ${isDuo ? 'badge-duo' : 'badge-solo'}">${isDuo ? '👥 Duo' : '👤 Solo'}</span>
+                <span class="tile-badge-right">${langBadge}</span>
+                ${song.cover_url ? `
+                  <img src="${escapeHtml(song.cover_url)}" alt="Pochette ${escapeHtml(song.title)}" class="tile-cover-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                  <div class="tile-cover-fallback" style="display: none;">
+                    <span class="vinyl-icon">💿</span>
+                    <span class="note-icon">🎵</span>
+                  </div>
+                ` : `
+                  <div class="tile-cover-fallback">
+                    <span class="vinyl-icon">💿</span>
+                    <span class="note-icon">🎵</span>
+                  </div>
+                `}
+              </div>
+              <div class="tile-content">
+                <div class="tile-title" title="${escapeHtml(song.title)}">${escapeHtml(song.title)}</div>
+                <div class="tile-artist" title="${escapeHtml(song.artist)}">${escapeHtml(song.artist)}</div>
+                ${submetaHtml ? `<div class="tile-subtitle-tag">${submetaHtml}</div>` : ''}
+              </div>
+              <div class="tile-actions">
+                <button type="button" class="btn-tile-lyrics" onclick="event.stopPropagation(); openLyricsModal(${song.id})" title="Voir les paroles avant de chanter">
+                  <span>📄</span> <span class="btn-lyrics-text">Paroles</span>
+                </button>
+                <button type="button" class="btn-tile-sing" onclick="event.stopPropagation(); openSignup(${song.id})">
+                  <span>🎤</span> Chanter
+                </button>
+              </div>
             </div>
-          ` : ''}
-          <div class="song-info">
-            <div class="song-title">${escapeHtml(song.title)}</div>
-            <div class="song-artist">${escapeHtml(song.artist)}</div>
-            <div class="song-badges">
-              <span class="badge ${(song.formation || '').includes('Duo') ? 'badge-duo' : ''}">${escapeHtml(song.formation || 'Solo')}</span>
-              ${song.year ? `<span class="badge">${song.year}</span>` : ''}
-              <span class="badge">${song.language === 'Français' ? '🇫🇷 FR' : (song.language === 'Anglais' ? '🇬🇧 EN' : escapeHtml(song.language || 'FR'))}</span>
-              ${song.album ? `<span class="badge">💿 ${escapeHtml(song.album)}</span>` : ''}
+          `;
+        }).join('');
+      } else {
+        // List View
+        list.innerHTML = filtered.map(song => {
+          const isDuo = (song.formation || '').toLowerCase().includes('duo');
+          const langBadge = song.language === 'Français' ? '🇫🇷 FR' : (song.language === 'Anglais' ? '🇬🇧 EN' : escapeHtml(song.language || 'FR'));
+
+          return `
+            <div class="song-card" onclick="openSignup(${song.id})">
+              <div class="song-cover-wrap">
+                ${song.cover_url ? `
+                  <img src="${escapeHtml(song.cover_url)}" alt="Pochette" class="song-cover-thumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                  <div class="tile-cover-fallback" style="display: none; border-radius: 8px;">
+                    <span style="font-size: 20px;">💿</span>
+                  </div>
+                ` : `
+                  <div class="tile-cover-fallback" style="border-radius: 8px;">
+                    <span style="font-size: 20px;">💿</span>
+                  </div>
+                `}
+              </div>
+              <div class="song-info">
+                <div class="song-title">${escapeHtml(song.title)}</div>
+                <div class="song-artist">${escapeHtml(song.artist)}</div>
+                <div class="song-badges">
+                  <span class="badge ${isDuo ? 'badge-duo' : ''}">${escapeHtml(song.formation || 'Solo')}</span>
+                  ${song.year ? `<span class="badge">${song.year}</span>` : ''}
+                  <span class="badge">${langBadge}</span>
+                  ${song.album ? `<span class="badge">💿 ${escapeHtml(song.album)}</span>` : ''}
+                </div>
+              </div>
+              <div class="song-actions">
+                <button type="button" class="btn-lyrics" onclick="event.stopPropagation(); openLyricsModal(${song.id})" title="Voir les paroles avant de chanter">
+                  <span>📄</span> <span class="btn-text">Paroles</span>
+                </button>
+                <button type="button" class="btn-choose" onclick="event.stopPropagation(); openSignup(${song.id})">
+                  <span>🎤</span> Chanter
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="song-actions">
-            <button class="btn-lyrics" onclick="event.stopPropagation(); openLyricsModal(${song.id})" title="Voir les paroles avant de chanter">
-              <span>📄</span> <span class="btn-text">Paroles</span>
-            </button>
-            <button class="btn-choose" onclick="event.stopPropagation(); openSignup(${song.id})">Chanter</button>
-          </div>
-        </div>
-      `).join('');
+          `;
+        }).join('');
+      }
     }
 
     function openSignup(songId) {
@@ -1157,6 +1598,7 @@
       }
     };
 
+    updateViewToggleUI();
     loadSongs();
     loadQueue();
   </script>
