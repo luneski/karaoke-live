@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  karaoke-live:
+    build: .
+    container_name: karaoke-live
+    restart: unless-stopped
+    ports:
+      - "3030:3030"
+    environment:
+      - PORT=3030
+      - ADMIN_PASSWORD=karaoke2026
+      - DB_PATH=/app/data/karaoke.db
+    volumes:
+      - ./data:/app/data

@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎛️ Régie - N'apprenez pas les paroles | La Fraternelle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #141a29;
+      --border: rgba(255, 255, 255, 0.08);
+      --red-primary: #dc3545;
+      --red-dark: #b02a37;
+      --red-light: #ef4444;
+      --red-glow: rgba(220, 53, 69, 0.35);
+      --red-gradient: linear-gradient(135deg, #dc3545 0%, #991b1b 100%);
+      --gold: #f59e0b;
+      --green: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; padding: 20px; }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-live {
+      background: rgba(220, 53, 69, 0.15);
+      border: 1px solid rgba(220, 53, 69, 0.3);
+      color: var(--red-light);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .assoc-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Tabs Navigation */
+    .tabs-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--red-gradient);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 12px var(--red-glow);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .panel-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Current Singer Hero */
+    .current-box {
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.2), rgba(153, 27, 27, 0.15));
+      border: 2px solid var(--red-primary);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px var(--red-glow);
+    }
+
+    .current-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--red-light);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .current-singer {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+    .current-song {
+      font-size: 18px;
+      color: #fca5a5;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .current-details { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+
+    .actions-row { display: flex; gap: 10px; justify-content: center; }
+
+    button {
+      font-family: inherit;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 16px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-green { background: #10b981; color: white; }
+    .btn-green:hover { background: #059669; }
+    .btn-red-action {
+      background: var(--red-gradient);
+      color: white;
+      box-shadow: 0 4px 12px var(--red-glow);
+    }
+    .btn-red-action:hover {
+      background: linear-gradient(135deg, #ef4444 0%, #b02a37 100%);
+    }
+    .btn-red { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .btn-red:hover { background: rgba(239, 68, 68, 0.25); }
+    .btn-secondary { background: rgba(255, 255, 255, 0.08); color: var(--text); }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.15); }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { background: rgba(255, 255, 255, 0.08); }
+
+    /* Queue items */
+    .queue-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .queue-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .queue-card.waiting { border-left: 4px solid var(--red-light); }
+    .queue-card.done { opacity: 0.5; border-left: 4px solid var(--green); }
+    .queue-card.cancelled { opacity: 0.4; border-left: 4px solid #64748b; }
+
+    .singer-info { flex: 1; }
+    .singer-name { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+    .song-title { font-size: 13px; color: var(--muted); }
+    .singer-notes { font-size: 12px; color: var(--gold); margin-top: 4px; font-style: italic; }
+
+    .card-actions { display: flex; gap: 6px; }
+
+    /* Catalogue Table */
+    .cat-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 12px 14px;
+      color: var(--muted);
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      display: inline-block;
+    }
+
+    .badge-duo {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--gold);
+    }
+
+    .cat-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 13px;
+      outline: none;
+    }
+    .cat-input:focus { border-color: var(--red-primary); }
+
+    /* Login Overlay */
+    .login-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg);
+      display: flex; justify-content: center; align-items: center;
+      z-index: 1000;
+    }
+    .login-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 32px; border-radius: 20px;
+      width: 100%; max-width: 380px; text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+    .login-input {
+      width: 100%; padding: 12px; border-radius: 10px;
+      border: 1px solid var(--border); background: rgba(255, 255, 255, 0.05);
+      color: white; margin: 16px 0; outline: none; text-align: center; font-size: 16px;
+    }
+    .login-input:focus { border-color: var(--red-primary); }
+
+    /* Modal Edit Song */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+      display: none; justify-content: center; align-items: center;
+      z-index: 2000; padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-card {
+      background: #141a29; border: 1px solid rgba(220, 53, 69, 0.3);
+      border-radius: 16px; padding: 24px; width: 100%; max-width: 480px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Modal -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <div style="font-size: 32px; margin-bottom: 8px;">🎛️</div>
+      <h2 style="font-family: 'Outfit', sans-serif; font-size: 20px; margin-bottom: 4px;">Régie Karaoké</h2>
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">La Fraternelle de Mareau-aux-Prés</p>
+      <input type="password" id="adminPassword" class="login-input" placeholder="Mot de passe régie">
+      <button class="btn-red-action" style="width: 100%; justify-content: center; padding: 12px;" onclick="doLogin()">Connexion au Direct</button>
+      <p id="loginError" style="color: var(--red-light); font-size: 13px; margin-top: 10px; display: none;"></p>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="title">
+      <span>🎛️ RÉGIE DIRECT</span>
+      <span class="badge-live">LIVE</span>
+      <span class="assoc-label">| La Fraternelle</span>
+    </div>
+    <div>
+      <a href="/" target="_blank" style="color: var(--red-light); text-decoration: none; font-size: 13px; font-weight: 600; margin-right: 16px;">📱 Vue Public ↗</a>
+      <button class="btn-secondary" onclick="logout()">Déconnexion</button>
+    </div>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="tabs-nav">
+    <button class="tab-btn active" id="btnTabQueue" onclick="switchTab('queueTab', this)">📋 File d'attente & Scène</button>
+    <button class="tab-btn" id="btnTabCat" onclick="switchTab('catalogueTab', this)">🎵 Gestion du Catalogue (<span id="catTotal">0</span>)</button>
+  </div>
+
+  <!-- TAB 1: QUEUE & SCENE -->
+  <div id="queueTab" class="tab-content active">
+    <div class="grid">
+      <!-- Queue Management -->
+      <div>
+        <!-- Now Playing -->
+        <div class="current-box" id="currentBox">
+          <div class="current-label">EN SCÈNE ACTUELLEMENT</div>
+          <div class="current-singer" id="curSinger">Aucun chanteur</div>
+          <div class="current-song" id="curSong">—</div>
+          <div class="current-details" id="curDetails">En attente du prochain participant</div>
+          <div class="actions-row" id="curActions" style="display: none;">
+            <button class="btn-green" onclick="finishCurrent()">✅ Chanson terminée</button>
+            <button class="btn-red" onclick="cancelCurrent()">Passer au suivant</button>
+          </div>
+        </div>
+
+        <!-- Waiting List -->
+        <div class="panel">
+          <div class="panel-title">
+            <span>📋 File d'attente (<span id="waitingCount">0</span>)</span>
+          </div>
+          <div class="queue-list" id="waitingList">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- History & Quick Add -->
+      <div>
+        <div class="panel" style="margin-bottom: 20px;">
+          <div class="panel-title">
+            <span>➕ Ajout rapide de chanson</span>
+          </div>
+          <form id="addSongForm" onsubmit="addSong(event)">
+            <input type="text" id="newArtist" class="cat-input" placeholder="Artiste" required style="margin-bottom: 8px;">
+            <input type="text" id="newTitle" class="cat-input" placeholder="Titre" required style="margin-bottom: 8px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+              <input type="number" id="newYear" class="cat-input" placeholder="Année (ex: 1993)" min="1900" max="2099">
+              <select id="newFormation" class="cat-input" style="background: #1a1e2e;">
+                <option value="Solo">Solo</option>
+                <option value="Duo">Duo</option>
+                <option value="Solo/Duo">Solo/Duo</option>
+              </select>
+              <select id="newLang" class="cat-input" style="background: #1a1e2e;">
+                <option value="Français">Français</option>
+                <option value="Anglais">Anglais</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-red-action" style="width: 100%; justify-content: center;">Ajouter au catalogue</button>
+          </form>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">
+            <span>📜 Historique des passages récents</span>
+          </div>
+          <div class="queue-list" id="historyList">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: CATALOGUE MANAGEMENT -->
+  <div id="catalogueTab" class="tab-content">
+    <div class="panel">
+      <div class="panel-title">
+        <span>📚 Contrôle & Modification du Catalogue</span>
+        <div style="display: flex; gap: 10px;">
+          <input type="text" id="catSearch" class="cat-input" placeholder="Filtrer artiste, titre, année..." style="width: 260px;" oninput="renderCatalogueTable()">
+        </div>
+      </div>
+
+      <div class="cat-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 50px;">ID</th>
+              <th>Artiste</th>
+              <th>Titre</th>
+              <th style="width: 90px;">Formation</th>
+              <th style="width: 80px;">Année</th>
+              <th style="width: 90px;">Langue</th>
+              <th style="width: 100px;">Dispo</th>
+              <th style="width: 140px; text-align: right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="catTableBody">
+            <!-- Injected via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Song Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal-card">
+      <h3 style="font-family: 'Outfit', sans-serif; font-size: 18px; margin-bottom: 16px;">✏️ Modifier la chanson</h3>
+      <form id="editForm" onsubmit="saveSongEdit(event)">
+        <input type="hidden" id="editId">
+        <div style="margin-bottom: 10px;">
+          <label style="font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px;">Artiste</label>
+          <input type="text" id="editArtist" class="cat-input" required>
+        </div>
+        <div style="margin-bottom: 10px;">
+          <label style="font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px;">Titre</label>
+          <input type="text" id="editTitle" class="cat-input" required>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+          <div>
+            <label style="font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px;">Formation</label>
+            <select id="editFormation" class="cat-input" style="background: #1a1e2e;">
+              <option value="Solo">Solo</option>
+              <option value="Duo">Duo</option>
+              <option value="Solo/Duo">Solo/Duo</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px;">Année</label>
+            <input type="number" id="editYear" class="cat-input" placeholder="Année" min="1900" max="2099">
+          </div>
+          <div>
+            <label style="font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px;">Langue</label>
+            <select id="editLanguage" class="cat-input" style="background: #1a1e2e;">
+              <option value="Français">Français</option>
+              <option value="Anglais">Anglais</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button type="button" class="btn-outline" onclick="closeEditModal()">Annuler</button>
+          <button type="submit" class="btn-red-action">Enregistrer les modifications</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let token = localStorage.getItem('karaoke_admin_token');
+    let currentItem = null;
+    let allAdminSongs = [];
+
+    if (token) {
+      document.getElementById('loginOverlay').style.display = 'none';
+      initAdmin();
+    }
+
+    function switchTab(tabId, el) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      el.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+
+      if (tabId === 'catalogueTab') {
+        loadAdminSongs();
+      }
+    }
+
+    async function doLogin() {
+      const password = document.getElementById('adminPassword').value;
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        token = data.token;
+        localStorage.setItem('karaoke_admin_token', token);
+        document.getElementById('loginOverlay').style.display = 'none';
+        initAdmin();
+      } else {
+        const err = document.getElementById('loginError');
+        err.innerText = 'Mot de passe invalide';
+        err.style.display = 'block';
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('karaoke_admin_token');
+      location.reload();
+    }
+
+    function initAdmin() {
+      loadAdminQueue();
+      loadAdminSongs();
+      setupWebSocket();
+    }
+
+    async function loadAdminQueue() {
+      try {
+        const res = await fetch('/api/admin/queue', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.status === 401) return logout();
+        const queue = await res.json();
+        renderAdminQueue(queue);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function loadAdminSongs() {
+      try {
+        const res = await fetch('/api/admin/songs', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.status === 401) return logout();
+        allAdminSongs = await res.json();
+        document.getElementById('catTotal').innerText = allAdminSongs.length;
+        renderCatalogueTable();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderAdminQueue(queue) {
+      const current = queue.find(q => q.status === 'current');
+      const waiting = queue.filter(q => q.status === 'waiting');
+      const history = queue.filter(q => ['done', 'cancelled'].includes(q.status)).slice(0, 8);
+
+      currentItem = current;
+
+      if (current) {
+        document.getElementById('curSinger').innerText = current.singer_name;
+        document.getElementById('curSong').innerText = `${current.title} • ${current.artist}`;
+        document.getElementById('curDetails').innerText = `${current.formation} | ${current.year || ''} | ${current.language} ${current.notes ? '— 💬 ' + current.notes : ''}`;
+        document.getElementById('curActions').style.display = 'flex';
+      } else {
+        document.getElementById('curSinger').innerText = waiting.length > 0 ? 'Scène disponible' : 'Aucun chanteur';
+        document.getElementById('curSong').innerText = waiting.length > 0 ? 'Cliquez sur "Faire monter" ci-dessous' : '—';
+        document.getElementById('curDetails').innerText = '';
+        document.getElementById('curActions').style.display = 'none';
+      }
+
+      document.getElementById('waitingCount').innerText = waiting.length;
+
+      const waitEl = document.getElementById('waitingList');
+      if (waiting.length === 0) {
+        waitEl.innerHTML = '<div style="color: var(--muted); text-align: center; padding: 20px;">Aucun chanteur en attente</div>';
+      } else {
+        waitEl.innerHTML = waiting.map((q, idx) => `
+          <div class="queue-card waiting">
+            <div class="singer-info">
+              <div class="singer-name">#${idx + 1} ${escapeHtml(q.singer_name)}</div>
+              <div class="song-title">${escapeHtml(q.title)} • ${escapeHtml(q.artist)} (${escapeHtml(q.formation)}${q.year ? ' • ' + q.year : ''})</div>
+              ${q.notes ? `<div class="singer-notes">💬 ${escapeHtml(q.notes)}</div>` : ''}
+            </div>
+            <div class="card-actions">
+              <button class="btn-red-action" onclick="setStatus(${q.id}, 'current')">🎤 Faire monter</button>
+              <button class="btn-red" onclick="deleteEntry(${q.id})">✕</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const histEl = document.getElementById('historyList');
+      if (history.length === 0) {
+        histEl.innerHTML = '<div style="color: var(--muted); text-align: center; padding: 15px;">Aucun passage pour l’instant</div>';
+      } else {
+        histEl.innerHTML = history.map(q => `
+          <div class="queue-card ${q.status}">
+            <div class="singer-info">
+              <div class="singer-name">${escapeHtml(q.singer_name)} <span style="font-size: 11px; font-weight: normal;">(${q.status === 'done' ? '✅ Passé' : '❌ Annulé'})</span></div>
+              <div class="song-title">${escapeHtml(q.title)} • ${escapeHtml(q.artist)}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function renderCatalogueTable() {
+      const q = (document.getElementById('catSearch')?.value || '').toLowerCase().trim();
+      const tbody = document.getElementById('catTableBody');
+      if (!tbody) return;
+
+      const filtered = allAdminSongs.filter(s => {
+        return s.artist.toLowerCase().includes(q) ||
+               s.title.toLowerCase().includes(q) ||
+               (s.year && s.year.toString().includes(q)) ||
+               s.formation.toLowerCase().includes(q);
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--muted); padding: 30px;">Aucune chanson trouvée.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(s => `
+        <tr style="${s.available ? '' : 'opacity: 0.5; background: rgba(0,0,0,0.2);'}">
+          <td style="color: var(--muted); font-size: 11px;">#${s.id}</td>
+          <td><strong>${escapeHtml(s.artist)}</strong></td>
+          <td>${escapeHtml(s.title)}</td>
+          <td><span class="badge-pill ${s.formation.includes('Duo') ? 'badge-duo' : ''}">${escapeHtml(s.formation)}</span></td>
+          <td>${s.year || '—'}</td>
+          <td>${s.language === 'Français' ? '🇫🇷 FR' : '🇬🇧 EN'}</td>
+          <td>
+            <button class="${s.available ? 'btn-green' : 'btn-outline'}" style="padding: 4px 8px; font-size: 11px;" onclick="toggleAvailability(${s.id})">
+              ${s.available ? 'Visible' : 'Masquée'}
+            </button>
+          </td>
+          <td style="text-align: right;">
+            <button class="btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="openEditSong(${s.id})">✏️ Éditer</button>
+            <button class="btn-red" style="padding: 5px 10px; font-size: 12px;" onclick="deleteSong(${s.id})">🗑️</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function openEditSong(id) {
+      const song = allAdminSongs.find(s => s.id === id);
+      if (!song) return;
+
+      document.getElementById('editId').value = song.id;
+      document.getElementById('editArtist').value = song.artist;
+      document.getElementById('editTitle').value = song.title;
+      document.getElementById('editFormation').value = song.formation || 'Solo';
+      document.getElementById('editYear').value = song.year || '';
+      document.getElementById('editLanguage').value = song.language || 'Français';
+
+      document.getElementById('editModal').classList.add('active');
+    }
+
+    function closeEditModal() {
+      document.getElementById('editModal').classList.remove('active');
+    }
+
+    async function saveSongEdit(e) {
+      e.preventDefault();
+      const id = document.getElementById('editId').value;
+      const artist = document.getElementById('editArtist').value;
+      const title = document.getElementById('editTitle').value;
+      const formation = document.getElementById('editFormation').value;
+      const year = document.getElementById('editYear').value;
+      const language = document.getElementById('editLanguage').value;
+
+      const res = await fetch(`/api/admin/songs/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ artist, title, formation, year, language })
+      });
+
+      if (res.ok) {
+        closeEditModal();
+        loadAdminSongs();
+      } else {
+        alert('Erreur lors de la mise à jour.');
+      }
+    }
+
+    async function toggleAvailability(id) {
+      await fetch(`/api/admin/songs/${id}/toggle`, {
+        method: 'PATCH',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      loadAdminSongs();
+    }
+
+    async function deleteSong(id) {
+      if (!confirm('Voulez-vous définitivement supprimer ce titre du catalogue ?')) return;
+      await fetch(`/api/admin/songs/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      loadAdminSongs();
+    }
+
+    async function setStatus(id, status) {
+      await fetch(`/api/admin/queue/${id}/status`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ status })
+      });
+      loadAdminQueue();
+    }
+
+    async function finishCurrent() {
+      if (currentItem) setStatus(currentItem.id, 'done');
+    }
+
+    async function cancelCurrent() {
+      if (currentItem) setStatus(currentItem.id, 'cancelled');
+    }
+
+    async function deleteEntry(id) {
+      if (!confirm('Supprimer cette inscription ?')) return;
+      await fetch(`/api/admin/queue/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      loadAdminQueue();
+    }
+
+    async function addSong(e) {
+      e.preventDefault();
+      const artist = document.getElementById('newArtist').value;
+      const title = document.getElementById('newTitle').value;
+      const year = document.getElementById('newYear').value;
+      const formation = document.getElementById('newFormation').value;
+      const language = document.getElementById('newLang').value;
+
+      const res = await fetch('/api/admin/songs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ artist, title, formation, year, language })
+      });
+
+      if (res.ok) {
+        alert('Chanson ajoutée avec succès !');
+        document.getElementById('addSongForm').reset();
+        loadAdminSongs();
+      }
+    }
+
+    function setupWebSocket() {
+      const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const ws = new WebSocket(`${protocol}//${location.host}`);
+      ws.onmessage = (event) => {
+        const msg = JSON.parse(event.data);
+        if (msg.type === 'QUEUE_UPDATED') {
+          loadAdminQueue();
+        } else if (msg.type === 'SONGS_UPDATED') {
+          loadAdminSongs();
+        }
+      };
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text.replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
+    }
+  </script>
+</body>
+</html>

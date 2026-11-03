@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎤 N'apprenez pas les paroles - Karaoké Live | La Fraternelle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(19, 26, 42, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --red-primary: #dc3545;
+      --red-dark: #b02a37;
+      --red-light: #ef4444;
+      --red-glow: rgba(220, 53, 69, 0.35);
+      --red-gradient: linear-gradient(135deg, #dc3545 0%, #991b1b 100%);
+      --gold: #f59e0b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(220, 53, 69, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(176, 42, 55, 0.15) 0%, transparent 45%);
+      background-attachment: fixed;
+      padding-bottom: 90px;
+    }
+
+    header {
+      padding: 22px 20px 18px;
+      text-align: center;
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 15, 25, 0.88);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .assoc-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--red-light);
+      background: rgba(220, 53, 69, 0.12);
+      border: 1px solid rgba(220, 53, 69, 0.25);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .brand-icon {
+      font-size: 30px;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-shadow: 0 0 20px var(--red-glow);
+    }
+
+    .brand-red {
+      color: var(--red-light);
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Live Queue Banner */
+    .queue-banner {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .queue-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .queue-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--red-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--red-light);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--red-light);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .now-playing {
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.15) 0%, rgba(153, 27, 27, 0.1) 100%);
+      border: 1px solid rgba(220, 53, 69, 0.4);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .now-badge {
+      background: var(--red-gradient);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 9px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px var(--red-glow);
+    }
+
+    .queue-chips {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .queue-chips::-webkit-scrollbar { display: none; }
+
+    .queue-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 12px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .queue-chip .pos {
+      color: var(--red-light);
+      font-weight: 800;
+    }
+
+    /* Search & Filters */
+    .search-box {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 14px 16px 14px 44px;
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--red-primary);
+      box-shadow: 0 0 16px var(--red-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 18px;
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .filter-tags::-webkit-scrollbar { display: none; }
+
+    .tag-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 7px 15px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .tag-btn.active {
+      background: var(--red-gradient);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 2px 10px var(--red-glow);
+    }
+
+    /* Song List */
+    .song-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .song-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .song-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(220, 53, 69, 0.4);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .song-card:active {
+      transform: scale(0.99);
+    }
+
+    .song-info {
+      flex: 1;
+      min-width: 0;
+      padding-right: 12px;
+    }
+
+    .song-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #ffffff;
+    }
+
+    .song-artist {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .song-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #b5bdd0;
+    }
+
+    .badge-duo {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .btn-choose {
+      background: var(--red-gradient);
+      border: none;
+      color: white;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px var(--red-glow);
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+
+    .btn-choose:hover {
+      background: linear-gradient(135deg, #ef4444 0%, #b02a37 100%);
+      transform: scale(1.02);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: #141a29;
+      border: 1px solid rgba(220, 53, 69, 0.3);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 440px;
+      padding: 26px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--red-glow);
+      animation: slideUp 0.25s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .modal-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .modal-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .modal-input:focus {
+      border-color: var(--red-primary);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: var(--text);
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      flex: 2;
+      background: var(--red-gradient);
+      border: none;
+      color: white;
+      padding: 12px;
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px var(--red-glow);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1a2234;
+      border: 1px solid var(--red-primary);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(220, 53, 69, 0.35);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="assoc-tag">
+      <span>🎺</span>
+      <span>La Fraternelle de Mareau-aux-Prés</span>
+    </div>
+    <div class="brand">
+      <span class="brand-icon">🎤</span>
+      <h1>N'APPRENEZ PAS <span class="brand-red">LES PAROLES</span></h1>
+    </div>
+    <p class="subtitle">Le Karaoké Live & Festif — Choisissez votre titre et montez sur scène !</p>
+  </header>
+
+  <div class="container">
+    
+    <!-- Live Queue Widget -->
+    <div class="queue-banner" id="queueBanner">
+      <div class="queue-header">
+        <div class="queue-title">
+          <span class="pulse-dot"></span>
+          Direct Régie / Scène
+        </div>
+        <span style="font-size: 12px; color: var(--text-muted);" id="queueCount">0 chanteurs</span>
+      </div>
+
+      <div id="nowPlayingContainer" style="display: none;">
+        <div class="now-playing">
+          <span class="now-badge">En Scène</span>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 16px;" id="currentSinger">Nom</div>
+            <div style="font-size: 13px; color: var(--text-muted);" id="currentSong">Titre - Artiste</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="queue-chips" id="waitingChips">
+        <span style="font-size: 13px; color: var(--text-muted);">Personne pour le moment, lancez-vous ! 🎉</span>
+      </div>
+    </div>
+
+    <!-- Search & Filters -->
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Rechercher par titre ou artiste...">
+    </div>
+
+    <div class="filter-tags">
+      <button class="tag-btn active" data-filter="all">Tous (<span id="totalCount">0</span>)</button>
+      <button class="tag-btn" data-filter="Français">🇫🇷 Français</button>
+      <button class="tag-btn" data-filter="Anglais">🇬🇧 Anglais</button>
+      <button class="tag-btn" data-filter="Duo">👥 Duos</button>
+      <button class="tag-btn" data-filter="Solo">👤 Solos</button>
+    </div>
+
+    <!-- Songs -->
+    <div class="song-list" id="songList">
+      <!-- Injected via JS -->
+    </div>
+
+  </div>
+
+  <footer>
+    <p>🎶 <strong>N'apprenez pas les paroles</strong> — Un projet musical animé par <strong>La Fraternelle de Mareau-aux-Prés</strong></p>
+    <p style="margin-top: 4px; opacity: 0.7;">École de musique & Orchestres • Depuis 1949</p>
+  </footer>
+
+  <!-- Registration Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h2 class="modal-title" id="modalTitle">Rejoindre la scène</h2>
+      <p class="modal-desc" id="modalSongDesc">Sélectionné : Titre - Artiste</p>
+      
+      <form id="signupForm">
+        <input type="hidden" id="selectedSongId">
+        
+        <div class="form-group">
+          <label for="singerName">Votre prénom ou nom de groupe *</label>
+          <input type="text" id="singerName" class="modal-input" required placeholder="ex: Timothée ou Les Chanteurs du Dimanche">
+        </div>
+
+        <div class="form-group">
+          <label for="singerNotes">Commentaire / Tonalité / Dédicace (optionnel)</label>
+          <input type="text" id="singerNotes" class="modal-input" placeholder="ex: En duo avec Sarah, tonalité originale...">
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeModal()">Annuler</button>
+          <button type="submit" class="btn-submit">Valider mon passage 🎤</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <span>🎸</span>
+    <span id="toastMsg">Votre inscription est enregistrée !</span>
+  </div>
+
+  <script>
+    let allSongs = [];
+    let currentFilter = 'all';
+
+    async function loadSongs() {
+      try {
+        const res = await fetch('/api/songs');
+        allSongs = await res.json();
+        document.getElementById('totalCount').innerText = allSongs.length;
+        renderSongs();
+      } catch (err) {
+        console.error('Erreur chargement chansons', err);
+      }
+    }
+
+    async function loadQueue() {
+      try {
+        const res = await fetch('/api/queue');
+        const queue = await res.json();
+        renderQueue(queue);
+      } catch (err) {
+        console.error('Erreur chargement file', err);
+      }
+    }
+
+    function renderQueue(queue) {
+      const current = queue.find(q => q.status === 'current');
+      const waiting = queue.filter(q => q.status === 'waiting');
+
+      const nowPlayingContainer = document.getElementById('nowPlayingContainer');
+      if (current) {
+        nowPlayingContainer.style.display = 'block';
+        document.getElementById('currentSinger').innerText = current.singer_name;
+        document.getElementById('currentSong').innerText = `${current.title} • ${current.artist}`;
+      } else {
+        nowPlayingContainer.style.display = 'none';
+      }
+
+      document.getElementById('queueCount').innerText = `${waiting.length + (current ? 1 : 0)} chanteur(s)`;
+
+      const chipsContainer = document.getElementById('waitingChips');
+      if (waiting.length === 0) {
+        chipsContainer.innerHTML = '<span style="font-size: 13px; color: var(--text-muted); padding: 4px 0;">File vide, soyez le premier sur scène ! 🎤</span>';
+      } else {
+        chipsContainer.innerHTML = waiting.map((item, idx) => `
+          <div class="queue-chip">
+            <span class="pos">#${idx + 1}</span>
+            <strong>${escapeHtml(item.singer_name)}</strong>
+            <span style="color: var(--text-muted);">(${escapeHtml(item.title)})</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    function renderSongs() {
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+      const list = document.getElementById('songList');
+
+      const filtered = allSongs.filter(song => {
+        const matchesSearch = song.title.toLowerCase().includes(search) || 
+                              song.artist.toLowerCase().includes(search);
+        
+        if (!matchesSearch) return false;
+
+        if (currentFilter === 'all') return true;
+        if (currentFilter === 'Français') return song.language === 'Français';
+        if (currentFilter === 'Anglais') return song.language === 'Anglais';
+        if (currentFilter === 'Duo') return (song.formation || '').includes('Duo');
+        if (currentFilter === 'Solo') return (song.formation || '').includes('Solo');
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        list.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--text-muted);">Aucune chanson trouvée pour "${escapeHtml(search)}"</div>`;
+        return;
+      }
+
+      list.innerHTML = filtered.map(song => `
+        <div class="song-card" onclick="openSignup(${song.id})">
+          <div class="song-info">
+            <div class="song-title">${escapeHtml(song.title)}</div>
+            <div class="song-artist">${escapeHtml(song.artist)}</div>
+            <div class="song-badges">
+              <span class="badge ${song.formation.includes('Duo') ? 'badge-duo' : ''}">${escapeHtml(song.formation)}</span>
+              ${song.year ? `<span class="badge">${song.year}</span>` : ''}
+              <span class="badge">${song.language === 'Français' ? '🇫🇷 FR' : '🇬🇧 EN'}</span>
+            </div>
+          </div>
+          <button class="btn-choose" onclick="event.stopPropagation(); openSignup(${song.id})">Chanter</button>
+        </div>
+      `).join('');
+    }
+
+    function openSignup(songId) {
+      const song = allSongs.find(s => s.id === songId);
+      if (!song) return;
+
+      document.getElementById('selectedSongId').value = song.id;
+      document.getElementById('modalSongDesc').innerText = `${song.title} — ${song.artist} (${song.formation})`;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.getElementById('singerName').focus();
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.getElementById('signupForm').reset();
+    }
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const songId = document.getElementById('selectedSongId').value;
+      const singerName = document.getElementById('singerName').value;
+      const notes = document.getElementById('singerNotes').value;
+
+      try {
+        const res = await fetch('/api/queue', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ song_id: songId, singer_name: singerName, notes })
+        });
+
+        if (!res.ok) {
+          const err = await res.json();
+          alert(err.error || 'Erreur lors de l’inscription');
+          return;
+        }
+
+        closeModal();
+        showToast(`Bravo ${singerName} ! Rendez-vous au micro !`);
+        loadQueue();
+      } catch (err) {
+        alert('Erreur réseau');
+      }
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text.replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
+    }
+
+    // Filter Buttons
+    document.querySelectorAll('.tag-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderSongs();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', renderSongs);
+
+    // WebSocket real-time updates
+    const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const ws = new WebSocket(`${protocol}//${location.host}`);
+    ws.onmessage = (event) => {
+      const msg = JSON.parse(event.data);
+      if (msg.type === 'QUEUE_UPDATED') {
+        loadQueue();
+      } else if (msg.type === 'SONGS_UPDATED') {
+        loadSongs();
+      }
+    };
+
+    loadSongs();
+    loadQueue();
+  </script>
+</body>
+</html>

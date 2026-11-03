@@ -1,0 +1,410 @@
+[
+  {
+    "artist": "4 Non Blondes",
+    "title": "What's up",
+    "formation": "Solo",
+    "year": 1993,
+    "language": "Anglais",
+    "id": 1
+  },
+  {
+    "artist": "Alain Souchon",
+    "title": "Foule sentimentale",
+    "formation": "Solo",
+    "year": 1993,
+    "language": "Français",
+    "id": 2
+  },
+  {
+    "artist": "Alizée",
+    "title": "Moi... Lolita",
+    "formation": "Solo",
+    "year": 2000,
+    "language": "Français",
+    "id": 3
+  },
+  {
+    "artist": "Axel Bauer & Zazie",
+    "title": "A ma place",
+    "formation": "Duo",
+    "year": 2001,
+    "language": "Français",
+    "id": 4
+  },
+  {
+    "artist": "Axelle Red & Renaud",
+    "title": "Manhattan Kaboul",
+    "formation": "Duo",
+    "year": 2002,
+    "language": "Français",
+    "id": 5
+  },
+  {
+    "artist": "BB Brunes",
+    "title": "Dis-moi",
+    "formation": "Solo",
+    "year": 2006,
+    "language": "Français",
+    "id": 6
+  },
+  {
+    "artist": "Bon Jovi",
+    "title": "Livin' on a prayer",
+    "formation": "Solo",
+    "year": 1986,
+    "language": "Anglais",
+    "id": 7
+  },
+  {
+    "artist": "Bruno Mars & Lady Gaga",
+    "title": "Die with a smile",
+    "formation": "Duo",
+    "year": 2024,
+    "language": "Anglais",
+    "id": 8
+  },
+  {
+    "artist": "Calogero & Passi",
+    "title": "Face à la mer",
+    "formation": "Duo",
+    "year": 2004,
+    "language": "Français",
+    "id": 9
+  },
+  {
+    "artist": "Clara Luciani",
+    "title": "La grenade",
+    "formation": "Solo",
+    "year": 2017,
+    "language": "Français",
+    "id": 10
+  },
+  {
+    "artist": "Céline & JJ Goldman",
+    "title": "J'irai ou tu iras",
+    "formation": "Duo",
+    "year": 1996,
+    "language": "Français",
+    "id": 11
+  },
+  {
+    "artist": "Céline Dion & Garou",
+    "title": "Sous le vent",
+    "formation": "Duo",
+    "year": 2001,
+    "language": "Français",
+    "id": 12
+  },
+  {
+    "artist": "Daniel Balavoine",
+    "title": "Le chanteur",
+    "formation": "Solo",
+    "year": 1978,
+    "language": "Français",
+    "id": 13
+  },
+  {
+    "artist": "Diam's",
+    "title": "La boulette",
+    "formation": "Solo",
+    "year": 2006,
+    "language": "Français",
+    "id": 14
+  },
+  {
+    "artist": "Disiz & Théodora",
+    "title": "melodrama",
+    "formation": "Duo",
+    "year": 2025,
+    "language": "Français",
+    "id": 15
+  },
+  {
+    "artist": "Eddy Mitchell",
+    "title": "Couleur menthe à l'eau",
+    "formation": "Solo",
+    "year": 1980,
+    "language": "Français",
+    "id": 16
+  },
+  {
+    "artist": "Elton John",
+    "title": "I'm still standing",
+    "formation": "Solo",
+    "year": 1983,
+    "language": "Anglais",
+    "id": 17
+  },
+  {
+    "artist": "France Gall",
+    "title": "Ella elle l'a",
+    "formation": "Solo",
+    "year": 1987,
+    "language": "Français",
+    "id": 18
+  },
+  {
+    "artist": "Gold",
+    "title": "Plus près des étoiles",
+    "formation": "Solo",
+    "year": 1985,
+    "language": "Français",
+    "id": 19
+  },
+  {
+    "artist": "Goldman",
+    "title": "Envole moi",
+    "formation": "Solo",
+    "year": 1984,
+    "language": "Français",
+    "id": 20
+  },
+  {
+    "artist": "Goldman",
+    "title": "Quand la musique est bonne",
+    "formation": "Solo",
+    "year": 1982,
+    "language": "Français",
+    "id": 21
+  },
+  {
+    "artist": "Il était une fois",
+    "title": "J'ai encore rêvé d'elle",
+    "formation": "Solo/Duo",
+    "year": 1975,
+    "language": "Français",
+    "id": 22
+  },
+  {
+    "artist": "Johnny",
+    "title": "L'Envie",
+    "formation": "Solo",
+    "year": 1988,
+    "language": "Français",
+    "id": 23
+  },
+  {
+    "artist": "K-Maro",
+    "title": "Femme like u",
+    "formation": "Solo/Duo",
+    "year": 2004,
+    "language": "Français",
+    "id": 24
+  },
+  {
+    "artist": "Kyo",
+    "title": "Dernière danse",
+    "formation": "Solo",
+    "year": 2003,
+    "language": "Français",
+    "id": 25
+  },
+  {
+    "artist": "Les Jones",
+    "title": "Burgers",
+    "formation": "Solo",
+    "year": 2022,
+    "language": "Anglais",
+    "id": 26
+  },
+  {
+    "artist": "Maxime le Forestier",
+    "title": "San Francisco",
+    "formation": "Solo",
+    "year": 1972,
+    "language": "Français",
+    "id": 27
+  },
+  {
+    "artist": "Mecano",
+    "title": "Une femme avec une femme",
+    "formation": "Solo",
+    "year": 1990,
+    "language": "Français",
+    "id": 28
+  },
+  {
+    "artist": "Michel Fugain",
+    "title": "Une belle histoire",
+    "formation": "Solo",
+    "year": 1972,
+    "language": "Français",
+    "id": 29
+  },
+  {
+    "artist": "Miley Cyrus",
+    "title": "Dream as One (Avatar: Fire & Ash)",
+    "formation": "Solo",
+    "year": 2025,
+    "language": "Anglais",
+    "id": 30
+  },
+  {
+    "artist": "Mylène Farmer",
+    "title": "Désenchantée",
+    "formation": "Solo",
+    "year": 1991,
+    "language": "Français",
+    "id": 31
+  },
+  {
+    "artist": "Natasha St-Pier",
+    "title": "Tu trouveras",
+    "formation": "Solo",
+    "year": 2002,
+    "language": "Français",
+    "id": 32
+  },
+  {
+    "artist": "Nino Ferrer",
+    "title": "Le Sud",
+    "formation": "Solo",
+    "year": 1975,
+    "language": "Français",
+    "id": 33
+  },
+  {
+    "artist": "Notre-Dame de Paris",
+    "title": "Le temps des cathédrales",
+    "formation": "Solo",
+    "year": 1998,
+    "language": "Français",
+    "id": 34
+  },
+  {
+    "artist": "Pascal Obispo",
+    "title": "Lucie",
+    "formation": "Solo",
+    "year": 1996,
+    "language": "Français",
+    "id": 35
+  },
+  {
+    "artist": "Pokémon",
+    "title": "Pokémon",
+    "formation": "Solo",
+    "year": 1998,
+    "language": "Français",
+    "id": 36
+  },
+  {
+    "artist": "Polnareff",
+    "title": "Lettre à France",
+    "formation": "Solo",
+    "year": 1978,
+    "language": "Français",
+    "id": 37
+  },
+  {
+    "artist": "RHCP",
+    "title": "Californication",
+    "formation": "Solo",
+    "year": 1999,
+    "language": "Anglais",
+    "id": 38
+  },
+  {
+    "artist": "Richard Cocciante",
+    "title": "Le coup de soleil",
+    "formation": "Solo",
+    "year": 1979,
+    "language": "Français",
+    "id": 39
+  },
+  {
+    "artist": "Scorpions",
+    "title": "Wind of change",
+    "formation": "Solo",
+    "year": 1990,
+    "language": "Anglais",
+    "id": 40
+  },
+  {
+    "artist": "Starmania",
+    "title": "Le blues du businessman",
+    "formation": "Solo",
+    "year": 1976,
+    "language": "Français",
+    "id": 41
+  },
+  {
+    "artist": "Superbus",
+    "title": "Lola",
+    "formation": "Solo",
+    "year": 2007,
+    "language": "Français",
+    "id": 42
+  },
+  {
+    "artist": "Supertramp",
+    "title": "Breakfast in America",
+    "formation": "Solo",
+    "year": 1979,
+    "language": "Anglais",
+    "id": 43
+  },
+  {
+    "artist": "The Beatles",
+    "title": "Here comes the sun",
+    "formation": "Solo",
+    "year": 1969,
+    "language": "Anglais",
+    "id": 44
+  },
+  {
+    "artist": "The Beatles",
+    "title": "Hey Jude",
+    "formation": "Solo",
+    "year": 1968,
+    "language": "Anglais",
+    "id": 45
+  },
+  {
+    "artist": "The Cranberries",
+    "title": "Zombie",
+    "formation": "Solo",
+    "year": 1993,
+    "language": "Anglais",
+    "id": 46
+  },
+  {
+    "artist": "The Police",
+    "title": "Roxanne",
+    "formation": "Solo",
+    "year": 1978,
+    "language": "Anglais",
+    "id": 47
+  },
+  {
+    "artist": "Tryo",
+    "title": "Désolé pour hier soir",
+    "formation": "Solo",
+    "year": 2003,
+    "language": "Français",
+    "id": 48
+  },
+  {
+    "artist": "Téléphone",
+    "title": "Cendrillon",
+    "formation": "Solo",
+    "year": 1982,
+    "language": "Français",
+    "id": 49
+  },
+  {
+    "artist": "Téléphone",
+    "title": "NY avec toi",
+    "formation": "Solo",
+    "year": 1984,
+    "language": "Français",
+    "id": 50
+  },
+  {
+    "artist": "Zazie",
+    "title": "Je suis un homme",
+    "formation": "Solo",
+    "year": 2007,
+    "language": "Français",
+    "id": 51
+  }
+]
