@@ -7,6 +7,8 @@ data/*.db
 data/*.db-journal
 data/*.db-wal
 data/*.db-shm
+data/backups/
+data/test_*
 *.log
 .env
 .DS_Store

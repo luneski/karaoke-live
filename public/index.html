@@ -200,6 +200,90 @@
       font-weight: 800;
     }
 
+    /* Suggestion Pill Button in Header */
+    .btn-suggest-pill {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .btn-suggest-pill:hover {
+      background: rgba(245, 158, 11, 0.25);
+      border-color: rgba(245, 158, 11, 0.6);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+    }
+
+    /* Session Paused / Concept Banner */
+    .session-paused-banner {
+      background: linear-gradient(135deg, rgba(20, 27, 45, 0.94) 0%, rgba(15, 23, 42, 0.98) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(245, 158, 11, 0.15);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.3s ease;
+    }
+    .session-paused-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 5px; height: 100%;
+      background: var(--gold);
+    }
+    .banner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .banner-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .banner-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #e2e8f0;
+      margin-bottom: 10px;
+    }
+    .banner-sub {
+      font-size: 13.5px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .btn-tile-sing.disabled, .btn-choose.disabled {
+      background: rgba(255, 255, 255, 0.08) !important;
+      color: var(--text-muted) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      box-shadow: none !important;
+      cursor: not-allowed !important;
+    }
+
     /* Search & Filters */
     .search-box {
       position: relative;
@@ -1074,9 +1158,27 @@
       <h1>N'APPRENEZ PAS <span class="brand-red">LES PAROLES</span></h1>
     </div>
     <p class="subtitle">Le Karaoké Live & Festif — Choisissez votre titre et montez sur scène !</p>
+    <div style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
+      <button type="button" class="btn-suggest-pill" onclick="openSuggestionModal()">
+        <span>💡</span> Suggérer un morceau
+      </button>
+    </div>
   </header>
 
   <div class="container">
+
+    <!-- Session Paused Banner (Displayed when registrations are closed) -->
+    <div id="sessionPausedBanner" class="session-paused-banner" style="display: none;">
+      <div class="banner-badge">⏸️ Inscriptions en pause</div>
+      <h2 class="banner-title">🎤 Le concept « N'apprenez pas les paroles »</h2>
+      <p class="banner-desc">
+        Un karaoké live festif et unique où un <strong>vrai groupe de musiciens joue en direct</strong> sur scène !
+        Pas besoin de connaître vos morceaux par cœur : lâchez prise, improvisez avec les musiciens, partagez le micro et mettez le feu à la salle.
+      </p>
+      <p class="banner-sub">
+        🎵 <strong>Le catalogue reste 100% accessible !</strong> Parcourez les titres ci-dessous, écoutez vos envies et révisez les paroles sur votre téléphone pour être prêt dès l'ouverture du micro !
+      </p>
+    </div>
     
     <!-- Live Queue Widget -->
     <div class="queue-banner" id="queueBanner">
@@ -1148,6 +1250,8 @@
       
       <form id="signupForm">
         <input type="hidden" id="selectedSongId">
+        <!-- Invisible Honeypot anti-spam -->
+        <input type="text" name="website_trap" id="websiteTrap" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" autocomplete="off">
         
         <div class="form-group">
           <label for="singerName">Votre prénom ou nom de groupe *</label>
@@ -1156,7 +1260,50 @@
 
         <div class="modal-actions">
           <button type="button" class="btn-cancel" onclick="closeModal()">Annuler</button>
-          <button type="submit" class="btn-submit">Valider mon passage 🎤</button>
+          <button type="submit" class="btn-submit" id="btnSubmitSignup">Valider mon passage 🎤</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Suggestion Modal -->
+  <div class="modal-overlay" id="suggestionModal" onclick="closeSuggestionModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h2 class="modal-title" style="margin-bottom: 0;">💡 Suggérer un morceau</h2>
+        <button type="button" class="btn-resizer" style="font-size: 16px;" onclick="closeSuggestionModal()">✕</button>
+      </div>
+      <p class="modal-desc" style="margin-bottom: 16px;">
+        Une chanson que vous rêvez de chanter avec le groupe ? Proposez-la ici !
+      </p>
+      
+      <form id="suggestionForm" onsubmit="handleSuggestionSubmit(event)">
+        <!-- Invisible Honeypot anti-spam -->
+        <input type="text" name="sug_website_trap" id="sugWebsiteTrap" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" autocomplete="off">
+        
+        <div class="form-group">
+          <label for="sugArtist">Artiste ou Groupe *</label>
+          <input type="text" id="sugArtist" class="modal-input" required placeholder="ex: Céline Dion, Téléphone, Queen...">
+        </div>
+
+        <div class="form-group">
+          <label for="sugTitle">Titre de la chanson *</label>
+          <input type="text" id="sugTitle" class="modal-input" required placeholder="ex: J'irai où tu iras">
+        </div>
+
+        <div class="form-group">
+          <label for="sugBy">Votre prénom (optionnel)</label>
+          <input type="text" id="sugBy" class="modal-input" placeholder="ex: Camille">
+        </div>
+
+        <div class="form-group">
+          <label for="sugNotes">Remarque ou lien d'écoute (optionnel)</label>
+          <input type="text" id="sugNotes" class="modal-input" placeholder="ex: Version live ou lien YouTube">
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeSuggestionModal()">Annuler</button>
+          <button type="submit" class="btn-submit" id="btnSubmitSuggestion">Envoyer l'idée 🎸</button>
         </div>
       </form>
     </div>
@@ -1202,6 +1349,27 @@
     let allSongs = [];
     let currentFilter = 'all';
     let currentViewMode = localStorage.getItem('karaoke_view_mode') || 'grid';
+    let registrationsOpen = true;
+    let modalOpenTime = 0;
+
+    async function loadSettings() {
+      try {
+        const res = await fetch('/api/settings');
+        if (res.ok) {
+          const data = await res.json();
+          registrationsOpen = data.registrations_open !== false;
+          const banner = document.getElementById('sessionPausedBanner');
+          if (banner) banner.style.display = registrationsOpen ? 'none' : 'block';
+          renderSongs();
+        }
+      } catch (err) {
+        console.error('Erreur chargement settings', err);
+      }
+    }
+
+    function showSessionPausedNotice() {
+      showToast('⏸️ Les inscriptions sont en pause. Préparez vos morceaux !');
+    }
 
     function setViewMode(mode) {
       currentViewMode = mode;
@@ -1348,8 +1516,8 @@
                 <button type="button" class="btn-tile-lyrics" onclick="event.stopPropagation(); openLyricsModal(${song.id})" title="Voir les paroles avant de chanter">
                   <span>📄</span> <span class="btn-lyrics-text">Paroles</span>
                 </button>
-                <button type="button" class="btn-tile-sing" onclick="event.stopPropagation(); openSignup(${song.id})">
-                  <span>🎤</span> Chanter
+                <button type="button" class="btn-tile-sing ${registrationsOpen ? '' : 'disabled'}" onclick="event.stopPropagation(); openSignup(${song.id})">
+                  <span>${registrationsOpen ? '🎤' : '⏸️'}</span> ${registrationsOpen ? 'Chanter' : 'En pause'}
                 </button>
               </div>
             </div>
@@ -1389,8 +1557,8 @@
                 <button type="button" class="btn-lyrics" onclick="event.stopPropagation(); openLyricsModal(${song.id})" title="Voir les paroles avant de chanter">
                   <span>📄</span> <span class="btn-text">Paroles</span>
                 </button>
-                <button type="button" class="btn-choose" onclick="event.stopPropagation(); openSignup(${song.id})">
-                  <span>🎤</span> Chanter
+                <button type="button" class="btn-choose ${registrationsOpen ? '' : 'disabled'}" onclick="event.stopPropagation(); openSignup(${song.id})">
+                  <span>${registrationsOpen ? '🎤' : '⏸️'}</span> ${registrationsOpen ? 'Chanter' : 'En pause'}
                 </button>
               </div>
             </div>
@@ -1400,10 +1568,26 @@
     }
 
     function openSignup(songId) {
+      if (!registrationsOpen) {
+        showSessionPausedNotice();
+        return;
+      }
+
+      // Check local cooldown anti-spam
+      const lastSignup = parseInt(localStorage.getItem('karaoke_last_signup') || '0', 10);
+      const elapsed = Date.now() - lastSignup;
+      if (elapsed < 60000) {
+        const remaining = Math.ceil((60000 - elapsed) / 1000);
+        showToast(`⏳ Merci de patienter encore ${remaining}s avant votre prochaine inscription.`);
+        return;
+      }
+
       const song = allSongs.find(s => s.id === songId);
       if (!song) return;
 
+      modalOpenTime = Date.now();
       document.getElementById('selectedSongId').value = song.id;
+      document.getElementById('websiteTrap').value = '';
       document.getElementById('modalSongDesc').innerText = `${song.title} — ${song.artist} (${song.formation})`;
       document.getElementById('modalOverlay').classList.add('active');
       document.getElementById('singerName').focus();
@@ -1417,13 +1601,25 @@
     document.getElementById('signupForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const songId = document.getElementById('selectedSongId').value;
-      const singerName = document.getElementById('singerName').value;
+      const singerName = document.getElementById('singerName').value.trim();
+      const websiteTrap = document.getElementById('websiteTrap').value;
+      const submitDelay = Date.now() - modalOpenTime;
+
+      const submitBtn = document.getElementById('btnSubmitSignup');
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Inscription en cours...';
 
       try {
         const res = await fetch('/api/queue', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ song_id: songId, singer_name: singerName, notes: '' })
+          body: JSON.stringify({
+            song_id: songId,
+            singer_name: singerName,
+            notes: '',
+            website_trap: websiteTrap,
+            submit_delay: submitDelay
+          })
         });
 
         if (!res.ok) {
@@ -1432,13 +1628,64 @@
           return;
         }
 
+        localStorage.setItem('karaoke_last_signup', Date.now());
         closeModal();
-        showToast(`Bravo ${singerName} ! Rendez-vous au micro !`);
+        showToast(`Bravo ${singerName} ! Rendez-vous au micro ! 🎉`);
         loadQueue();
       } catch (err) {
         alert('Erreur réseau');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Valider mon passage 🎤';
       }
     });
+
+    /* --- Suggestions Modal Logic --- */
+    function openSuggestionModal() {
+      document.getElementById('suggestionForm').reset();
+      document.getElementById('sugWebsiteTrap').value = '';
+      document.getElementById('suggestionModal').classList.add('active');
+      document.getElementById('sugArtist').focus();
+    }
+
+    function closeSuggestionModal(e) {
+      if (e && e.target !== document.getElementById('suggestionModal')) return;
+      document.getElementById('suggestionModal').classList.remove('active');
+    }
+
+    async function handleSuggestionSubmit(e) {
+      e.preventDefault();
+      const artist = document.getElementById('sugArtist').value.trim();
+      const title = document.getElementById('sugTitle').value.trim();
+      const suggested_by = document.getElementById('sugBy').value.trim();
+      const notes = document.getElementById('sugNotes').value.trim();
+      const website_trap = document.getElementById('sugWebsiteTrap').value;
+
+      const btn = document.getElementById('btnSubmitSuggestion');
+      btn.disabled = true;
+      btn.innerText = 'Envoi...';
+
+      try {
+        const res = await fetch('/api/suggestions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ artist, title, suggested_by, notes, website_trap })
+        });
+
+        if (res.ok) {
+          closeSuggestionModal();
+          showToast('🎉 Merci pour l\'idée ! La suggestion a été transmise au groupe.');
+        } else {
+          const err = await res.json();
+          alert(err.error || 'Erreur lors de la soumission de la suggestion');
+        }
+      } catch (err) {
+        alert('Erreur réseau');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Envoyer l\'idée 🎸';
+      }
+    }
 
     function showToast(msg) {
       const toast = document.getElementById('toast');
@@ -1586,10 +1833,13 @@
         loadQueue();
       } else if (msg.type === 'SONGS_UPDATED') {
         loadSongs();
+      } else if (msg.type === 'SETTINGS_UPDATED') {
+        loadSettings();
       }
     };
 
     updateViewToggleUI();
+    loadSettings();
     loadSongs();
     loadQueue();
   </script>

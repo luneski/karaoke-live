@@ -818,8 +818,9 @@
       <span>🎛️ RÉGIE DIRECT</span>
       <span class="badge-live">LIVE</span>
     </div>
-    <div>
-      <a href="/" target="_blank" style="color: var(--red-light); text-decoration: none; font-size: 13px; font-weight: 600; margin-right: 16px;">📱 Vue Public ↗</a>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="btnToggleRegistrations" class="btn-green" onclick="toggleRegistrations()" style="padding: 6px 14px; font-size: 13px; font-weight: 700;">🟢 Inscriptions Ouvertes</button>
+      <a href="/" target="_blank" style="color: var(--red-light); text-decoration: none; font-size: 13px; font-weight: 600;">📱 Vue Public ↗</a>
       <button class="btn-secondary" onclick="logout()">Déconnexion</button>
     </div>
   </div>
@@ -829,6 +830,7 @@
     <button class="tab-btn active" id="btnTabQueue" onclick="switchTab('queueTab', this)">📋 File d'attente & Scène</button>
     <button class="tab-btn" id="btnTabCat" onclick="switchTab('catalogueTab', this)">🎵 Gestion du Catalogue (<span id="catTotal">0</span>)</button>
     <button class="tab-btn" id="btnTabIndexer" onclick="switchTab('indexerTab', this)"><span>🔍</span> Indexeur & Import</button>
+    <button class="tab-btn" id="btnTabSuggestions" onclick="switchTab('suggestionsTab', this)"><span>💡</span> Suggestions (<span id="sugTotal">0</span>)</button>
   </div>
 
   <!-- TAB 1: QUEUE & SCENE -->
@@ -901,9 +903,11 @@
     <div class="panel">
       <div class="panel-title">
         <span>📚 Contrôle & Modification du Catalogue</span>
-        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-          <input type="text" id="catSearch" class="cat-input" placeholder="Filtrer artiste, titre, année..." style="width: 240px;" oninput="renderCatalogueTable()">
-          <button class="btn-outline" id="btnBackfillCovers" onclick="triggerBackfillCovers()"><span>⚡</span> Enrichir les pochettes</button>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <input type="text" id="catSearch" class="cat-input" placeholder="Filtrer artiste, titre, année..." style="width: 200px;" oninput="renderCatalogueTable()">
+          <button class="btn-outline" id="btnBackfillCovers" onclick="triggerBackfillCovers()"><span>⚡</span> Enrichir</button>
+          <button class="btn-outline" onclick="exportCatalogue()" title="Télécharger une sauvegarde JSON complète du catalogue"><span>📥</span> Backup JSON</button>
+          <button class="btn-outline" onclick="openRestoreModal()" title="Restaurer ou fusionner le catalogue depuis un fichier JSON"><span>📤</span> Restaurer</button>
         </div>
       </div>
 
@@ -993,6 +997,38 @@
 
       <div class="bento-grid" id="indexerGrid" style="display: none;">
         <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: SUGGESTIONS MANAGEMENT -->
+  <div id="suggestionsTab" class="tab-content">
+    <div class="panel">
+      <div class="panel-title">
+        <span>💡 Boîte à Suggestions du Public (<span id="sugCountHeader">0</span>)</span>
+        <button class="btn-outline" onclick="loadSuggestions()">🔄 Actualiser</button>
+      </div>
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
+        Morceaux proposés par le public depuis leur smartphone. Vous pouvez rechercher directement un titre dans l'indexeur pour l'intégrer au catalogue en 1 clic.
+      </p>
+
+      <div class="cat-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 25%;">Artiste suggéré</th>
+              <th style="width: 25%;">Titre</th>
+              <th style="width: 15%;">Proposé par</th>
+              <th style="width: 15%;">Remarque / Lien</th>
+              <th style="width: 10%;">Date</th>
+              <th style="width: 10%;">Statut</th>
+              <th style="width: 180px; text-align: right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="suggestionsTableBody">
+            <!-- Injected via JS -->
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -1120,6 +1156,45 @@
     </div>
   </div>
 
+  <!-- Restore Catalogue Modal -->
+  <div class="modal-overlay" id="restoreModal" onclick="closeRestoreModal(event)">
+    <div class="modal-card" style="max-width: 560px;" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 19px; color: #fff;">📤 Restaurer le Catalogue</h3>
+        <button type="button" class="btn-outline" style="padding: 4px 10px;" onclick="closeRestoreModal()">✕</button>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label style="font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px;">Fichier JSON de sauvegarde :</label>
+        <input type="file" id="restoreFileInput" accept=".json,application/json" class="cat-input" onchange="handleRestoreFileSelected(event)">
+      </div>
+
+      <div id="restorePreview" style="display: none; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 13px;">
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="font-size: 13px; color: var(--muted); display: block; margin-bottom: 8px;">Mode de restauration :</label>
+        <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; margin-bottom: 10px; cursor: pointer;">
+          <input type="radio" name="restoreMode" value="merge" checked style="margin-top: 3px;">
+          <div>
+            <strong>Fusionner (Merge)</strong> — Ajoute les chansons manquantes et met à jour les existantes sans rien supprimer. <em style="color: var(--gold);">(Recommandé)</em>
+          </div>
+        </label>
+        <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; cursor: pointer;">
+          <input type="radio" name="restoreMode" value="replace" style="margin-top: 3px;">
+          <div>
+            <strong>Remplacement complet (Replace)</strong> — Réinitialise le catalogue avec exactement le contenu de la sauvegarde.
+          </div>
+        </label>
+      </div>
+
+      <div style="display: flex; gap: 10px; justify-content: flex-end;">
+        <button type="button" class="btn-outline" onclick="closeRestoreModal()">Annuler</button>
+        <button type="button" class="btn-red-action" id="btnConfirmRestore" onclick="submitCatalogueRestore()" disabled>Lancer la restauration</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Admin Toast Notification -->
   <div class="admin-toast" id="adminToast">
     <span id="adminToastIcon">🎸</span>
@@ -1152,6 +1227,8 @@
       } else if (tabId === 'indexerTab') {
         const qInput = document.getElementById('indexerQuery');
         if (qInput) qInput.focus();
+      } else if (tabId === 'suggestionsTab') {
+        loadSuggestions();
       }
     }
 
@@ -1181,8 +1258,10 @@
     }
 
     function initAdmin() {
+      loadSettings();
       loadAdminQueue();
       loadAdminSongs();
+      loadSuggestions();
       setupWebSocket();
     }
 
@@ -1268,14 +1347,29 @@
       if (history.length === 0) {
         histEl.innerHTML = '<div style="color: var(--muted); text-align: center; padding: 15px;">Aucun passage pour l’instant</div>';
       } else {
-        histEl.innerHTML = history.map(q => `
-          <div class="queue-card ${q.status}">
-            <div class="singer-info">
-              <div class="singer-name">${escapeHtml(q.singer_name)} <span style="font-size: 11px; font-weight: normal;">(${q.status === 'done' ? '✅ Passé' : '❌ Annulé'})</span></div>
-              <div class="song-title">${escapeHtml(q.title)} • ${escapeHtml(q.artist)}</div>
+        histEl.innerHTML = history.map(q => {
+          let timeBadge = '';
+          const timeVal = q.passed_at || q.created_at;
+          if (timeVal) {
+            try {
+              const d = new Date(timeVal.endsWith('Z') ? timeVal : timeVal.replace(' ', 'T') + 'Z');
+              const hh = String(d.getHours()).padStart(2, '0');
+              const mm = String(d.getMinutes()).padStart(2, '0');
+              timeBadge = `<span style="font-size: 11px; color: var(--gold); background: rgba(245, 158, 11, 0.12); padding: 2px 7px; border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.25);">🕒 ${hh}h${mm}</span>`;
+            } catch (err) {}
+          }
+          return `
+            <div class="queue-card ${q.status}">
+              <div class="singer-info">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                  <div class="singer-name">${escapeHtml(q.singer_name)} <span style="font-size: 11px; font-weight: normal;">(${q.status === 'done' ? '✅ Passé' : '❌ Annulé'})</span></div>
+                  ${timeBadge}
+                </div>
+                <div class="song-title">${escapeHtml(q.title)} • ${escapeHtml(q.artist)}</div>
+              </div>
             </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
       }
     }
 
@@ -1729,6 +1823,12 @@
           loadAdminQueue();
         } else if (msg.type === 'SONGS_UPDATED') {
           loadAdminSongs();
+        } else if (msg.type === 'SETTINGS_UPDATED') {
+          const isOpen = msg.data ? msg.data.registrations_open : (msg.settings ? msg.settings.registrations_open : msg.registrations_open);
+          updateRegistrationsUi(isOpen);
+        } else if (msg.type === 'SUGGESTION_ADDED') {
+          loadSuggestions();
+          showAdminToast(`💡 Nouvelle suggestion reçue : ${msg.data ? msg.data.title : ''}`);
         }
       };
     }
@@ -2198,6 +2298,290 @@
     function quickSearch(query) {
       document.getElementById('indexerQuery').value = query;
       handleIndexerSearch();
+    }
+
+    /* ----------------- Settings / Registrations Toggle ----------------- */
+    let registrationsOpen = true;
+
+    async function loadSettings() {
+      try {
+        const res = await fetch('/api/settings');
+        if (res.ok) {
+          const data = await res.json();
+          registrationsOpen = data.registrations_open !== false;
+          updateRegistrationsUi(registrationsOpen);
+        }
+      } catch (err) {
+        console.error('Failed to load settings:', err);
+      }
+    }
+
+    function updateRegistrationsUi(isOpen) {
+      registrationsOpen = !!isOpen;
+      const btn = document.getElementById('btnToggleRegistrations');
+      if (!btn) return;
+      if (registrationsOpen) {
+        btn.className = 'btn-green';
+        btn.innerText = '🟢 Inscriptions Ouvertes';
+        btn.title = 'Cliquez pour mettre en pause les inscriptions du public';
+      } else {
+        btn.className = 'btn-red';
+        btn.innerText = '🔴 Inscriptions Fermées';
+        btn.title = 'Cliquez pour rouvrir les inscriptions du public';
+      }
+    }
+
+    async function toggleRegistrations() {
+      const targetState = !registrationsOpen;
+      try {
+        const res = await fetch('/api/admin/settings', {
+          method: 'PATCH',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ registrations_open: targetState })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          updateRegistrationsUi(data.settings.registrations_open);
+          showAdminToast(data.settings.registrations_open ? '🟢 Inscriptions réouvertes au public !' : '🔴 Inscriptions mises en pause pour le public.');
+        } else {
+          showAdminToast('Erreur lors de la mise à jour des inscriptions.', true);
+        }
+      } catch (err) {
+        console.error(err);
+        showAdminToast('Erreur de connexion régie.', true);
+      }
+    }
+
+    /* ----------------- Suggestions Management ----------------- */
+    let allAdminSuggestions = [];
+
+    async function loadSuggestions() {
+      try {
+        const res = await fetch('/api/admin/suggestions', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.status === 401) return logout();
+        if (res.ok) {
+          allAdminSuggestions = await res.json();
+          const pendingCount = allAdminSuggestions.filter(s => s.status === 'pending').length;
+          document.getElementById('sugTotal').innerText = pendingCount;
+          document.getElementById('sugCountHeader').innerText = allAdminSuggestions.length;
+          renderSuggestionsTable();
+        }
+      } catch (err) {
+        console.error('Failed to load suggestions:', err);
+      }
+    }
+
+    function renderSuggestionsTable() {
+      const tbody = document.getElementById('suggestionsTableBody');
+      if (!tbody) return;
+
+      if (allAdminSuggestions.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--muted); padding: 30px;">Aucune suggestion de titre reçue pour le moment.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = allAdminSuggestions.map(s => {
+        let dateStr = '';
+        if (s.created_at) {
+          try {
+            const d = new Date(s.created_at.endsWith('Z') ? s.created_at : s.created_at.replace(' ', 'T') + 'Z');
+            dateStr = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')} ${String(d.getHours()).padStart(2, '0')}h${String(d.getMinutes()).padStart(2, '0')}`;
+          } catch(e) {}
+        }
+
+        const statusBadge = s.status === 'accepted'
+          ? '<span class="badge-pill" style="background: rgba(16, 185, 129, 0.15); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3);">✅ Retenu</span>'
+          : (s.status === 'dismissed'
+            ? '<span class="badge-pill" style="background: rgba(255, 255, 255, 0.05); color: var(--muted);">Archivé</span>'
+            : '<span class="badge-pill" style="background: rgba(245, 158, 11, 0.15); color: var(--gold); border: 1px solid rgba(245, 158, 11, 0.3);">En attente</span>');
+
+        return `
+          <tr>
+            <td style="font-weight: 700;">${escapeHtml(s.artist)}</td>
+            <td><strong style="color: #fff;">${escapeHtml(s.title)}</strong></td>
+            <td>${escapeHtml(s.suggested_by || 'Anonyme')}</td>
+            <td style="font-size: 12px; color: var(--muted);">${escapeHtml(s.notes || '—')}</td>
+            <td style="font-size: 11.5px; color: var(--muted);">${dateStr}</td>
+            <td>${statusBadge}</td>
+            <td style="text-align: right; white-space: nowrap;">
+              <button class="btn-outline" style="padding: 4px 8px; font-size: 11px; margin-right: 4px;" onclick="searchSuggestionInIndexer('${escapeHtml(s.artist).replace(/'/g, "\\'")}', '${escapeHtml(s.title).replace(/'/g, "\\'")}')" title="Rechercher dans l'indexeur">🔍 Indexer</button>
+              ${s.status !== 'accepted' ? `<button class="btn-green" style="padding: 4px 8px; font-size: 11px; margin-right: 4px;" onclick="updateSuggestionStatus(${s.id}, 'accepted')" title="Valider">✓</button>` : ''}
+              <button class="btn-red" style="padding: 4px 8px; font-size: 11px;" onclick="deleteSuggestion(${s.id})" title="Supprimer">🗑️</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function searchSuggestionInIndexer(artist, title) {
+      const indexerBtn = document.getElementById('btnTabIndexer');
+      switchTab('indexerTab', indexerBtn);
+      const qInput = document.getElementById('indexerQuery');
+      qInput.value = `${artist} ${title}`;
+      handleIndexerSearch();
+    }
+
+    async function updateSuggestionStatus(id, status) {
+      try {
+        const res = await fetch(`/api/admin/suggestions/${id}`, {
+          method: 'PATCH',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ status })
+        });
+        if (res.ok) {
+          loadSuggestions();
+          showAdminToast('Statut de la suggestion mis à jour.');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function deleteSuggestion(id) {
+      if (!confirm('Supprimer cette suggestion ?')) return;
+      try {
+        const res = await fetch(`/api/admin/suggestions/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+          loadSuggestions();
+          showAdminToast('Suggestion supprimée.');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    /* ----------------- Catalogue Backup & Restore ----------------- */
+    function exportCatalogue() {
+      showAdminToast('Préparation de la sauvegarde JSON...');
+      fetch('/api/admin/catalogue/export', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Échec du téléchargement');
+        return res.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        const now = new Date();
+        const dateStr = now.toISOString().slice(0, 10);
+        a.download = `karaoke-catalogue-${dateStr}.json`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        showAdminToast('📥 Sauvegarde téléchargée avec succès !');
+      })
+      .catch(err => {
+        console.error(err);
+        showAdminToast('Erreur lors de l’export de sauvegarde.', true);
+      });
+    }
+
+    let parsedRestoreData = null;
+
+    function openRestoreModal() {
+      document.getElementById('restoreFileInput').value = '';
+      document.getElementById('restorePreview').style.display = 'none';
+      document.getElementById('btnConfirmRestore').disabled = true;
+      parsedRestoreData = null;
+      document.getElementById('restoreModal').classList.add('active');
+    }
+
+    function closeRestoreModal(e) {
+      if (e && e.target !== document.getElementById('restoreModal')) return;
+      document.getElementById('restoreModal').classList.remove('active');
+      parsedRestoreData = null;
+    }
+
+    function handleRestoreFileSelected(event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById('restorePreview');
+      const confirmBtn = document.getElementById('btnConfirmRestore');
+
+      if (!file) {
+        preview.style.display = 'none';
+        confirmBtn.disabled = true;
+        parsedRestoreData = null;
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const json = JSON.parse(e.target.result);
+          if (!Array.isArray(json)) throw new Error('Le fichier doit contenir une liste de chansons JSON.');
+          parsedRestoreData = json;
+          preview.style.display = 'block';
+          preview.innerHTML = `
+            <div style="color: var(--green); font-weight: 700; margin-bottom: 4px;">✓ Fichier JSON valide</div>
+            <div><strong>${json.length} chanson(s)</strong> prêtes à être importées.</div>
+            <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Exemple : "${json[0]?.artist || 'Inconnu'}" — "${json[0]?.title || 'Inconnu'}"</div>
+          `;
+          confirmBtn.disabled = false;
+        } catch (err) {
+          preview.style.display = 'block';
+          preview.innerHTML = `<div style="color: var(--red-light);">❌ Fichier invalide : ${err.message}</div>`;
+          confirmBtn.disabled = true;
+          parsedRestoreData = null;
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    async function submitCatalogueRestore() {
+      if (!parsedRestoreData || !Array.isArray(parsedRestoreData)) return;
+
+      const mode = document.querySelector('input[name="restoreMode"]:checked')?.value || 'merge';
+      const count = parsedRestoreData.length;
+      
+      const confirmMsg = mode === 'replace'
+        ? `⚠️ ATTENTION : Vous êtes sur le point de RÉINITIALISER le catalogue avec ${count} chanson(s). Voulez-vous continuer ?`
+        : `Confirmez-vous la fusion de ${count} chanson(s) dans le catalogue actuel ?`;
+
+      if (!confirm(confirmMsg)) return;
+
+      const btn = document.getElementById('btnConfirmRestore');
+      btn.disabled = true;
+      btn.innerText = 'Restauration en cours...';
+
+      try {
+        const res = await fetch('/api/admin/catalogue/restore', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ mode, songs: parsedRestoreData })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          closeRestoreModal();
+          showAdminToast(`✅ Restauration réussie : ${data.count} chansons au catalogue !`);
+          loadAdminSongs();
+        } else {
+          throw new Error(data.error || 'Erreur lors de la restauration');
+        }
+      } catch (err) {
+        console.error(err);
+        showAdminToast(err.message, true);
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Lancer la restauration';
+      }
     }
   </script>
 </body>

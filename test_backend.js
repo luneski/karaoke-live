@@ -326,7 +326,168 @@ async function runEndpointsTest() {
   assert(patchBody.song.year === patchPayload.year, 'Year updated');
   console.log('✓ PATCH /api/admin/songs/:id/cover verified.');
 
-  // 5.11 Cleanup test song
+  // 5.12 Test Settings & Session Toggle
+  const initialSettingsRes = await fetch(`${baseUrl}/api/settings`);
+  assert(initialSettingsRes.status === 200, 'GET /api/settings should return 200');
+  const initialSettings = await initialSettingsRes.json();
+  assert(initialSettings.registrations_open === true, 'Registrations should be open initially');
+
+  const patchSettingsRes = await fetch(`${baseUrl}/api/admin/settings`, {
+    method: 'PATCH',
+    headers: { Authorization: 'Bearer karaoke2026', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ registrations_open: false })
+  });
+  assert(patchSettingsRes.status === 200, 'PATCH /api/admin/settings should return 200');
+  const patchedSettings = await patchSettingsRes.json();
+  assert(patchedSettings.settings.registrations_open === false, 'Registrations should now be closed');
+
+  // Verify that POST /api/queue returns 403 when registrations are closed
+  const closedSignup = await fetch(`${baseUrl}/api/queue`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ song_id: 1, singer_name: 'Test Singer' })
+  });
+  assert(closedSignup.status === 403, 'Queue signup must return 403 when session is closed');
+
+  // Re-open registrations
+  await fetch(`${baseUrl}/api/admin/settings`, {
+    method: 'PATCH',
+    headers: { Authorization: 'Bearer karaoke2026', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ registrations_open: true })
+  });
+  console.log('✓ Settings API & session close protection verified.');
+
+  // 5.13 Test Anti-Spam: Honeypot & Queue Throttling
+  // Honeypot trap
+  const honeypotRes = await fetch(`${baseUrl}/api/queue`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ song_id: 1, singer_name: 'Bot Singer', website_trap: 'http://spam.com' })
+  });
+  assert(honeypotRes.status === 400, 'Honeypot filled must return 400');
+
+  // Normal signup 1
+  const s1 = await fetch(`${baseUrl}/api/queue`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ song_id: 1, singer_name: 'Alice Wonder' })
+  });
+  assert(s1.status === 201, 'First signup should succeed');
+  const qItem1 = await s1.json();
+
+  // Normal signup 2
+  const s2 = await fetch(`${baseUrl}/api/queue`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ song_id: 1, singer_name: 'Alice Wonder' })
+  });
+  assert(s2.status === 201, 'Second signup should succeed');
+
+  // Throttled signup 3 for same singer (limit 2)
+  const s3 = await fetch(`${baseUrl}/api/queue`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ song_id: 1, singer_name: 'Alice Wonder' })
+  });
+  assert(s3.status === 400, 'Third signup for same singer must return 400 (throttled)');
+  console.log('✓ Anti-spam honeypot and queue throttling verified.');
+
+  // 5.14 Test Queue status and passed_at timestamp
+  const markCurrent = await fetch(`${baseUrl}/api/admin/queue/${qItem1.id}/status`, {
+    method: 'PATCH',
+    headers: { Authorization: 'Bearer karaoke2026', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: 'done' })
+  });
+  assert(markCurrent.status === 200, 'Mark done should return 200');
+
+  const adminQueueRes = await fetch(`${baseUrl}/api/admin/queue`, {
+    headers: { Authorization: 'Bearer karaoke2026' }
+  });
+  const adminQueue = await adminQueueRes.json();
+  const doneItem = adminQueue.find(q => q.id === qItem1.id);
+  assert(doneItem && doneItem.status === 'done', 'Item should be marked done');
+  assert(doneItem.passed_at !== null && doneItem.passed_at !== undefined, 'passed_at must be populated');
+  console.log('✓ Queue status passed_at timestamp verified.');
+
+  // 5.15 Test Suggestions API
+  const sugRes = await fetch(`${baseUrl}/api/suggestions`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      artist: 'Daft Punk',
+      title: 'Get Lucky',
+      suggested_by: 'Public Fan',
+      notes: 'Avec solo de basse svp !'
+    })
+  });
+  assert(sugRes.status === 201, 'POST /api/suggestions should return 201');
+
+  const adminSugRes = await fetch(`${baseUrl}/api/admin/suggestions`, {
+    headers: { Authorization: 'Bearer karaoke2026' }
+  });
+  assert(adminSugRes.status === 200, 'GET /api/admin/suggestions should return 200');
+  const sugs = await adminSugRes.json();
+  const createdSug = sugs.find(s => s.artist === 'Daft Punk');
+  assert(createdSug, 'Created suggestion must exist');
+
+  const patchSugRes = await fetch(`${baseUrl}/api/admin/suggestions/${createdSug.id}`, {
+    method: 'PATCH',
+    headers: { Authorization: 'Bearer karaoke2026', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: 'accepted' })
+  });
+  assert(patchSugRes.status === 200, 'PATCH suggestion status should return 200');
+
+  const delSugRes = await fetch(`${baseUrl}/api/admin/suggestions/${createdSug.id}`, {
+    method: 'DELETE',
+    headers: { Authorization: 'Bearer karaoke2026' }
+  });
+  assert(delSugRes.status === 200, 'DELETE suggestion should return 200');
+  console.log('✓ Suggestions API (public submission, admin list, patch, delete) verified.');
+
+  // 5.16 Test Catalogue Backup (Export) & Restore
+  const exportRes = await fetch(`${baseUrl}/api/admin/catalogue/export`, {
+    headers: { Authorization: 'Bearer karaoke2026' }
+  });
+  assert(exportRes.status === 200, 'GET /api/admin/catalogue/export should return 200');
+  const exportedSongs = await exportRes.json();
+  assert(Array.isArray(exportedSongs) && exportedSongs.length > 0, 'Exported catalogue must be non-empty array');
+
+  // Test restore in merge mode with a new song
+  const newSongToMerge = {
+    artist: 'Coldplay',
+    title: 'Yellow',
+    formation: 'Solo',
+    year: 2000,
+    language: 'Anglais',
+    album: 'Parachutes'
+  };
+  const restoreMergeRes = await fetch(`${baseUrl}/api/admin/catalogue/restore`, {
+    method: 'POST',
+    headers: { Authorization: 'Bearer karaoke2026', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ mode: 'merge', songs: [newSongToMerge] })
+  });
+  assert(restoreMergeRes.status === 200, 'Restore merge should return 200');
+  const restoreMergeData = await restoreMergeRes.json();
+  assert(restoreMergeData.success === true, 'Restore merge success true');
+
+  const verifyMerge = db.prepare('SELECT * FROM songs WHERE artist = ?').get('Coldplay');
+  assert(verifyMerge && verifyMerge.title === 'Yellow', 'Merged song must be in DB');
+
+  // Test restore in replace mode using exportedSongs
+  const restoreReplaceRes = await fetch(`${baseUrl}/api/admin/catalogue/restore`, {
+    method: 'POST',
+    headers: { Authorization: 'Bearer karaoke2026', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ mode: 'replace', songs: exportedSongs })
+  });
+  if (restoreReplaceRes.status !== 200) {
+    console.error('restoreReplaceRes status:', restoreReplaceRes.status, await restoreReplaceRes.text());
+  }
+  assert(restoreReplaceRes.status === 200, 'Restore replace should return 200');
+  const afterReplace = db.prepare('SELECT * FROM songs WHERE artist = ?').get('Coldplay');
+  assert(!afterReplace, 'Song not in replace backup must be purged');
+  console.log('✓ Catalogue Export & Restore (Merge and Replace modes) verified.');
+
+  // 5.17 Cleanup test song
   const delRes = await fetch(`${baseUrl}/api/admin/songs/${createdSong.id}`, {
     method: 'DELETE',
     headers: { Authorization: 'Bearer karaoke2026' }

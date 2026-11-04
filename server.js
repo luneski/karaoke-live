@@ -46,9 +46,56 @@ db.exec(`
     status TEXT DEFAULT 'waiting', -- waiting, current, done, cancelled
     position INTEGER DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    passed_at DATETIME,
     FOREIGN KEY(song_id) REFERENCES songs(id)
   );
+
+  CREATE TABLE IF NOT EXISTS settings (
+    key TEXT PRIMARY KEY,
+    value TEXT
+  );
+
+  CREATE TABLE IF NOT EXISTS suggestions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    artist TEXT NOT NULL,
+    title TEXT NOT NULL,
+    suggested_by TEXT DEFAULT '',
+    notes TEXT DEFAULT '',
+    status TEXT DEFAULT 'pending', -- pending, accepted, dismissed
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
 `);
+
+// Default settings
+db.prepare("INSERT OR IGNORE INTO settings (key, value) VALUES ('registrations_open', '1')").run();
+
+// Settings helpers
+function getSetting(key, defaultValue = null) {
+  const row = db.prepare('SELECT value FROM settings WHERE key = ?').get(key);
+  return row ? row.value : defaultValue;
+}
+
+function setSetting(key, value) {
+  db.prepare('INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value').run(key, String(value));
+}
+
+// Backup directory
+const BACKUP_DIR = path.join(path.dirname(DB_PATH), 'backups');
+fs.mkdirSync(BACKUP_DIR, { recursive: true });
+
+// Lightweight in-memory rate limiter per IP
+const ipRateLimitMap = new Map();
+function checkIpRateLimit(ip, maxRequests = 3, windowMs = 120000) {
+  const now = Date.now();
+  let timestamps = ipRateLimitMap.get(ip) || [];
+  timestamps = timestamps.filter(t => now - t < windowMs);
+  if (timestamps.length >= maxRequests) {
+    return false;
+  }
+  timestamps.push(now);
+  ipRateLimitMap.set(ip, timestamps);
+  return true;
+}
 
 // ----------------- SQLite Schema Migration -----------------
 // Check existing columns in 'songs' table and add missing ones
@@ -68,6 +115,14 @@ for (const col of expectedSongColumns) {
     db.prepare(`ALTER TABLE songs ADD COLUMN ${col.name} ${col.type}`).run();
     console.log(`[Migration] Added column '${col.name}' to 'songs' table.`);
   }
+}
+
+// Check existing columns in 'queue' table
+const queueTableInfo = db.prepare('PRAGMA table_info(queue)').all();
+const existingQueueColumns = new Set(queueTableInfo.map((col) => col.name));
+if (!existingQueueColumns.has('passed_at')) {
+  db.prepare('ALTER TABLE queue ADD COLUMN passed_at DATETIME').run();
+  console.log("[Migration] Added column 'passed_at' to 'queue' table.");
 }
 
 // Populate songs if table is empty
@@ -619,11 +674,78 @@ app.get('/api/queue', (req, res) => {
   res.json(queue);
 });
 
+// Public settings
+app.get('/api/settings', (req, res) => {
+  res.json({
+    registrations_open: getSetting('registrations_open', '1') === '1'
+  });
+});
+
+// Submit public song suggestion
+app.post('/api/suggestions', (req, res) => {
+  const { artist, title, suggested_by, notes, website_trap } = req.body;
+  if (website_trap) {
+    return res.status(400).json({ error: 'Comportement suspect détecté.' });
+  }
+
+  if (!artist || !title || !artist.trim() || !title.trim()) {
+    return res.status(400).json({ error: 'Artiste et titre requis pour suggérer un morceau.' });
+  }
+
+  const clientIp = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket.remoteAddress || '127.0.0.1';
+  if (!checkIpRateLimit(`sug_${clientIp}`, 5, 300000)) {
+    return res.status(429).json({ error: 'Trop de suggestions envoyées. Merci de patienter quelques minutes.' });
+  }
+
+  const result = db.prepare(`
+    INSERT INTO suggestions (artist, title, suggested_by, notes)
+    VALUES (?, ?, ?, ?)
+  `).run(
+    artist.trim(),
+    title.trim(),
+    suggested_by ? suggested_by.trim() : '',
+    notes ? notes.trim() : ''
+  );
+
+  const suggestion = db.prepare('SELECT * FROM suggestions WHERE id = ?').get(result.lastInsertRowid);
+  broadcast('SUGGESTION_ADDED', suggestion);
+
+  res.status(201).json({ success: true, suggestion });
+});
+
 // Join queue
 app.post('/api/queue', (req, res) => {
-  const { song_id, singer_name, notes } = req.body;
+  // Check if session is currently accepting registrations
+  if (getSetting('registrations_open', '1') !== '1') {
+    return res.status(403).json({ error: 'Les inscriptions sont actuellement en pause pour cette session.' });
+  }
+
+  const { song_id, singer_name, notes, website_trap, submit_delay } = req.body;
+
+  // Honeypot check
+  if (website_trap) {
+    return res.status(400).json({ error: 'Comportement suspect détecté.' });
+  }
+
+  // Timing check
+  if (submit_delay !== undefined && Number(submit_delay) < 800) {
+    return res.status(400).json({ error: 'Soumission trop rapide.' });
+  }
+
   if (!song_id || !singer_name || !singer_name.trim()) {
     return res.status(400).json({ error: 'Chanson et nom du chanteur obligatoires.' });
+  }
+
+  // IP Rate limiting (max 4 per 2 minutes)
+  const clientIp = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket.remoteAddress || '127.0.0.1';
+  if (!checkIpRateLimit(clientIp, 4, 120000)) {
+    return res.status(429).json({ error: 'Trop de requêtes. Veuillez patienter 2 minutes avant de soumettre un autre titre.' });
+  }
+
+  // Active queue throttling for the singer (max 2 songs waiting)
+  const singerCount = db.prepare("SELECT COUNT(*) as count FROM queue WHERE LOWER(TRIM(singer_name)) = LOWER(TRIM(?)) AND status = 'waiting'").get(singer_name.trim()).count;
+  if (singerCount >= 2) {
+    return res.status(400).json({ error: 'Vous avez déjà 2 chansons en attente. Attendez votre tour avant d\'en rajouter une !' });
   }
 
   const song = db.prepare('SELECT * FROM songs WHERE id = ? AND available = 1').get(song_id);
@@ -641,7 +763,7 @@ app.post('/api/queue', (req, res) => {
   `).run(song_id, singer_name.trim(), notes ? notes.trim() : '', nextPos);
 
   const newEntry = db.prepare(`
-    SELECT q.id, q.singer_name, q.status, q.position, q.created_at,
+    SELECT q.id, q.singer_name, q.status, q.position, q.created_at, q.passed_at,
            s.artist, s.title, s.formation, s.language, s.year, s.cover_url
     FROM queue q
     JOIN songs s ON q.song_id = s.id
@@ -700,7 +822,7 @@ app.get('/api/admin/indexer/lyrics', authMiddleware, async (req, res) => {
 // Get full queue for admin (including done/cancelled)
 app.get('/api/admin/queue', authMiddleware, (req, res) => {
   const queue = db.prepare(`
-    SELECT q.id, q.song_id, q.singer_name, q.notes, q.status, q.position, q.created_at,
+    SELECT q.id, q.song_id, q.singer_name, q.notes, q.status, q.position, q.created_at, q.passed_at,
            s.artist, s.title, s.formation, s.language, s.year, s.cover_url
     FROM queue q
     JOIN songs s ON q.song_id = s.id
@@ -711,7 +833,9 @@ app.get('/api/admin/queue', authMiddleware, (req, res) => {
         WHEN 'done' THEN 2 
         ELSE 3 
       END,
-      q.position ASC, q.created_at ASC
+      CASE WHEN q.status = 'waiting' THEN q.position END ASC,
+      CASE WHEN q.status IN ('done', 'cancelled') THEN COALESCE(q.passed_at, q.created_at) END DESC,
+      q.created_at ASC
   `).all();
   res.json(queue);
 });
@@ -727,10 +851,14 @@ app.patch('/api/admin/queue/:id/status', authMiddleware, (req, res) => {
 
   // If setting to current, set any previous current to done
   if (status === 'current') {
-    db.prepare("UPDATE queue SET status = 'done' WHERE status = 'current'").run();
+    db.prepare("UPDATE queue SET status = 'done', passed_at = CURRENT_TIMESTAMP WHERE status = 'current'").run();
+    db.prepare("UPDATE queue SET status = ?, passed_at = CURRENT_TIMESTAMP WHERE id = ?").run(status, id);
+  } else if (['done', 'cancelled'].includes(status)) {
+    db.prepare("UPDATE queue SET status = ?, passed_at = CURRENT_TIMESTAMP WHERE id = ?").run(status, id);
+  } else {
+    db.prepare('UPDATE queue SET status = ? WHERE id = ?').run(status, id);
   }
 
-  db.prepare('UPDATE queue SET status = ? WHERE id = ?').run(status, id);
   broadcast('QUEUE_UPDATED', { id, status });
   res.json({ success: true });
 });
@@ -970,6 +1098,216 @@ app.patch('/api/admin/songs/:id/toggle', authMiddleware, (req, res) => {
   res.json({ success: true, available: newStatus });
 });
 
+// ----------------- System Settings API -----------------
+
+// Toggle/update system settings (e.g. registrations open/closed)
+app.patch('/api/admin/settings', authMiddleware, (req, res) => {
+  const { registrations_open } = req.body;
+  if (registrations_open !== undefined) {
+    setSetting('registrations_open', registrations_open ? '1' : '0');
+  }
+
+  const updatedSettings = {
+    registrations_open: getSetting('registrations_open', '1') === '1'
+  };
+
+  broadcast('SETTINGS_UPDATED', updatedSettings);
+  res.json({ success: true, settings: updatedSettings });
+});
+
+// ----------------- Suggestions API -----------------
+
+// Get all suggestions
+app.get('/api/admin/suggestions', authMiddleware, (req, res) => {
+  const suggestions = db.prepare(`
+    SELECT id, artist, title, suggested_by, notes, status, created_at
+    FROM suggestions
+    ORDER BY created_at DESC
+  `).all();
+  res.json(suggestions);
+});
+
+// Update suggestion status (pending, accepted, dismissed)
+app.patch('/api/admin/suggestions/:id', authMiddleware, (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  if (!['pending', 'accepted', 'dismissed'].includes(status)) {
+    return res.status(400).json({ error: 'Statut invalide.' });
+  }
+
+  db.prepare('UPDATE suggestions SET status = ? WHERE id = ?').run(status, id);
+  res.json({ success: true });
+});
+
+// Delete suggestion
+app.delete('/api/admin/suggestions/:id', authMiddleware, (req, res) => {
+  const { id } = req.params;
+  db.prepare('DELETE FROM suggestions WHERE id = ?').run(id);
+  res.json({ success: true });
+});
+
+// ----------------- Catalogue Backup & Restore API -----------------
+
+// Export entire catalogue as JSON backup
+app.get('/api/admin/catalogue/export', authMiddleware, (req, res) => {
+  const songs = db.prepare(`
+    SELECT id, artist, title, formation, year, language, cover_url, lyrics, synced_lyrics, album, genre, available
+    FROM songs
+    ORDER BY id ASC
+  `).all();
+
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 16);
+  const filename = `karaoke-catalogue-${timestamp}.json`;
+
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+  res.send(JSON.stringify(songs, null, 2));
+});
+
+// Restore catalogue from JSON backup (merge or replace)
+app.post('/api/admin/catalogue/restore', authMiddleware, (req, res) => {
+  const { mode = 'merge', songs } = req.body;
+  if (!Array.isArray(songs) || songs.length === 0) {
+    return res.status(400).json({ error: 'Fichier ou liste de chansons vide ou invalide.' });
+  }
+
+  // Safety backup before restore
+  try {
+    const currentSongs = db.prepare('SELECT * FROM songs').all();
+    const backupName = `pre-restore-${Date.now()}.json`;
+    fs.writeFileSync(path.join(BACKUP_DIR, backupName), JSON.stringify(currentSongs, null, 2), 'utf8');
+  } catch (err) {
+    console.error('[Backup Error]', err);
+  }
+
+  const insertStmt = db.prepare(`
+    INSERT INTO songs (
+      artist, title, formation, year, language,
+      cover_url, lyrics, synced_lyrics, album, genre, available
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  const updateStmt = db.prepare(`
+    UPDATE songs
+    SET formation = COALESCE(?, formation),
+        year = COALESCE(?, year),
+        language = COALESCE(?, language),
+        cover_url = COALESCE(?, cover_url),
+        lyrics = COALESCE(?, lyrics),
+        synced_lyrics = COALESCE(?, synced_lyrics),
+        album = COALESCE(?, album),
+        genre = COALESCE(?, genre),
+        available = COALESCE(?, available)
+    WHERE id = ? OR (LOWER(TRIM(artist)) = LOWER(TRIM(?)) AND LOWER(TRIM(title)) = LOWER(TRIM(?)))
+  `);
+
+  const insertWithIdStmt = db.prepare(`
+    INSERT INTO songs (
+      id, artist, title, formation, year, language,
+      cover_url, lyrics, synced_lyrics, album, genre, available
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  const runRestore = db.transaction((songsList) => {
+    if (mode === 'replace') {
+      db.prepare('DELETE FROM songs').run();
+      for (const s of songsList) {
+        if (!s.artist || !s.title) continue;
+        if (s.id) {
+          insertWithIdStmt.run(
+            s.id,
+            s.artist.trim(),
+            s.title.trim(),
+            s.formation || 'Solo',
+            s.year ? parseInt(s.year, 10) : null,
+            s.language || 'Français',
+            s.cover_url || null,
+            s.lyrics || null,
+            s.synced_lyrics || null,
+            s.album || null,
+            s.genre || null,
+            s.available !== undefined ? (s.available ? 1 : 0) : 1
+          );
+        } else {
+          insertStmt.run(
+            s.artist.trim(),
+            s.title.trim(),
+            s.formation || 'Solo',
+            s.year ? parseInt(s.year, 10) : null,
+            s.language || 'Français',
+            s.cover_url || null,
+            s.lyrics || null,
+            s.synced_lyrics || null,
+            s.album || null,
+            s.genre || null,
+            s.available !== undefined ? (s.available ? 1 : 0) : 1
+          );
+        }
+      }
+    } else {
+      // Merge mode
+      for (const s of songsList) {
+        if (!s.artist || !s.title) continue;
+        const existing = db.prepare('SELECT * FROM songs WHERE LOWER(TRIM(artist)) = LOWER(TRIM(?)) AND LOWER(TRIM(title)) = LOWER(TRIM(?))').get(s.artist.trim(), s.title.trim());
+        if (existing) {
+          updateStmt.run(
+            s.formation || null,
+            s.year ? parseInt(s.year, 10) : null,
+            s.language || null,
+            s.cover_url || null,
+            s.lyrics || null,
+            s.synced_lyrics || null,
+            s.album || null,
+            s.genre || null,
+            s.available !== undefined ? (s.available ? 1 : 0) : null,
+            existing.id,
+            s.artist.trim(),
+            s.title.trim()
+          );
+        } else {
+          insertStmt.run(
+            s.artist.trim(),
+            s.title.trim(),
+            s.formation || 'Solo',
+            s.year ? parseInt(s.year, 10) : null,
+            s.language || 'Français',
+            s.cover_url || null,
+            s.lyrics || null,
+            s.synced_lyrics || null,
+            s.album || null,
+            s.genre || null,
+            s.available !== undefined ? (s.available ? 1 : 0) : 1
+          );
+        }
+      }
+    }
+  });
+
+  try {
+    db.pragma('foreign_keys = OFF');
+    runRestore(songs);
+  } catch (err) {
+    console.error('[Restore Error]', err);
+    return res.status(500).json({ error: "Erreur lors de la restauration: " + err.message });
+  } finally {
+    db.pragma('foreign_keys = ON');
+  }
+
+  // Synchronize to songs.json
+  const allUpdated = db.prepare('SELECT * FROM songs ORDER BY artist ASC, title ASC').all();
+  try {
+    fs.writeFileSync(SONGS_JSON_PATH, JSON.stringify(allUpdated, null, 2), 'utf8');
+  } catch (err) {
+    console.error('[Songs JSON Sync Error]', err);
+  }
+
+  broadcast('SONGS_UPDATED', { count: allUpdated.length, restored: true });
+  res.json({ success: true, count: allUpdated.length, mode });
+});
+
 // Export app, server, and functions for testing
 module.exports = {
   app,
@@ -979,7 +1317,9 @@ module.exports = {
   searchCoverCandidates,
   fetchLyrics,
   getHdItunesCover,
-  backfillMissingCovers
+  backfillMissingCovers,
+  getSetting,
+  setSetting
 };
 
 // Start server if executed directly
