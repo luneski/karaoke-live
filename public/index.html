@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎤 N'apprenez pas les paroles - Karaoké Live | La Fraternelle</title>
+  <title>🎤 N'apprenez pas les paroles - Karaoké Live</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -1068,10 +1068,6 @@
 <body>
 
   <header>
-    <div class="assoc-tag">
-      <span>🎺</span>
-      <span>La Fraternelle de Mareau-aux-Prés</span>
-    </div>
     <div class="brand">
       <span class="brand-icon">🎤</span>
       <h1>N'APPRENEZ PAS <span class="brand-red">LES PAROLES</span></h1>
@@ -1139,8 +1135,8 @@
   </div>
 
   <footer>
-    <p>🎶 <strong>N'apprenez pas les paroles</strong> — Un projet musical animé par <strong>La Fraternelle de Mareau-aux-Prés</strong></p>
-    <p style="margin-top: 4px; opacity: 0.7;">École de musique & Orchestres • Depuis 1949</p>
+    <p>🎶 <strong>N'apprenez pas les paroles</strong> — Karaoké Live immersif</p>
+    <p style="margin-top: 4px; opacity: 0.7;">Chantez, partagez, profitez de la fête ! 🎉</p>
   </footer>
 
   <!-- Registration Modal -->
@@ -1155,11 +1151,6 @@
         <div class="form-group">
           <label for="singerName">Votre prénom ou nom de groupe *</label>
           <input type="text" id="singerName" class="modal-input" required placeholder="ex: Timothée ou Les Chanteurs du Dimanche">
-        </div>
-
-        <div class="form-group">
-          <label for="singerNotes">Commentaire / Tonalité / Dédicace (optionnel)</label>
-          <input type="text" id="singerNotes" class="modal-input" placeholder="ex: En duo avec Sarah, tonalité originale...">
         </div>
 
         <div class="modal-actions">
@@ -1426,13 +1417,12 @@
       e.preventDefault();
       const songId = document.getElementById('selectedSongId').value;
       const singerName = document.getElementById('singerName').value;
-      const notes = document.getElementById('singerNotes').value;
 
       try {
         const res = await fetch('/api/queue', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ song_id: songId, singer_name: singerName, notes })
+          body: JSON.stringify({ song_id: songId, singer_name: singerName, notes: '' })
         });
 
         if (!res.ok) {
@@ -1533,7 +1523,7 @@
             "N'apprenez pas les paroles !"
           </p>
           <p style="font-size: 14px; max-width: 420px; margin: 0 auto; line-height: 1.6;">
-            Les paroles écrites ne sont pas encore renseignées pour ce titre, mais ne vous inquiétez pas : l'essentiel à <strong>La Fraternelle</strong>, c'est l'ambiance et la fête ! Montez au micro et improvisez avec les musiciens ! 🎉
+            Les paroles écrites ne sont pas encore renseignées pour ce titre, mais ne vous inquiétez pas : l'essentiel au <strong>Karaoké Live</strong>, c'est l'ambiance et la fête ! Montez au micro et improvisez avec les musiciens ! 🎉
           </p>
         </div>
       `;

@@ -31,7 +31,17 @@ process.env.DB_PATH = testDbPath;
 process.env.SONGS_JSON_PATH = testSongsJsonPath;
 process.env.PORT = '3039';
 
-const { app, server, db, searchMusic, fetchLyrics, getHdItunesCover, backfillMissingCovers } = require('./server');
+const {
+  app,
+  server,
+  db,
+  searchMusic,
+  searchCoverCandidates,
+  fetchLyrics,
+  getHdItunesCover,
+  backfillMissingCovers
+} = require('./server');
+assert(typeof searchCoverCandidates === 'function', 'searchCoverCandidates must be exported as a function');
 assert(typeof backfillMissingCovers === 'function', 'backfillMissingCovers must be exported as a function');
 
 // Check that migration added the columns to the legacy DB
@@ -66,7 +76,17 @@ async function runIndexerTest() {
   if (first.cover_url) {
     assert(first.cover_url.includes('600x600') || first.cover_url.includes('dzcdn'), 'Expected HD cover URL');
   }
-  console.log('✓ Test 3 Passed: Music indexer returns valid HD metadata.');
+
+  // Test searchCoverCandidates
+  const candidates = await searchCoverCandidates(query);
+  assert(Array.isArray(candidates), 'Expected candidates to be an array');
+  assert(candidates.length > 0, 'Expected at least 1 candidate');
+  assert(candidates[0].cover_url, 'First candidate must have cover_url');
+  assert(candidates[0].provider === 'iTunes' || candidates[0].provider === 'Deezer', 'Expected iTunes or Deezer provider');
+  // Verify deduplication
+  const urls = candidates.map((c) => c.cover_url);
+  assert(new Set(urls).size === urls.length, 'Candidates must be deduplicated by cover_url');
+  console.log(`✓ Test 3 Passed: Music indexer & cover candidates (${candidates.length} candidates) verified.`);
 }
 
 // 4. Test Lyrics Service
@@ -211,6 +231,26 @@ async function runEndpointsTest() {
   assert(updatedSong.year === 2025, 'Updated year verified');
   console.log('✓ PUT /api/admin/songs/:id verified.');
 
+  // 5.7b PATCH /api/admin/songs/:id/cover (Cover Picker endpoint)
+  const patchCoverRes = await fetch(`${baseUrl}/api/admin/songs/${createdSong.id}/cover`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Bearer karaoke2026',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      cover_url: 'https://example.com/picked-cover.jpg',
+      album: 'Picked Album',
+      year: 2026
+    })
+  });
+  assert(patchCoverRes.status === 200, 'PATCH /api/admin/songs/:id/cover should return 200');
+  const patchedSong = await patchCoverRes.json();
+  assert(patchedSong.cover_url === 'https://example.com/picked-cover.jpg', 'Patched cover_url verified');
+  assert(patchedSong.album === 'Picked Album', 'Patched album verified');
+  assert(patchedSong.year === 2026, 'Patched year verified');
+  console.log('✓ PATCH /api/admin/songs/:id/cover verified.');
+
   // 5.8 POST /api/admin/songs/backfill-covers
   const unauthBackfill = await fetch(`${baseUrl}/api/admin/songs/backfill-covers`, {
     method: 'POST'
@@ -228,7 +268,65 @@ async function runEndpointsTest() {
   assert('totalMissing' in backfillBody, 'Must return totalMissing');
   console.log('✓ POST /api/admin/songs/backfill-covers verified.');
 
-  // 5.9 Cleanup test song
+  // 5.9 GET /api/admin/songs/:id/cover-candidates
+  const unauthCandidates = await fetch(`${baseUrl}/api/admin/songs/${createdSong.id}/cover-candidates`);
+  assert(unauthCandidates.status === 401, 'Unauthorized candidates request must return 401');
+
+  const notFoundCandidates = await fetch(`${baseUrl}/api/admin/songs/999999/cover-candidates`, {
+    headers: { Authorization: 'Bearer karaoke2026' }
+  });
+  assert(notFoundCandidates.status === 404, 'Non-existent song must return 404');
+
+  const authCandidates = await fetch(`${baseUrl}/api/admin/songs/${createdSong.id}/cover-candidates?q=Queen+Bohemian`, {
+    headers: { Authorization: 'Bearer karaoke2026' }
+  });
+  assert(authCandidates.status === 200, 'Authorized candidates request must return 200');
+  const candidatesBody = await authCandidates.json();
+  assert(candidatesBody.song && candidatesBody.song.id === createdSong.id, 'Response must include song object');
+  assert(Array.isArray(candidatesBody.candidates), 'Response must include candidates array');
+  assert(candidatesBody.candidates.length > 0, 'Candidates array should have items');
+  console.log('✓ GET /api/admin/songs/:id/cover-candidates verified.');
+
+  // 5.10 PATCH /api/admin/songs/:id/cover
+  const unauthPatchCover = await fetch(`${baseUrl}/api/admin/songs/${createdSong.id}/cover`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cover_url: 'https://example.com/custom-cover.jpg' })
+  });
+  assert(unauthPatchCover.status === 401, 'Unauthorized cover patch must return 401');
+
+  const notFoundPatchCover = await fetch(`${baseUrl}/api/admin/songs/999999/cover`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Bearer karaoke2026',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ cover_url: 'https://example.com/custom-cover.jpg' })
+  });
+  assert(notFoundPatchCover.status === 404, 'Non-existent song patch must return 404');
+
+  const patchPayload = {
+    cover_url: 'https://example.com/new-hd-cover.jpg',
+    album: 'Selected Album 2026',
+    year: 2026
+  };
+  const authPatchCover = await fetch(`${baseUrl}/api/admin/songs/${createdSong.id}/cover`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Bearer karaoke2026',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(patchPayload)
+  });
+  assert(authPatchCover.status === 200, 'Authorized cover patch must return 200');
+  const patchBody = await authPatchCover.json();
+  assert(patchBody.success === true, 'Response must include success: true');
+  assert(patchBody.song && patchBody.song.cover_url === patchPayload.cover_url, 'Cover URL updated');
+  assert(patchBody.song.album === patchPayload.album, 'Album updated');
+  assert(patchBody.song.year === patchPayload.year, 'Year updated');
+  console.log('✓ PATCH /api/admin/songs/:id/cover verified.');
+
+  // 5.11 Cleanup test song
   const delRes = await fetch(`${baseUrl}/api/admin/songs/${createdSong.id}`, {
     method: 'DELETE',
     headers: { Authorization: 'Bearer karaoke2026' }

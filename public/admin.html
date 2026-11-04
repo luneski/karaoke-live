@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎛️ Régie - N'apprenez pas les paroles | La Fraternelle</title>
+  <title>🎛️ Régie - N'apprenez pas les paroles | Karaoké Live</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -517,12 +517,199 @@
       justify-content: center;
       vertical-align: middle;
       flex-shrink: 0;
+      position: relative;
+      cursor: pointer;
+    }
+    .cat-thumb-wrap:hover .cat-thumb-overlay {
+      opacity: 1;
+    }
+    .cat-thumb-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.15s;
+      border-radius: 8px;
+      font-size: 13px;
     }
     .cat-thumb-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    /* Queue Reordering */
+    .drag-handle {
+      cursor: grab;
+      font-size: 18px;
+      color: var(--muted);
+      padding: 0 8px 0 2px;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      transition: color 0.15s;
+    }
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+    .drag-handle:hover {
+      color: var(--red-light);
+    }
+    .queue-card.dragging {
+      opacity: 0.35;
+      border: 2px dashed var(--red-primary) !important;
+    }
+    .queue-card.drag-over {
+      border-top: 3px solid var(--gold) !important;
+    }
+    .reorder-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+    .btn-order {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 24px;
+      height: 19px;
+      border-radius: 4px;
+      padding: 0;
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-order:hover:not(:disabled) {
+      background: rgba(220, 53, 69, 0.25);
+      color: #ffffff;
+      border-color: var(--red-primary);
+    }
+    .btn-order:disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+    }
+
+    /* Cover Picker Modal & Candidates */
+    .cover-picker-card {
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalScaleUp 0.22s ease-out;
+    }
+    @keyframes modalScaleUp {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .cover-candidates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 12px;
+    }
+    .candidate-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .candidate-card:hover {
+      border-color: var(--red-light);
+      background: rgba(220, 53, 69, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), 0 0 14px var(--red-glow);
+    }
+    .candidate-cover-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.3);
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .candidate-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .candidate-card:hover .candidate-cover-img {
+      transform: scale(1.04);
+    }
+    .candidate-provider-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+      backdrop-filter: blur(8px);
+      background: rgba(11, 15, 25, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+    .candidate-info {
+      flex: 1;
+      min-width: 0;
+      margin-bottom: 8px;
+    }
+    .candidate-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+    .candidate-album {
+      font-size: 11.5px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .candidate-meta {
+      font-size: 11px;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+    .candidate-choose-btn {
+      width: 100%;
+      background: var(--red-gradient);
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .candidate-choose-btn:hover {
+      background: linear-gradient(135deg, #ef4444 0%, #b02a37 100%);
     }
 
     /* Admin Toast Notification */
@@ -610,7 +797,7 @@
     <div class="login-box">
       <div style="font-size: 32px; margin-bottom: 8px;">🎛️</div>
       <h2 style="font-family: 'Outfit', sans-serif; font-size: 20px; margin-bottom: 4px;">Régie Karaoké</h2>
-      <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">La Fraternelle de Mareau-aux-Prés</p>
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Console Régie & Animation Scène</p>
       <input type="password" id="adminPassword" class="login-input" placeholder="Mot de passe régie">
       <button class="btn-red-action" style="width: 100%; justify-content: center; padding: 12px;" onclick="doLogin()">Connexion au Direct</button>
       <p id="loginError" style="color: var(--red-light); font-size: 13px; margin-top: 10px; display: none;"></p>
@@ -621,7 +808,6 @@
     <div class="title">
       <span>🎛️ RÉGIE DIRECT</span>
       <span class="badge-live">LIVE</span>
-      <span class="assoc-label">| La Fraternelle</span>
     </div>
     <div>
       <a href="/" target="_blank" style="color: var(--red-light); text-decoration: none; font-size: 13px; font-weight: 600; margin-right: 16px;">📱 Vue Public ↗</a>
@@ -837,11 +1023,49 @@
             </select>
           </div>
         </div>
-        <div style="display: flex; gap: 10px; justify-content: flex-end;">
-          <button type="button" class="btn-outline" onclick="closeEditModal()">Annuler</button>
-          <button type="submit" class="btn-red-action">Enregistrer les modifications</button>
+        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; margin-top: 14px; flex-wrap: wrap;">
+          <button type="button" class="btn-outline" onclick="openCoverPickerFromEdit()">🖼️ Parcourir les pochettes</button>
+          <div style="display: flex; gap: 10px;">
+            <button type="button" class="btn-outline" onclick="closeEditModal()">Annuler</button>
+            <button type="submit" class="btn-red-action">Enregistrer les modifications</button>
+          </div>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Cover Picker Modal -->
+  <div class="modal-overlay" id="coverPickerModal" onclick="closeCoverPickerModal(event)">
+    <div class="modal-card cover-picker-card" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+        <div>
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 19px; color: #ffffff;" id="coverPickerTitle">🖼️ Choisir une pochette</h3>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 2px;" id="coverPickerSubtitle">Artiste — Titre</p>
+        </div>
+        <button type="button" class="btn-outline" style="padding: 6px 12px;" onclick="closeCoverPickerModal()">✕</button>
+      </div>
+
+      <!-- Search Bar -->
+      <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+        <input type="text" id="coverPickerQuery" class="cat-input" placeholder="Mots-clés de recherche (Artiste, Titre, Album...)" style="flex: 1;" onkeydown="if(event.key === 'Enter'){ event.preventDefault(); searchCoverCandidates(); }">
+        <button type="button" class="btn-red-action" id="coverPickerSearchBtn" onclick="searchCoverCandidates()">🔍 Rechercher</button>
+      </div>
+
+      <!-- Candidates Grid Container -->
+      <div id="coverPickerCandidatesWrap" style="max-height: 420px; overflow-y: auto; margin-bottom: 14px; padding-right: 4px;">
+        <div id="coverPickerCandidates" class="cover-candidates-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Manual URL Section -->
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin-top: auto;">
+        <div style="font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px;">Ou coller une URL d'image personnalisée :</div>
+        <div style="display: flex; gap: 8px;">
+          <input type="url" id="manualCoverUrl" class="cat-input" placeholder="https://example.com/cover.jpg" style="flex: 1;">
+          <button type="button" class="btn-secondary" onclick="applyManualCoverUrl()">Appliquer</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -980,12 +1204,16 @@
       }
     }
 
+    let currentWaitingQueue = [];
+    let draggedQueueId = null;
+
     function renderAdminQueue(queue) {
       const current = queue.find(q => q.status === 'current');
       const waiting = queue.filter(q => q.status === 'waiting');
       const history = queue.filter(q => ['done', 'cancelled'].includes(q.status)).slice(0, 8);
 
       currentItem = current;
+      currentWaitingQueue = waiting;
 
       if (current) {
         document.getElementById('curSinger').innerText = current.singer_name;
@@ -1006,7 +1234,14 @@
         waitEl.innerHTML = '<div style="color: var(--muted); text-align: center; padding: 20px;">Aucun chanteur en attente</div>';
       } else {
         waitEl.innerHTML = waiting.map((q, idx) => `
-          <div class="queue-card waiting">
+          <div class="queue-card waiting" draggable="true" data-id="${q.id}" data-index="${idx}"
+               ondragstart="handleQueueDragStart(event)" ondragover="handleQueueDragOver(event)"
+               ondrop="handleQueueDrop(event)" ondragend="handleQueueDragEnd(event)">
+            <div class="drag-handle" title="Glisser pour réordonner">⋮⋮</div>
+            <div class="reorder-btns">
+              <button type="button" class="btn-order" onclick="moveQueueItem(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="Monter">▲</button>
+              <button type="button" class="btn-order" onclick="moveQueueItem(${idx}, 1)" ${idx === waiting.length - 1 ? 'disabled' : ''} title="Descendre">▼</button>
+            </div>
             <div class="singer-info">
               <div class="singer-name">#${idx + 1} ${escapeHtml(q.singer_name)}</div>
               <div class="song-title">${escapeHtml(q.title)} • ${escapeHtml(q.artist)} (${escapeHtml(q.formation)}${q.year ? ' • ' + q.year : ''})</div>
@@ -1014,7 +1249,7 @@
             </div>
             <div class="card-actions">
               <button class="btn-red-action" onclick="setStatus(${q.id}, 'current')">🎤 Faire monter</button>
-              <button class="btn-red" onclick="deleteEntry(${q.id})">✕</button>
+              <button class="btn-red" onclick="deleteEntry(${q.id})" title="Supprimer">✕</button>
             </div>
           </div>
         `).join('');
@@ -1032,6 +1267,82 @@
             </div>
           </div>
         `).join('');
+      }
+    }
+
+    function handleQueueDragStart(e) {
+      const card = e.currentTarget;
+      draggedQueueId = parseInt(card.dataset.id, 10);
+      card.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', card.dataset.id);
+    }
+
+    function handleQueueDragOver(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const targetCard = e.currentTarget;
+      if (!targetCard.classList.contains('queue-card')) return;
+      document.querySelectorAll('.queue-card.drag-over').forEach(el => el.classList.remove('drag-over'));
+      targetCard.classList.add('drag-over');
+    }
+
+    function handleQueueDrop(e) {
+      e.preventDefault();
+      const targetCard = e.currentTarget;
+      targetCard.classList.remove('drag-over');
+      const targetId = parseInt(targetCard.dataset.id, 10);
+      if (!draggedQueueId || draggedQueueId === targetId) return;
+
+      const ids = currentWaitingQueue.map(item => item.id);
+      const fromIdx = ids.indexOf(draggedQueueId);
+      const toIdx = ids.indexOf(targetId);
+      if (fromIdx === -1 || toIdx === -1) return;
+
+      ids.splice(fromIdx, 1);
+      ids.splice(toIdx, 0, draggedQueueId);
+      reorderQueue(ids);
+    }
+
+    function handleQueueDragEnd(e) {
+      e.currentTarget.classList.remove('dragging');
+      document.querySelectorAll('.queue-card.drag-over').forEach(el => el.classList.remove('drag-over'));
+      draggedQueueId = null;
+    }
+
+    async function moveQueueItem(idx, delta) {
+      const newIdx = idx + delta;
+      if (newIdx < 0 || newIdx >= currentWaitingQueue.length) return;
+
+      const ids = currentWaitingQueue.map(item => item.id);
+      const temp = ids[idx];
+      ids[idx] = ids[newIdx];
+      ids[newIdx] = temp;
+
+      await reorderQueue(ids);
+    }
+
+    async function reorderQueue(orderIds) {
+      try {
+        const res = await fetch('/api/admin/queue/reorder', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ order: orderIds })
+        });
+        if (res.status === 401) return logout();
+        if (!res.ok) {
+          const err = await res.json();
+          showAdminToast(err.error || 'Erreur réorganisation', true);
+          return;
+        }
+        showAdminToast('Ordre de la file mis à jour !');
+        await loadAdminQueue();
+      } catch (err) {
+        console.error(err);
+        showAdminToast('Erreur réseau', true);
       }
     }
 
@@ -1057,11 +1368,12 @@
         <tr style="${s.available ? '' : 'opacity: 0.5; background: rgba(0,0,0,0.2);'}">
           <td style="color: var(--muted); font-size: 11px;">#${s.id}</td>
           <td>
-            <div class="cat-thumb-wrap">
+            <div class="cat-thumb-wrap" onclick="openCoverPicker(${s.id})" title="🖼️ Changer la pochette">
               ${s.cover_url ? 
                 `<img src="${escapeHtml(s.cover_url)}" alt="Pochette" class="cat-thumb-img" onerror="this.onerror=null; this.parentElement.innerHTML=getCoverFallbackSvg(40);">` : 
                 getCoverFallbackSvg(40)
               }
+              <div class="cat-thumb-overlay" title="Changer la pochette">🖼️</div>
             </div>
           </td>
           <td><strong>${escapeHtml(s.artist)}</strong></td>
@@ -1078,6 +1390,7 @@
             </button>
           </td>
           <td style="text-align: right; white-space: nowrap;">
+            <button class="btn-outline" style="padding: 5px 8px; font-size: 12px;" onclick="openCoverPicker(${s.id})" title="🖼️ Changer la pochette">🖼️ Pochette</button>
             <button class="btn-outline" style="padding: 5px 8px; font-size: 12px;" onclick="viewCatalogueLyrics(${s.id})" title="Voir les paroles">📄 Voir paroles</button>
             <button class="btn-outline" style="padding: 5px 8px; font-size: 12px;" onclick="openEditSong(${s.id})" title="Modifier">✏️</button>
             <button class="btn-red" style="padding: 5px 8px; font-size: 12px;" onclick="deleteSong(${s.id})" title="Supprimer">🗑️</button>
@@ -1102,6 +1415,161 @@
 
     function closeEditModal() {
       document.getElementById('editModal').classList.remove('active');
+    }
+
+    /* Cover Picker Feature */
+    let currentCoverPickerSong = null;
+
+    async function openCoverPicker(songId) {
+      const song = allAdminSongs.find(s => s.id === songId);
+      if (!song) return;
+
+      currentCoverPickerSong = song;
+      document.getElementById('coverPickerTitle').innerText = `🖼️ Pochette : ${song.title}`;
+      document.getElementById('coverPickerSubtitle').innerText = `${song.artist}${song.album ? ' • ' + song.album : ''}`;
+      
+      const defaultQuery = `${song.artist} ${song.title}`.trim();
+      document.getElementById('coverPickerQuery').value = defaultQuery;
+      document.getElementById('manualCoverUrl').value = song.cover_url || '';
+
+      document.getElementById('coverPickerModal').classList.add('active');
+      searchCoverCandidates();
+    }
+
+    function openCoverPickerFromEdit() {
+      const id = parseInt(document.getElementById('editId').value, 10);
+      if (id) {
+        closeEditModal();
+        openCoverPicker(id);
+      }
+    }
+
+    function closeCoverPickerModal(e) {
+      if (e && e.target !== document.getElementById('coverPickerModal')) return;
+      document.getElementById('coverPickerModal').classList.remove('active');
+      currentCoverPickerSong = null;
+    }
+
+    async function searchCoverCandidates() {
+      const query = document.getElementById('coverPickerQuery').value.trim();
+      const wrap = document.getElementById('coverPickerCandidates');
+      if (!query) {
+        wrap.innerHTML = '<div style="color: var(--muted); text-align: center; padding: 30px; grid-column: 1 / -1;">Veuillez saisir un terme de recherche.</div>';
+        return;
+      }
+
+      wrap.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--muted);">
+          <span class="spinner" style="width: 24px; height: 24px; margin-bottom: 10px;"></span>
+          <p>Recherche des pochettes en cours...</p>
+        </div>
+      `;
+
+      try {
+        const res = await fetch(`/api/admin/indexer/search?q=${encodeURIComponent(query)}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.status === 401) return logout();
+        const results = await res.json();
+
+        const withCovers = (results || []).filter(r => r.cover_url);
+
+        if (withCovers.length === 0) {
+          wrap.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 35px; color: var(--muted);">
+              <div style="font-size: 28px; margin-bottom: 8px;">🔍</div>
+              <p style="color: white; font-weight: 600;">Aucune pochette trouvée pour "${escapeHtml(query)}"</p>
+              <p style="font-size: 13px; margin-top: 4px;">Modifiez les termes de recherche ci-dessus ou collez une URL personnalisée.</p>
+            </div>
+          `;
+          return;
+        }
+
+        wrap.innerHTML = withCovers.map((candidate, idx) => {
+          const provider = (candidate.cover_url || '').includes('mzstatic') ? 'Apple Music' : 'Deezer';
+          const albumText = candidate.album || 'Album inconnu';
+          const yearText = candidate.year ? `${candidate.year}` : '';
+
+          return `
+            <div class="candidate-card" onclick="chooseCoverCandidate(${idx})">
+              <div class="candidate-cover-wrap">
+                <span class="candidate-provider-badge">${provider}</span>
+                <img src="${escapeHtml(candidate.cover_url)}" alt="Pochette" class="candidate-cover-img" loading="lazy">
+              </div>
+              <div class="candidate-info">
+                <div class="candidate-title" title="${escapeHtml(candidate.title)}">${escapeHtml(candidate.title)}</div>
+                <div class="candidate-album" title="${escapeHtml(albumText)}">💿 ${escapeHtml(albumText)}</div>
+                ${yearText ? `<div class="candidate-meta">📅 ${yearText}</div>` : ''}
+              </div>
+              <button type="button" class="candidate-choose-btn">
+                <span>✓</span> Choisir cette pochette
+              </button>
+            </div>
+          `;
+        }).join('');
+
+        window._currentCoverCandidates = withCovers;
+      } catch (err) {
+        console.error(err);
+        wrap.innerHTML = '<div style="color: var(--red-light); text-align: center; padding: 30px; grid-column: 1 / -1;">Erreur lors de la recherche des pochettes.</div>';
+      }
+    }
+
+    async function chooseCoverCandidate(index) {
+      if (!currentCoverPickerSong || !window._currentCoverCandidates) return;
+      const candidate = window._currentCoverCandidates[index];
+      if (!candidate || !candidate.cover_url) return;
+
+      await updateSongCover({
+        cover_url: candidate.cover_url,
+        album: candidate.album || null,
+        year: candidate.year || null
+      });
+    }
+
+    async function applyManualCoverUrl() {
+      if (!currentCoverPickerSong) return;
+      const url = document.getElementById('manualCoverUrl').value.trim();
+      if (!url) {
+        alert("Veuillez saisir une URL valide.");
+        return;
+      }
+
+      await updateSongCover({
+        cover_url: url,
+        album: null,
+        year: null
+      });
+    }
+
+    async function updateSongCover(data) {
+      if (!currentCoverPickerSong) return;
+      const songId = currentCoverPickerSong.id;
+
+      try {
+        const res = await fetch(`/api/admin/songs/${songId}/cover`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (res.status === 401) return logout();
+        if (!res.ok) {
+          const err = await res.json();
+          showAdminToast(err.error || 'Erreur mise à jour pochette', true);
+          return;
+        }
+
+        closeCoverPickerModal();
+        showAdminToast('Pochette mise à jour !');
+        await loadAdminSongs();
+      } catch (err) {
+        console.error(err);
+        showAdminToast('Erreur réseau', true);
+      }
     }
 
     async function saveSongEdit(e) {

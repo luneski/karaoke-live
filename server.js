@@ -222,6 +222,105 @@ async function searchMusic(query) {
 }
 
 /**
+ * Search cover candidates across iTunes (limit 25) and Deezer (limit 15).
+ * Deduplicates by cover_url, filters null/empty covers.
+ * Returns array of:
+ * { cover_url, artist, title, album, year, provider: 'iTunes' | 'Deezer' }
+ */
+async function searchCoverCandidates(query) {
+  if (!query || typeof query !== 'string' || !query.trim()) {
+    return [];
+  }
+
+  const cleanQuery = query.trim();
+
+  const [itunesRes, deezerRes] = await Promise.allSettled([
+    // 1. iTunes Search API (limit=25)
+    (async () => {
+      const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(cleanQuery)}&entity=song&limit=25`;
+      const response = await fetch(itunesUrl, {
+        headers: {
+          'User-Agent': USER_AGENT,
+          Accept: 'application/json'
+        },
+        signal: AbortSignal.timeout(6000)
+      });
+      if (!response.ok) return [];
+      const data = await response.json();
+      if (!Array.isArray(data.results)) return [];
+      return data.results.map((track) => ({
+        cover_url: getHdItunesCover(track.artworkUrl100),
+        artist: track.artistName || 'Artiste inconnu',
+        title: track.trackName || 'Titre inconnu',
+        album: track.collectionName || null,
+        year: track.releaseDate ? new Date(track.releaseDate).getFullYear() : null,
+        provider: 'iTunes'
+      }));
+    })(),
+
+    // 2. Deezer Search API (limit=15)
+    (async () => {
+      const deezerUrl = `https://api.deezer.com/search?q=${encodeURIComponent(cleanQuery)}&limit=15`;
+      const response = await fetch(deezerUrl, {
+        headers: {
+          'User-Agent': USER_AGENT,
+          Accept: 'application/json'
+        },
+        signal: AbortSignal.timeout(6000)
+      });
+      if (!response.ok) return [];
+      const data = await response.json();
+      if (!Array.isArray(data.data)) return [];
+      return data.data.map((item) => ({
+        cover_url:
+          item.album?.cover_xl ||
+          item.album?.cover_big ||
+          item.album?.cover_medium ||
+          item.album?.cover ||
+          null,
+        artist: item.artist?.name || 'Artiste inconnu',
+        title: item.title || 'Titre inconnu',
+        album: item.album?.title || null,
+        year: null,
+        provider: 'Deezer'
+      }));
+    })()
+  ]);
+
+  const rawItunes = itunesRes.status === 'fulfilled' ? itunesRes.value : [];
+  if (itunesRes.status === 'rejected') {
+    console.warn(`[Cover Candidates] iTunes search failed for "${cleanQuery}": ${itunesRes.reason?.message}`);
+  }
+
+  const rawDeezer = deezerRes.status === 'fulfilled' ? deezerRes.value : [];
+  if (deezerRes.status === 'rejected') {
+    console.warn(`[Cover Candidates] Deezer search failed for "${cleanQuery}": ${deezerRes.reason?.message}`);
+  }
+
+  const seenCovers = new Set();
+  const candidates = [];
+
+  for (const item of [...rawItunes, ...rawDeezer]) {
+    if (item && item.cover_url && typeof item.cover_url === 'string') {
+      const trimmedUrl = item.cover_url.trim();
+      if (trimmedUrl && !seenCovers.has(trimmedUrl)) {
+        seenCovers.add(trimmedUrl);
+        candidates.push({
+          cover_url: trimmedUrl,
+          artist: item.artist,
+          title: item.title,
+          album: item.album,
+          year: item.year,
+          provider: item.provider
+        });
+      }
+    }
+  }
+
+  return candidates;
+}
+
+/**
  * Resilient lyrics fetcher using LRCLIB API.
  * Tries /api/get first, falls back to /api/search.
  * Returns: { artist, title, lyrics, synced_lyrics, found }
@@ -799,6 +898,66 @@ app.post('/api/admin/songs/backfill-covers', authMiddleware, async (req, res) =>
   }
 });
 
+// Search cover candidates for a specific song
+app.get('/api/admin/songs/:id/cover-candidates', authMiddleware, async (req, res) => {
+  const { id } = req.params;
+  const song = db.prepare('SELECT id, artist, title, cover_url FROM songs WHERE id = ?').get(id);
+  if (!song) {
+    return res.status(404).json({ error: 'Chanson non trouvée' });
+  }
+
+  const query = (req.query.q && typeof req.query.q === 'string' && req.query.q.trim())
+    ? req.query.q.trim()
+    : `${song.artist} ${song.title}`;
+
+  try {
+    const candidates = await searchCoverCandidates(query);
+    res.json({
+      song: {
+        id: song.id,
+        artist: song.artist,
+        title: song.title,
+        cover_url: song.cover_url
+      },
+      candidates
+    });
+  } catch (err) {
+    console.error('[Admin Cover Candidates] Error:', err);
+    res.status(500).json({ error: 'Erreur lors de la recherche de pochettes' });
+  }
+});
+
+// Update song cover & metadata from cover picker
+app.patch('/api/admin/songs/:id/cover', authMiddleware, (req, res) => {
+  const { id } = req.params;
+  const { cover_url, album, year } = req.body;
+  const existing = db.prepare('SELECT * FROM songs WHERE id = ?').get(id);
+  if (!existing) {
+    return res.status(404).json({ error: 'Chanson non trouvée' });
+  }
+
+  const updatedCover = (cover_url !== undefined && cover_url !== null) ? cover_url.trim() : existing.cover_url;
+  const updatedAlbum = (album !== undefined && album !== null && album !== '') ? String(album).trim() : existing.album;
+  const updatedYear = (year !== undefined && year !== null && year !== '') ? parseInt(year, 10) : existing.year;
+
+  db.prepare(`
+    UPDATE songs
+    SET cover_url = ?,
+        album = ?,
+        year = ?
+    WHERE id = ?
+  `).run(
+    updatedCover,
+    updatedAlbum,
+    updatedYear,
+    id
+  );
+
+  const updatedSong = db.prepare('SELECT * FROM songs WHERE id = ?').get(id);
+  broadcast('SONGS_UPDATED', updatedSong);
+  res.json({ ...updatedSong, success: true, song: updatedSong });
+});
+
 // Toggle song availability
 app.patch('/api/admin/songs/:id/toggle', authMiddleware, (req, res) => {
   const { id } = req.params;
@@ -812,7 +971,16 @@ app.patch('/api/admin/songs/:id/toggle', authMiddleware, (req, res) => {
 });
 
 // Export app, server, and functions for testing
-module.exports = { app, server, db, searchMusic, fetchLyrics, getHdItunesCover, backfillMissingCovers };
+module.exports = {
+  app,
+  server,
+  db,
+  searchMusic,
+  searchCoverCandidates,
+  fetchLyrics,
+  getHdItunesCover,
+  backfillMissingCovers
+};
 
 // Start server if executed directly
 if (require.main === module) {
