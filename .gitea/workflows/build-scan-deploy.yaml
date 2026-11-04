@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: '0 3 * * 1' # Build hebdomadaire de maintenance de sécurité (lundi à 03:00 UTC)
   workflow_dispatch:
 
 jobs:
@@ -20,7 +22,7 @@ jobs:
       - name: Build Hardened Docker Image
         run: |
           echo "Building Docker image karaoke-live:latest..."
-          docker build -t karaoke-live:latest .
+          docker build --pull -t karaoke-live:latest .
 
   scan:
     name: Trivy Security Scan
@@ -32,7 +34,7 @@ jobs:
 
       - name: Build Docker Image for Scanning
         run: |
-          docker build -t karaoke-live:latest .
+          docker build --pull -t karaoke-live:latest .
 
       - name: Aqua Security Trivy Scan (OS & Dependencies)
         run: |
@@ -61,7 +63,7 @@ jobs:
   deploy:
     name: Automated Zero-Downtime Deployment
     needs: [build, scan]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -73,9 +75,9 @@ jobs:
           if [ -d "/home/ubuntu/karaoke-live" ]; then
             cd /home/ubuntu/karaoke-live
             git pull origin main || true
-            docker compose up -d --build --remove-orphans
+            docker compose up -d --build --pull always --remove-orphans
           else
-            docker compose up -d --build --remove-orphans
+            docker compose up -d --build --pull always --remove-orphans
           fi
 
       - name: Verify Container Health
