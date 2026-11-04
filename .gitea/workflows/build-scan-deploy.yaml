@@ -72,13 +72,8 @@ jobs:
       - name: Deploy to Production via Docker Compose
         run: |
           echo "🚀 Deploying karaoke-live container on Oracle VPS..."
-          if [ -d "/home/ubuntu/karaoke-live" ]; then
-            cd /home/ubuntu/karaoke-live
-            git pull origin main || true
-            docker compose up -d --build --pull always --remove-orphans
-          else
-            docker compose up -d --build --pull always --remove-orphans
-          fi
+          docker build -t karaoke-live:latest .
+          docker compose up -d --remove-orphans --no-build
 
       - name: Verify Container Health
         run: |

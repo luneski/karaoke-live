@@ -9,7 +9,7 @@ services:
     ports:
       - "127.0.0.1:3030:3030"
     volumes:
-      - ./data:/app/data
+      - ${DATA_PATH:-/home/ubuntu/karaoke-live/data}:/app/data
     environment:
       - PORT=${PORT:-3030}
       - NODE_ENV=${NODE_ENV:-production}
