@@ -1,5 +1,5 @@
 # Stage 1: Build & compile native dependencies
-FROM node:22-alpine AS builder
+FROM node:26-alpine AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN npm ci --omit=dev || npm install --omit=dev
 
 # Stage 2: Minimal production runtime image
-FROM node:22-alpine
+FROM node:26-alpine
 
 WORKDIR /app
 
