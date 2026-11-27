@@ -1,0 +1,56 @@
+name: Renovate Bot (Gitea Actions)
+
+on:
+  schedule:
+    - cron: '0 4 * * 1' # Exécution hebdomadaire tous les lundis à 04:00 UTC (après le scan Trivy de 03:00)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry Run (full / null)"
+        required: false
+        default: "null"
+        type: choice
+        options:
+          - "null"
+          - "full"
+      log_level:
+        description: "Niveau de log"
+        required: false
+        default: "info"
+        type: choice
+        options:
+          - "info"
+          - "debug"
+
+jobs:
+  renovate:
+    name: Renovate Dependency Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Renovate Bot
+        run: |
+          echo "🚀 Lancement de Renovate Bot sur le dépôt Gitea luneski/karaoke-live..."
+          
+          TOKEN="${{ secrets.RENOVATE_TOKEN || secrets.GITEA_TOKEN || secrets.GITHUB_TOKEN }}"
+          DRY_RUN="${{ inputs.dry_run || 'null' }}"
+          LOG_LEVEL="${{ inputs.log_level || 'info' }}"
+
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Aucun token d'authentification Gitea trouvé. Assurez-vous de définir le secret RENOVATE_TOKEN dans les paramètres du dépôt Gitea."
+            exit 1
+          fi
+
+          docker run --rm \
+            -e RENOVATE_PLATFORM="gitea" \
+            -e RENOVATE_ENDPOINT="https://git.luneski.fr/api/v1" \
+            -e RENOVATE_TOKEN="$TOKEN" \
+            -e RENOVATE_REPOSITORIES='["luneski/karaoke-live"]' \
+            -e RENOVATE_AUTODISCOVER="false" \
+            -e RENOVATE_DRY_RUN="$DRY_RUN" \
+            -e RENOVATE_GIT_AUTHOR="Renovate Bot <renovate@luneski.fr>" \
+            -e RENOVATE_PRINT_CONFIG="false" \
+            -e LOG_LEVEL="$LOG_LEVEL" \
+            renovate/renovate:latest

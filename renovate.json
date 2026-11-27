@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits"
+  ],
+  "labels": ["dependencies", "renovate"],
+  "timezone": "Europe/Paris",
+  "schedule": ["before 6am on monday"],
+  "onboarding": false,
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "description": "Regrouper les mises à jour mineures et correctifs npm",
+      "matchPackageNames": ["*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "non-major npm dependencies",
+      "groupSlug": "all-minor-patch"
+    },
+    {
+      "description": "Mises à jour des images de base Docker",
+      "matchDatasources": ["docker"],
+      "groupName": "docker base images"
+    },
+    {
+      "description": "Dépendance SQLite native sensible",
+      "matchPackageNames": ["better-sqlite3"],
+      "groupName": "sqlite native dependencies"
+    }
+  ],
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2
+}
