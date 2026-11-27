@@ -9,29 +9,54 @@
   "schedule": ["before 6am on monday"],
   "onboarding": false,
   "dependencyDashboard": true,
+  "ignoreTests": false,
   "packageRules": [
     {
-      "description": "Regrouper les mises à jour mineures et correctifs npm",
+      "description": "Regrouper et auto-merger les mises à jour mineures et correctifs npm si CI verte",
       "matchPackageNames": ["*"],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "non-major npm dependencies",
-      "groupSlug": "all-minor-patch"
+      "groupSlug": "all-minor-patch",
+      "automerge": true,
+      "automergeType": "pr"
     },
     {
-      "description": "Mises à jour des images de base Docker",
+      "description": "Auto-merger les patchs/mineures de l'image Docker si CI verte",
       "matchDatasources": ["docker"],
-      "groupName": "docker base images"
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "docker base images (patch/minor)",
+      "automerge": true,
+      "automergeType": "pr"
     },
     {
-      "description": "Dépendance SQLite native sensible",
+      "description": "Mises à jour majeures Docker (requiert audit d'agent / revue)",
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "docker base images (major)",
+      "automerge": false
+    },
+    {
+      "description": "Dépendance SQLite native mineure (automerge si CI/Trivy OK)",
       "matchPackageNames": ["better-sqlite3"],
-      "groupName": "sqlite native dependencies"
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "sqlite native dependencies",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Dépendance SQLite native majeure (requiert audit d'agent / revue)",
+      "matchPackageNames": ["better-sqlite3"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "sqlite major upgrade",
+      "automerge": false
     }
   ],
   "rangeStrategy": "bump",
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["before 6am on monday"]
+    "schedule": ["before 6am on monday"],
+    "automerge": true,
+    "automergeType": "pr"
   },
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2
